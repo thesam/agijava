@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="coverage" name="agijava">
+	<property name="report.test.dir" value="emma"/>
+	<property name="ant.lib.dir" value="/home/samme/emma_lib/"/>
+	<property name="classes.dir" value="bin/"/>
+	<property name="test.dir" value="test"/>
+	<property name="junit.output.dir" value="junit"/>
+	<path id="emma.lib">
+	    <pathelement location="${ant.lib.dir}/emma.jar" />
+	    <pathelement location="${ant.lib.dir}/emma_ant.jar" />
+	</path>
+	<path id="agijava.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="thirdparty/junit.jar"/>
+        <pathelement location="thirdparty/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+		<pathelement location="thirdparty/mockito-all-1.8.5.jar"/>
+    </path>
+	<taskdef resource="emma_ant.properties" classpathref="emma.lib" />
+	<target name="coverage">
+		<mkdir dir="${report.test.dir}"/>
+		<emma>
+		    <instr instrpath="${classes.dir}" metadatafile="${report.test.dir}/coverage.em" mode="overwrite" merge="true" filter="-*Test -*.Fake*"/>
+		</emma>
+		<mkdir dir="${junit.output.dir}"/>
+		<junit printsummary="yes" haltonfailure="no" fork="yes">
+			<formatter type="xml"/>
+		    <jvmarg value="-Demma.coverage.out.file=${report.test.dir}/coverage.ec" />
+		    <jvmarg value="-Demma.coverage.out.merge=true" />
+		    <batchtest todir="${junit.output.dir}">
+		    	<fileset dir="${test.dir}">
+		    		<include name="**/*Test.java"/>
+		    	</fileset>
+		    </batchtest>
+		    <classpath refid="agijava.classpath"/>
+		    <classpath refid="emma.lib"/>
+		</junit>
+		<emma>
+		    <report>
+		        <infileset dir="${report.test.dir}" includes="*.em, *.ec" />
+		        <xml outfile="${report.test.dir}/coverage.xml" />
+		        <txt outfile="${report.test.dir}/coverage.txt" />
+		    </report>
+		</emma>
+	</target>
+</project>

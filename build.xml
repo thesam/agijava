@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="agijava">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../../../MinaProgram/eclipse"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+    </path>
+    <path id="agijava.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="thirdparty/junit.jar"/>
+        <pathelement location="thirdparty/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+        <pathelement location="thirdparty/mockito-all-1.8.5.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="thirdparty">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+                <exclude name="*.zip"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="agijava.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="thirdparty"/>
+            <exclude name="*.zip"/>
+            <classpath refid="agijava.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="test"/>
+            <classpath refid="agijava.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="(default package)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="AbsoluteLineCommandTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.picture.AbsoluteLineCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="AbsoluteLineCommandTest.needsArgumentsWhenCreated">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.picture.AbsoluteLineCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="agijava (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameEngineTest" todir="${junit.output.dir}"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <test name="agijava.GuiDrawerTest" todir="${junit.output.dir}"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <test name="agijava.InputListenerTest" todir="${junit.output.dir}"/>
+            <test name="agijava.InventoryObjectTest" todir="${junit.output.dir}"/>
+            <test name="agijava.MovementCalculatorTest" todir="${junit.output.dir}"/>
+            <test name="agijava.PictureIntegrationTest" todir="${junit.output.dir}"/>
+            <test name="agijava.RawByteArrayTest" todir="${junit.output.dir}"/>
+            <test name="agijava.RunningGameTest" todir="${junit.output.dir}"/>
+            <test name="agijava.WordsTokTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="agijava.gui.test">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="agijava">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameEngineTest" todir="${junit.output.dir}"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <test name="agijava.GuiDrawerTest" todir="${junit.output.dir}"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <test name="agijava.InputListenerTest" todir="${junit.output.dir}"/>
+            <test name="agijava.InventoryObjectTest" todir="${junit.output.dir}"/>
+            <test name="agijava.MovementCalculatorTest" todir="${junit.output.dir}"/>
+            <test name="agijava.PictureIntegrationTest" todir="${junit.output.dir}"/>
+            <test name="agijava.RawByteArrayTest" todir="${junit.output.dir}"/>
+            <test name="agijava.RunningGameTest" todir="${junit.output.dir}"/>
+            <test name="agijava.WordsTokTest" todir="${junit.output.dir}"/>
+            <test name="agijava.gui.GameGuiTest" todir="${junit.output.dir}"/>
+            <test name="agijava.io.ResourceDirTest" todir="${junit.output.dir}"/>
+            <test name="agijava.io.ResourceReferenceTest" todir="${junit.output.dir}"/>
+            <test name="agijava.logic.EvaluatedTestStatementTest" todir="${junit.output.dir}"/>
+            <test name="agijava.logic.GroupedStatementTest" todir="${junit.output.dir}"/>
+            <test name="agijava.logic.TestStatementEvaluatorTest" todir="${junit.output.dir}"/>
+            <test name="agijava.logic.commands.SetCelvCommandTest" todir="${junit.output.dir}"/>
+            <test name="agijava.picture.AbsoluteLineCommandTest" todir="${junit.output.dir}"/>
+            <test name="agijava.picture.ChangePenCommandTest" todir="${junit.output.dir}"/>
+            <test name="agijava.picture.ChangePictureColorCommandTest" todir="${junit.output.dir}"/>
+            <test name="agijava.view.LoopTest" todir="${junit.output.dir}"/>
+            <test name="agijava.view.ViewTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="agijava.test">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="ChangePenCommandTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.picture.ChangePenCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="ChangePictureColorCommandTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.picture.ChangePictureColorCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="EvaluatedTestStatementTest.canRememberAFalseBoolean">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.logic.EvaluatedTestStatementTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="EvaluatedTestStatementTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.logic.EvaluatedTestStatementTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameGuiTest.canDrawCurrentInputLineWithPrefixOnRow23">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.gui.GameGuiTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameGuiTest.canUpdateOnGraphicsDevice">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.gui.GameGuiTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameGuiTest.doesNotCalculatePrioIfSet">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.gui.GameGuiTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameGuiTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.gui.GameGuiTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameStateTest.canExecuteNextCommandFromCurrentLogic">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameStateTest.canMovePictureInBufferToCurrentPicture">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameStateTest.canSetAndGetLogic">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameStateTest.canSetLogic">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameStateTest.canStoreAnimatedObjects">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameStateTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameStateTest.returnsEmptyListIfNoSaidWordsAreSet">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameStateTest.returnsFalseWhenAskedForRightPosn">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameStateTest.returnsFalseWhenAskedIfGameIsExited">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.canParseFalseEqualnTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.canParseFalseTwoAndedGreaterThanTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.canParseIfStatementWithoutTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.canParseIfStatementWithTrueIssetTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.canParseOneTrueOneFalseOredGreaterThanTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.canParseTrueEqualnTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.canParseTrueIfStatementWithControllerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.canParseTwoOredFalseGreaterThanTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.canParseTwoOredTrueGreaterThanTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.ifEvaluatedToTrue">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.ifIsEvaluatedToTrue">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="IfCommandTest.requiresOneByteArgumentAtATime">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="InventoryObjectTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.InventoryObjectTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.canParseElseBlockWithOneCall">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.canParseGotoForwardCommand">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.canParseIfStatementWithEqualnTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.canParseIfStatementWithEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.canParseIfStatementWithEqualvTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.canParseIfStatementWithIssetvTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.canParseIfStatementWithLessnTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.canParseifStatementWithNegatedEqualnTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.canParseIfStatementWithTwoAndedGreaterThanTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.canParseIfWithEmptyElseStatement">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.canParseOneCallCommandMixedWithNestedIfStatement">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest.discoDance">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LogicParserTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.LogicParserTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LoopTest.canAddAndGetCel">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.view.LoopTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="LoopTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.view.LoopTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="Main (1)">
+        <java classname="agijava.main.impl.Main" failonerror="true" fork="yes">
+            <classpath refid="agijava.classpath"/>
+        </java>
+    </target>
+    <target name="PictureIntegrationTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.PictureIntegrationTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="PictureIntegrationTest.testName">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.PictureIntegrationTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="RawByteArrayTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.RawByteArrayTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="test">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameEngineTest" todir="${junit.output.dir}"/>
+            <test name="agijava.GameStateTest" todir="${junit.output.dir}"/>
+            <test name="agijava.GuiDrawerTest" todir="${junit.output.dir}"/>
+            <test name="agijava.IfCommandTest" todir="${junit.output.dir}"/>
+            <test name="agijava.InputListenerTest" todir="${junit.output.dir}"/>
+            <test name="agijava.InventoryObjectTest" todir="${junit.output.dir}"/>
+            <test name="agijava.MovementCalculatorTest" todir="${junit.output.dir}"/>
+            <test name="agijava.PictureIntegrationTest" todir="${junit.output.dir}"/>
+            <test name="agijava.RawByteArrayTest" todir="${junit.output.dir}"/>
+            <test name="agijava.RunningGameTest" todir="${junit.output.dir}"/>
+            <test name="agijava.WordsTokTest" todir="${junit.output.dir}"/>
+            <test name="agijava.gui.GameGuiTest" todir="${junit.output.dir}"/>
+            <test name="agijava.io.ResourceDirTest" todir="${junit.output.dir}"/>
+            <test name="agijava.io.ResourceReferenceTest" todir="${junit.output.dir}"/>
+            <test name="agijava.logic.EvaluatedTestStatementTest" todir="${junit.output.dir}"/>
+            <test name="agijava.logic.GroupedStatementTest" todir="${junit.output.dir}"/>
+            <test name="agijava.logic.TestStatementEvaluatorTest" todir="${junit.output.dir}"/>
+            <test name="agijava.logic.commands.SetCelvCommandTest" todir="${junit.output.dir}"/>
+            <test name="agijava.picture.AbsoluteLineCommandTest" todir="${junit.output.dir}"/>
+            <test name="agijava.picture.ChangePenCommandTest" todir="${junit.output.dir}"/>
+            <test name="agijava.picture.ChangePictureColorCommandTest" todir="${junit.output.dir}"/>
+            <test name="agijava.view.LoopTest" todir="${junit.output.dir}"/>
+            <test name="agijava.view.ViewTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="TestStatementEvaluatorTest.aLessnTestForVar5">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.logic.TestStatementEvaluatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="TestStatementEvaluatorTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.logic.TestStatementEvaluatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="ViewTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.view.ViewTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GroupedStatementTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.logic.GroupedStatementTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="ResourceReferenceTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.io.ResourceReferenceTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="ResourceDirTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.io.ResourceDirTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="SetCelvCommandTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.logic.commands.SetCelvCommandTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameEngineTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameEngineTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GuiDrawerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GuiDrawerTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameEngineTest.drawsCurrentPictureWithGuiDrawer">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameEngineTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameEngineTest.drawsStatusLineWithGuiDrawer">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameEngineTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="RunningGame">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.main.impl.RunningGame" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="RunningGameTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.RunningGameTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="GameEngineTest.refreshesGuiOnRunningGame">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.GameEngineTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="InputListenerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.InputListenerTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="WordsTokTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.WordsTokTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="MovementCalculatorTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="agijava.MovementCalculatorTest" todir="${junit.output.dir}"/>
+            <classpath refid="agijava.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>

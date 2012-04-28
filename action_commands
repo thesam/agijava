@@ -1,0 +1,183 @@
+00	return	 0	  	  	  	  	  	  	  
+01	increment	 1	 var	  	  	  	  	  	  
+02	decrement	 1	 var	  	  	  	  	  	  
+03	assignn	 2	 var	 num	  	  	  	  	  
+04	assignv	 2	 var	 var	  	  	  	  	  
+05	addn	 2	 var	 num	  	  	  	  	  
+06	addv	 2	 var	 var	  	  	  	  	  
+07	subn	 2	 var	 num	  	  	  	  	  
+08	subv	 2	 var	 var	  	  	  	  	  
+09	lindirectv	 2	 var	 var	  	  	  	  	  
+0A	rindirect	 2	 var	 var	  	  	  	  	  
+0B	lindirectn	 2	 var	 num	  	  	  	  	  
+0C	set	 1	 flag	  	  	  	  	  	  
+0D	reset	 1	 flag	  	  	  	  	  	  
+0E	toggle	 1	 flag	  	  	  	  	  	  
+0F	set.v	 1	 var	  	  	  	  	  	  
+10	reset.v	 1	 var	  	  	  	  	  	  
+11	toggle.v	 1	 var	  	  	  	  	  	  
+12	new.room	 1	 num	  	  	  	  	  	  
+13	new.room.v	 1	 var	  	  	  	  	  	  
+14	load.logics	 1	 num	  	  	  	  	  	  
+15	load.logics.v	 1	 var	  	  	  	  	  	  
+16	call	 1	 num	  	  	  	  	  	  
+17	call.v	 1	 var	  	  	  	  	  	  
+18	load.pic	 1	 var	  	  	  	  	  	  
+19	draw.pic	 1	 var	  	  	  	  	  	  
+1A	show.pic	 0	  	  	  	  	  	  	  
+1B	discard.pic	 1	 var	  	  	  	  	  	  
+1C	overlay.pic	 1	 var	  	  	  	  	  	  
+1D	show.pri.screen	 0	  	  	  	  	  	  	  
+1E	load.view	 1	 num	  	  	  	  	  	  
+1F	load.view.v	 1	 var	  	  	  	  	  	  
+20	discard.view	 1	 num	  	  	  	  	  	  
+21	animate.obj	 1	 obj	  	  	  	  	  	  
+22	unanimate.all	 0	  	  	  	  	  	  	  
+23	draw	 1	 obj	  	  	  	  	  	  
+24	erase	 1	 obj	  	  	  	  	  	  
+25	position	 3	 obj	 num	 num	  	  	  	  
+26	position.v	 3	 obj	 var	 var	  	  	  	  
+27	get.posn	 3	 obj	 var	 var	  	  	  	  
+28	reposition	 3	 obj	 var	 var	  	  	  	  
+29	set.view	 2	 obj	 num	  	  	  	  	  
+2A	set.view.v	 2	 obj	 var	  	  	  	  	  
+2B	set.loop	 2	 obj	 num	  	  	  	  	  
+2C	set.loop.v	 2	 obj	 var	  	  	  	  	  
+2D	fix.loop	 1	 obj	  	  	  	  	  	  
+2E	release.loop	 1	 obj	  	  	  	  	  	  
+2F	set.cel	 2	 obj	 num	  	  	  	  	  
+30	set.cel.v	 2	 obj	 var	  	  	  	  	  
+31	last.cel	 2	 obj	 var	  	  	  	  	  
+32	current.cel	 2	 obj	 var	  	  	  	  	  
+33	current.loop	 2	 obj	 var	  	  	  	  	  
+34	current.view	 2	 obj	 var	  	  	  	  	  
+35	number.of.loops	 2	 obj	 var	  	  	  	  	  
+36	set.priority	 2	 obj	 num	  	  	  	  	  
+37	set.priority.v	 2	 obj	 var	  	  	  	  	  
+38	release.priority	 1	 obj	  	  	  	  	  	  
+39	get.priority	 2	 obj	 var	  	  	  	  	  
+3A	stop.update	 1	 obj	  	  	  	  	  	  
+3B	start.update	 1	 obj	  	  	  	  	  	  
+3C	force.update	 1	 obj	  	  	  	  	  	  
+3D	ignore.horizon	 1	 obj	  	  	  	  	  	  
+3E	observe.horizon	 1	 obj	  	  	  	  	  	  
+3F	set.horizon	 1	 num	  	  	  	  	  	  
+40	object.on.water	 1	 obj	  	  	  	  	  	  
+41	object.on.land	 1	 obj	  	  	  	  	  	  
+42	object.on.anything	 1	 obj	  	  	  	  	  	  
+43	ignore.objs	 1	 obj	  	  	  	  	  	  
+44	observe.objs	 1	 obj	  	  	  	  	  	  
+45	distance	 3	 obj	 obj	 var	  	  	  	  
+46	stop.cycling	 1	 obj	  	  	  	  	  	  
+47	start.cycling	 1	 obj	  	  	  	  	  	  
+48	normal.cycle	 1	 obj	  	  	  	  	  	  
+49	end.of.loop	 2	 obj	 flag	  	  	  	  	  
+4A	reverse.cycle	 1	 obj	  	  	  	  	  	  
+4B	reverse.loop	 2	 obj	 flag	  	  	  	  	  
+4C	cycle.time	 2	 obj	 var	  	  	  	  	  
+4D	stop.motion	 1	 obj	  	  	  	  	  	  
+4E	start.motion	 1	 obj	  	  	  	  	  	  
+4F	step.size	 2	 obj	 var	  	  	  	  	  
+50	step.time	 2	 obj	 var	  	  	  	  	  
+51	move.obj	 5	 obj	 num	  	  	  	  	  
+52	move.obj.v	 5	 obj	 var	  	  	  	  	  
+53	follow.ego	 3	 obj	 num	  	  	  	  	  
+54	wander	 1	 obj	  	  	  	  	  	  
+55	normal.motion	 1	 obj	  	  	  	  	  	  
+56	set.dir	 2	 obj	 var	  	  	  	  	  
+57	get.dir	 2	 obj	 var	  	  	  	  	  
+58	ignore.blocks	 1	 obj	  	  	  	  	  	  
+59	observe.blocks	 1	 obj	  	  	  	  	  	  
+5A	block	 4	 num	 num	  	  	  	  	  
+5B	unblock	 0	  	  	  	  	  	  	  
+5C	get	 1	 item	  	  	  	  	  	  
+5D	get.v	 1	 var	  	  	  	  	  	  
+5E	drop	 1	 item	  	  	  	  	  	  
+5F	put	 2	 item	  	  	  	  	  	  
+60	put.v	 2	 var	 var	  	  	  	  	  
+61	get.room.v	 2	 var	 var	  	  	  	  	  
+62	load.sound	 1	 num	  	  	  	  	  	  
+63	sound	 2	 num	 flag	  	  	  	  	  
+64	stop.sound	 0	  	  	  	  	  	  	  
+65	print	 1	 msg	  	  	  	  	  	  
+66	print.v	 1	 var	  	  	  	  	  	  
+67	display	 3	 num	 num	 msg	  	  	  	  
+68	display.v	 3	 var	 var	 var	  	  	  	  
+69	clear.lines	 3	 num	 num	 msg	  	  	  	  
+6A	text.screen	 0	  	  	  	  	  	  	  
+6B	graphics	 0	  	  	  	  	  	  	  
+6C	set.cursor.char	 1	 msg	  	  	  	  	  	  
+6D	set.text.attribute	 2	 num	 num	  	  	  	  	  
+6E	shake.screen	 1	 num	  	  	  	  	  	  
+6F	configure.screen	 3	 num	 num	 num	  	  	  	  
+70	status.line.on	 0	  	  	  	  	  	  	  
+71	status.line.off	 0	  	  	  	  	  	  	  
+72	set.string	 2	 str	 msg	  	  	  	  	  
+73	get.string	 2	 str	 msg	  	  	  	  	  
+74	word.to.string	 2	 word	 str	  	  	  	  	  
+75	parse	 1	 str	  	  	  	  	  	  
+76	get.num	 2	 str	 var	  	  	  	  	  
+77	prevent.input	 0	  	  	  	  	  	  	  
+78	accept.input	 0	  	  	  	  	  	  	  
+79	set.key	 3	 num	 num	 num	  	  	  	  
+7A	add.to.pic	 7	 num	 num	 num	 num	 num	 num	 num
+7B	add.to.pic.v	 7	 var	 var	 var	 var	 var	 var	 var
+7C	status	 0	  	  	  	  	  	  	  
+7D	save.game	 0	  	  	  	  	  	  	  
+7E	restore.game	 0	  	  	  	  	  	  	  
+7F	init.disk	 0	  	  	  	  	  	  	  
+80	restart.game	 0	  	  	  	  	  	  	  
+81	show.obj	 1	 num	  	  	  	  	  	  
+82	random	 3	 num	 num	 var	  	  	  	  
+83	program.control	 0	  	  	  	  	  	  	  
+84	player.control	 0	  	  	  	  	  	  	  
+85	obj.status.v	 1	 var	  	  	  	  	  	  
+86	quit	 1	 num	  	  	  	  	  	  
+87	show.mem	 0	  	  	  	  	  	  	  
+88	pause	 0	  	  	  	  	  	  	  
+89	echo.line	 0	  	  	  	  	  	  	  
+8A	cancel.line	 0	  	  	  	  	  	  	  
+8B	init.joy	 0	  	  	  	  	  	  	  
+8C	toggle.monitor	 0	  	  	  	  	  	  	  
+8D	version	 0	  	  	  	  	  	  	  
+8E	script.size	 1	 num	  	  	  	  	  	  
+8F	set.game.id	 1	 msg	  	  	  	  	  	  
+90	log	 1	 msg	  	  	  	  	  	  
+91	set.scan.start	 0	  	  	  	  	  	  	  
+92	reset.scan.start	 0	  	  	  	  	  	  	  
+93	reposition.to	 3	 obj	 num	 num	  	  	  	  
+94	reposition.to.v	 3	 obj	 var	 var	  	  	  	  
+95	trace.on	 0	  	  	  	  	  	  	  
+96	trace.info	 3	 num	 num	 num	  	  	  	  
+97	print.at	 4	 msg	 num	 num	 num	  	  	  
+98	print.at.v	 4	 var	 num	 num	 num	  	  	  
+99	discard.view.v	 1	 var	  	  	  	  	  	  
+9A	clear.text.rect	 5	 num	 num	 num	 num	 num	  	  
+9B	set.upper.left	 2	 num	 num	  	  	  	  	  
+9C	set.menu	 1	 msg	  	  	  	  	  	  
+9D	set.menu.member	 2	 msg	 ctr	  	  	  	  	  
+9E	submit.menu	 0	  	  	  	  	  	  	  
+9F	enable.member	 1	 ctr	  	  	  	  	  	  
+A0	disable.member	 1	 ctr	  	  	  	  	  	  
+A1	menu.input	 0	  	  	  	  	  	  	  
+A2	show.obj.v	 1	 var	  	  	  	  	  	  
+A3	open.dialogue	 0	  	  	  	  	  	  	  
+A4	close.dialogue	 0	  	  	  	  	  	  	  
+A5	mul.n	 2	 var	 num	  	  	  	  	  
+A6	mul.v	 2	 var	 var	  	  	  	  	  
+A7	div.n	 2	 var	 num	  	  	  	  	  
+A8	div.v	 2	 var	 var	  	  	  	  	  
+A9	close.window	 0	  	  	  	  	  	  	  
+AA	set.simple	 1	 ???	  	  	  	  	  	  
+AB	push.script	 0	  	  	  	  	  	  	  
+AC	pop.script	 0	  	  	  	  	  	  	  
+AD	hold.key	 0	  	  	  	  	  	  	  
+AE	set.pri.base	 1	 num	  	  	  	  	  	  
+AF	discard.sound	 1	 num	  	  	  	  	  	  
+B0	hide.mouse	 0|1	  	  	  	  	  	  	  
+B1	allow.menu	 1	 ???	  	  	  	  	  	  
+B2	show.mouse	 0	  	  	  	  	  	  	  
+B3	fence.mouse	 4	 num	 num	 num	 num	  	  	  
+B4	mouse.posn	 2	 var	 var	  	  	  	  	  
+B5	release.key	 0	  	  	  	  	  	  	  
+B6	adj.ego.move.to.xy	 0	  	  	  	  	  	  
