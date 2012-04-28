@@ -4,10 +4,12 @@ import java.util.List;
 
 public class Resource {
 
-	private List<Integer> rawdata;
+	private final List<Integer> rawdata;
+	private final int entryNumber;
 
 	public Resource(List<Integer> rawdata, int entryNumber) {
 		this.rawdata = rawdata;
+		this.entryNumber = entryNumber;
 	}
 
 	public List<Integer> getRawData() {
@@ -15,7 +17,7 @@ public class Resource {
 	}
 
 	public int getEntryNumber() {
-		return 0;
+		return entryNumber;
 	}
 
 }
