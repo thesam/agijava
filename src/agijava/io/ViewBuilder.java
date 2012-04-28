@@ -11,11 +11,11 @@ import agijava.view.impl.Cel;
 import agijava.view.impl.Loop;
 import agijava.view.impl.View;
 
-public class ViewReader {
+public class ViewBuilder {
 
 	private Resource res;
 
-	public ViewReader(Resource res) throws IOException {
+	public ViewBuilder(Resource res) throws IOException {
 		this.res = res;
 	}
 

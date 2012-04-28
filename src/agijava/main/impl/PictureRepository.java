@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import agijava.io.PictureReader;
+import agijava.io.PictureBuilder;
 import agijava.io.Resource;
 import agijava.io.ResourceReader;
 import agijava.io.ResourceReference;
@@ -19,7 +19,7 @@ public class PictureRepository implements IPictureRepository {
 		for (ResourceReference resourceReference : pictureReferences) {
 			try {
 				Resource res = new ResourceReader(resourceReference).read();
-				PictureReader reader = new PictureReader(res);
+				PictureBuilder reader = new PictureBuilder(res);
 				IPicture pic = reader.getPicture();		
 				allPics.put(resourceReference.getEntryNumber(),pic);
 			} catch (Exception e) {

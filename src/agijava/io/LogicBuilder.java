@@ -9,12 +9,12 @@ import java.util.Map;
 import agijava.logic.ILogic;
 import agijava.logic.impl.Logic;
 
-public class LogicReader {
+public class LogicBuilder {
 
 	private final char[] MESSAGE_DECRYPTION_STRING = {'A','v','i','s',' ','D','u','r','g','a','n'};
 	private final Resource resource;
 	
-	public LogicReader(Resource resource) throws IOException {
+	public LogicBuilder(Resource resource) throws IOException {
 		this.resource = resource;
 	}
 

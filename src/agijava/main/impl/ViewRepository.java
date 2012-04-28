@@ -6,7 +6,7 @@ import java.util.Map;
 
 import agijava.io.ResourceReader;
 import agijava.io.ResourceReference;
-import agijava.io.ViewReader;
+import agijava.io.ViewBuilder;
 import agijava.main.IViewRepository;
 import agijava.view.IView;
 
@@ -19,7 +19,7 @@ public class ViewRepository implements IViewRepository {
 		for (ResourceReference resourceReference : viewReferences) {
 			try {
 				ResourceReader resReader = new ResourceReader(resourceReference);
-				ViewReader reader = new ViewReader(resReader.read());
+				ViewBuilder reader = new ViewBuilder(resReader.read());
 				IView view = reader.getView();		
 				allViews.put(resourceReference.getEntryNumber(),view);
 			} catch (Exception e) {

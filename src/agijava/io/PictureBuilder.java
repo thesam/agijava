@@ -7,12 +7,12 @@ import agijava.picture.IPictureCommand;
 import agijava.picture.impl.Picture;
 import agijava.picture.impl.PictureCommandFactory;
 
-public class PictureReader {
+public class PictureBuilder {
 	
 
 	private final Resource res;
 
-	public PictureReader(Resource res)
+	public PictureBuilder(Resource res)
 			throws IOException {
 				this.res = res;
 	}

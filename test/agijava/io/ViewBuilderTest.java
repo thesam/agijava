@@ -8,12 +8,12 @@ import org.junit.Test;
 import static org.mockito.Mockito.*;
 
 import agijava.io.ResourceReference;
-import agijava.io.ViewReader;
+import agijava.io.ViewBuilder;
 import agijava.view.IView;
 
-public class ViewReaderTest {
+public class ViewBuilderTest {
 
-	private ViewReader viewReader;
+	private ViewBuilder viewReader;
 	private ResourceReader resourceReader;
 
 	@Test
@@ -32,9 +32,9 @@ public class ViewReaderTest {
 		assertNotNull(view);
 	}
 
-	private ViewReader aViewReader() throws IOException {
+	private ViewBuilder aViewReader() throws IOException {
 		Resource res = mock(Resource.class);
-		viewReader = new ViewReader(res);
+		viewReader = new ViewBuilder(res);
 		return viewReader;
 	}
 }
