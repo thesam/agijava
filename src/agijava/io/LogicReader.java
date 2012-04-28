@@ -1,4 +1,4 @@
-package agijava.logic.impl;
+package agijava.io;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,30 +6,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import agijava.io.RawByteArray;
-import agijava.io.ResourceReader;
-import agijava.io.ResourceReference;
 import agijava.logic.ILogic;
+import agijava.logic.impl.Logic;
 
-public class LogicReader extends ResourceReader {
+public class LogicReader {
 
 	private final char[] MESSAGE_DECRYPTION_STRING = {'A','v','i','s',' ','D','u','r','g','a','n'};
+	private final Resource resource;
 	
-	public LogicReader(ResourceReference resourceReference) throws IOException {
-		super(resourceReference);
-
+	public LogicReader(Resource resource) throws IOException {
+		this.resource = resource;
 	}
 
 	public ILogic getLogic() {
-		RawByteArray raw = new RawByteArray(rawdata, 0);
+		RawByteArray raw = new RawByteArray(resource.getRawData(), 0);
 		int messageOffset1 = raw.getNextAndStep();
 		int messageOffset2 = raw.getNextAndStep();
 		int messageOffset = messageOffset2 << 8 | messageOffset1;
 		// This needs a 2 added since the offset is counted starting from AFTER the message offset value itself
 		messageOffset = messageOffset+2;
 		raw.setStopOffset(messageOffset);
-		Map<Integer,String> messages = parseMessages(rawdata,messageOffset);
-		return new Logic(resourceReference.getEntryNumber(),raw,messages );
+		Map<Integer,String> messages = parseMessages(resource.getRawData(),messageOffset);
+		return new Logic(resource.getEntryNumber(),raw,messages);
 	}
 
 	//TODO: Find crash reason and fix!

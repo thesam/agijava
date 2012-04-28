@@ -1,35 +1,38 @@
-package agijava.view.impl;
+package agijava.io;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import agijava.io.ResourceReader;
-import agijava.io.ResourceReference;
 import agijava.view.ICel;
 import agijava.view.ILoop;
 import agijava.view.IView;
+import agijava.view.impl.Cel;
+import agijava.view.impl.Loop;
+import agijava.view.impl.View;
 
-public class ViewReader extends ResourceReader {
+public class ViewReader {
 
-	public ViewReader(ResourceReference resourceReference) throws IOException {
-		super(resourceReference);
+	private Resource res;
+
+	public ViewReader(Resource res) throws IOException {
+		this.res = res;
 	}
 
 	@SuppressWarnings("unused")
 	public IView getView() {
- 		View view = new View(resourceReference.getEntryNumber());
+ 		View view = new View(res.getEntryNumber());
 		int fileOffset = 0;
 		
 		List<Integer> loopOffsets = new ArrayList<Integer>();
-		int unknown1 = rawdata.get(fileOffset++);
-		int unknown2 = rawdata.get(fileOffset++);
-		int numberOfLoops = rawdata.get(fileOffset++);
-		int description1 = rawdata.get(fileOffset++);
-		int description2 = rawdata.get(fileOffset++);
+		int unknown1 = res.getRawData().get(fileOffset++);
+		int unknown2 = res.getRawData().get(fileOffset++);
+		int numberOfLoops = res.getRawData().get(fileOffset++);
+		int description1 = res.getRawData().get(fileOffset++);
+		int description2 = res.getRawData().get(fileOffset++);
 		for (int i = 0; i < numberOfLoops; i++) {
-			int loop1 = rawdata.get(fileOffset++)&0xff;
-			int loop2 = rawdata.get(fileOffset++)&0xff;
+			int loop1 = res.getRawData().get(fileOffset++)&0xff;
+			int loop2 = res.getRawData().get(fileOffset++)&0xff;
 			int newOffset = ((loop2<<8)|loop1);
 			loopOffsets.add(new Integer(newOffset));			
 		}
@@ -39,18 +42,18 @@ public class ViewReader extends ResourceReader {
 			ILoop loop = new Loop();
 			int thisOffset = loopOffset;
 			List<Integer> celOffsets= new ArrayList<Integer>();
-			int numberOfCels = rawdata.get(thisOffset++);
+			int numberOfCels = res.getRawData().get(thisOffset++);
 			for (int cel = 0; cel < numberOfCels; cel++) {
-				int celPos1 = rawdata.get(thisOffset++)&0xff;
-				int celPos2 = rawdata.get(thisOffset++)&0xff;
+				int celPos1 = res.getRawData().get(thisOffset++)&0xff;
+				int celPos2 = res.getRawData().get(thisOffset++)&0xff;
 				int celPos = (celPos2<<8) | celPos1;
 				celPos += loopOffset;
 				celOffsets.add(celPos);
 			}
 			for (Integer celOffset : celOffsets) {
-				int width = rawdata.get(celOffset++) & 0xff;
-				int height = rawdata.get(celOffset++) & 0xff;
-				int transparencyAndMirroring = rawdata.get(celOffset++);
+				int width = res.getRawData().get(celOffset++) & 0xff;
+				int height = res.getRawData().get(celOffset++) & 0xff;
+				int transparencyAndMirroring = res.getRawData().get(celOffset++);
 				int transparentColor = transparencyAndMirroring & 0xf;
 				int mirroring = (transparencyAndMirroring & 0xf0) >> 4;
 				boolean isMirrored = (mirroring & 8) != 0;
@@ -59,7 +62,7 @@ public class ViewReader extends ResourceReader {
 				int currentData = 1;
 				int numberOfScannedLines= 0;
 				while (currentData != 0 || numberOfScannedLines < height) {
-					currentData = rawdata.get(celOffset++);
+					currentData = res.getRawData().get(celOffset++);
 					if (currentData != 00) {
 						int colorNumber = (currentData >> 4)&0x0f;
 						int length = currentData & 0x0f;

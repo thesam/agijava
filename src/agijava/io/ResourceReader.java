@@ -7,20 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class ResourceReader {
+public class ResourceReader {
 	
-	protected List<Integer> rawdata;
-	protected final ResourceReference resourceReference;
+	private ResourceReference resourceReference;
+	private String base;
 	
 	public ResourceReader(ResourceReference resourceReference) throws IOException {
 		this.resourceReference = resourceReference;
-		readResourceFromFile(resourceReference, "resource/sq2/vol.");
+		this.base = "resource/sq2/vol.";
 	}
 
-	@SuppressWarnings("unused")
-	private void readResourceFromFile(ResourceReference resourceReference, String base)
+	public Resource read()
 			throws FileNotFoundException, IOException {
-		rawdata = new ArrayList<Integer>();
+		List<Integer> rawdata = new ArrayList<Integer>();
 		FileInputStream inputStream = new FileInputStream(base + resourceReference.getVolNumber());
 		inputStream.skip(resourceReference.getOffset());
 		int signature1 = inputStream.read();
@@ -30,11 +29,16 @@ public abstract class ResourceReader {
 		int length2 = inputStream.read();
 		int length = length2 << 8 | length1;
 //		System.err.println("Arraylen: " + length);
-		byte[] rawdata = new byte[length];
-		inputStream.read(rawdata);
-		for (byte b : rawdata) {
-			this.rawdata.add((int)b);
+		byte[] rawdataBytes = new byte[length];
+		inputStream.read(rawdataBytes);
+		for (byte b : rawdataBytes) {
+			rawdata.add((int)b);
 		}
+		return new Resource(rawdata,resourceReference.getEntryNumber());
 	}
-	
+
+	public ResourceReference getResourceReference() {
+		return resourceReference;
+	}
+
 }

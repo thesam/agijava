@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import agijava.io.PictureReader;
+import agijava.io.Resource;
+import agijava.io.ResourceReader;
 import agijava.io.ResourceReference;
 import agijava.main.IPictureRepository;
 import agijava.picture.IPicture;
-import agijava.picture.impl.PictureReader;
 
 public class PictureRepository implements IPictureRepository {
 	private Map<Integer,IPicture> allPics;
@@ -16,7 +18,8 @@ public class PictureRepository implements IPictureRepository {
 		allPics = new HashMap<Integer,IPicture>();
 		for (ResourceReference resourceReference : pictureReferences) {
 			try {
-				PictureReader reader = new PictureReader(resourceReference);
+				Resource res = new ResourceReader(resourceReference).read();
+				PictureReader reader = new PictureReader(res);
 				IPicture pic = reader.getPicture();		
 				allPics.put(resourceReference.getEntryNumber(),pic);
 			} catch (Exception e) {

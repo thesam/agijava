@@ -1,26 +1,27 @@
-package agijava.picture.impl;
+package agijava.io;
 
 import java.io.IOException;
 
-import agijava.io.ResourceReader;
-import agijava.io.ResourceReference;
 import agijava.picture.IPicture;
 import agijava.picture.IPictureCommand;
+import agijava.picture.impl.Picture;
+import agijava.picture.impl.PictureCommandFactory;
 
-public class PictureReader extends ResourceReader {
+public class PictureReader {
 	
 
-	public PictureReader(ResourceReference resourceReference)
+	private final Resource res;
+
+	public PictureReader(Resource res)
 			throws IOException {
-		super(resourceReference);
-//		System.out.println(rawdata.size());
+				this.res = res;
 	}
 	
 	public IPicture getPicture() {
 		Picture picture = new Picture();
 		IPictureCommand currentCommand = null;
-		for (int i = 0; i < rawdata.size(); i++) {
-			int currentByte = (0xff & rawdata.get(i));
+		for (int i = 0; i < res.getRawData().size(); i++) {
+			int currentByte = (0xff & res.getRawData().get(i));
 			if (currentByte == 0xff) {
 				break;
 			}

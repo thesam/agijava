@@ -4,10 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import agijava.io.ResourceReader;
 import agijava.io.ResourceReference;
+import agijava.io.ViewReader;
 import agijava.main.IViewRepository;
 import agijava.view.IView;
-import agijava.view.impl.ViewReader;
 
 public class ViewRepository implements IViewRepository {
 	
@@ -17,7 +18,8 @@ public class ViewRepository implements IViewRepository {
 		allViews = new HashMap<Integer,IView>();
 		for (ResourceReference resourceReference : viewReferences) {
 			try {
-				ViewReader reader = new ViewReader(resourceReference);
+				ResourceReader resReader = new ResourceReader(resourceReference);
+				ViewReader reader = new ViewReader(resReader.read());
 				IView view = reader.getView();		
 				allViews.put(resourceReference.getEntryNumber(),view);
 			} catch (Exception e) {

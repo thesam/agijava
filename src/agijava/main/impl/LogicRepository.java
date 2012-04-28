@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import agijava.io.LogicReader;
+import agijava.io.Resource;
+import agijava.io.ResourceReader;
 import agijava.io.ResourceReference;
 import agijava.logic.ILogic;
-import agijava.logic.impl.LogicReader;
 import agijava.main.ILogicRepository;
 
 public class LogicRepository implements ILogicRepository {
@@ -18,7 +20,8 @@ public class LogicRepository implements ILogicRepository {
 		allLogic = new HashMap<Integer,ILogic>();
 		for (ResourceReference resourceReference : logicReferences) {
 			try {
-				LogicReader logicReader = new LogicReader(resourceReference);
+				Resource res = new ResourceReader(resourceReference).read();
+				LogicReader logicReader = new LogicReader(res);
 				ILogic logic = logicReader.getLogic();		
 				allLogic.put(resourceReference.getEntryNumber(),logic);
 			} catch (Exception e) {

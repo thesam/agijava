@@ -235,7 +235,7 @@ public class Logic implements ILogic {
 
 	private ILogicCommand getCommand(int nextByte) {
 		ILogicCommand command = commandMap.get(nextByte);
-//		System.err.println(command.getClass());
+		System.err.println(command.getClass());
 		command.reset();
 		return command;
 	}
