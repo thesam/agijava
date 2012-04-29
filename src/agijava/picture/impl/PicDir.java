@@ -9,13 +9,14 @@ import java.util.List;
 
 public class PicDir {
 
-	private FileInputStream inputStream;
+	private final String path;
 
 	public PicDir(String path) throws FileNotFoundException {
-		inputStream = new FileInputStream(path);
+		this.path = path;
 	}
 
 	public List<PictureReference> getPictureReferences() throws IOException {
+		FileInputStream inputStream = new FileInputStream(path);
 		List<PictureReference> pictureReferences = new ArrayList<PictureReference>();
 		int firstByte;
 		int secondByte;

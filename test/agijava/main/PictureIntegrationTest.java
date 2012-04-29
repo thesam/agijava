@@ -1,5 +1,7 @@
 package agijava.main;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import org.junit.Ignore;
@@ -19,6 +21,12 @@ import agijava.picture.IPicture;
 
 @SuppressWarnings("unused")
 public class PictureIntegrationTest {
+	
+	@Test
+	public void oneIsOne() throws Exception {
+		assertEquals(1,1);
+	}
+	
 	@Ignore
 	public void showPictureInGui() throws Exception {
 		ResourceDir picDir = new ResourceDir("resource/sq2/picdir");
