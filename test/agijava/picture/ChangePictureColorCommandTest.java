@@ -22,10 +22,6 @@ public class ChangePictureColorCommandTest {
 		verify(pic).setPictureColor(NEW_COLOR);
 	}
 
-	private void commandIsRun() {
-		cmd.run(pic, NEW_COLOR);
-	}
-
 	@Test
 	public void enablesPictureDrawingWhenSettingColor() throws Exception {
 		aPicture();
@@ -40,6 +36,10 @@ public class ChangePictureColorCommandTest {
 	public void needsArguments() throws Exception {
 		aChangePictureColorCommand();
 		assertTrue(cmd.needsArguments());
+	}
+
+	private void commandIsRun() {
+		cmd.run(pic, NEW_COLOR);
 	}
 
 	private void aPicture() {
