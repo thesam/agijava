@@ -9,8 +9,6 @@ public interface ICel extends IDrawable {
 
 	public int getTransparency();
 
-	public void setTransparency(int transparentColor);
-
 	public boolean isTransparentAt(int x, int y);
 
 }

@@ -5,8 +5,6 @@ import java.util.List;
 
 import agijava.logic.IEvaluatedTestStatement;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class GroupedStatement implements IEvaluatedTestStatement {
 
 	public enum GroupType {OR, AND};
@@ -61,7 +59,7 @@ public class GroupedStatement implements IEvaluatedTestStatement {
 
 	@Override
 	public void setNegated(boolean b) {
-		throw new NotImplementedException();
+		throw new RuntimeException("Operation not supported.");
 	}
 
 	public GroupType getGroupType() {

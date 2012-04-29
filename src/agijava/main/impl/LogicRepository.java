@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import agijava.io.LogicBuilder;
+import agijava.io.LogicFactory;
 import agijava.io.Resource;
 import agijava.io.ResourceReader;
 import agijava.io.ResourceReference;
@@ -21,7 +21,7 @@ public class LogicRepository implements ILogicRepository {
 		for (ResourceReference resourceReference : logicReferences) {
 			try {
 				Resource res = new ResourceReader(resourceReference).read();
-				LogicBuilder logicReader = new LogicBuilder(res);
+				LogicFactory logicReader = new LogicFactory(res);
 				ILogic logic = logicReader.getLogic();		
 				allLogic.put(resourceReference.getEntryNumber(),logic);
 			} catch (Exception e) {

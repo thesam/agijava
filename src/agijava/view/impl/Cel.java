@@ -4,12 +4,12 @@ import agijava.view.ICel;
 
 
 public class Cel implements ICel {
-	private int height;
-	private int width;
+	private final int height;
+	private final int width;
 	private int[][] celData;
-	private int transparency;
+	private int transparencyIndex;
 	
-	public Cel(int width, int height) {
+	public Cel(int width, int height, int transparentColorIndex) {
 		this.width = width;
 		this.height = height;
 		celData = new int[width][height];
@@ -18,6 +18,7 @@ public class Cel implements ICel {
 				celData[x][y] = -1;
 			}
 		}
+		this.transparencyIndex = transparentColorIndex;
 	}
 	
 	public void appendPixelsToRow(int y, int colorIndex,
@@ -39,24 +40,15 @@ public class Cel implements ICel {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				if (celData[x][y] == -1) {
-					celData[x][y] = transparency;
+					celData[x][y] = transparencyIndex;
 				}
 			}
 		}
 		
 	}
 
-	public int[][] getCelData() {
-		return celData;
-	}
-
-	public void setTransparency(int colorIndex) {
-		this.transparency = colorIndex;
-		
-	}
-
 	public int getTransparency() {
-		return transparency;
+		return transparencyIndex;
 	}
 
 	public int getHeight() {
@@ -79,7 +71,7 @@ public class Cel implements ICel {
 
 	@Override
 	public boolean isTransparentAt(int x, int y) {
-		return celData[x][y] == transparency;
+		return celData[x][y] == transparencyIndex;
 	}
 
 }
