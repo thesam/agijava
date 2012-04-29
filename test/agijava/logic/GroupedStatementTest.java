@@ -8,8 +8,6 @@ import org.junit.Test;
 import agijava.logic.impl.GroupedStatement;
 import agijava.logic.impl.GroupedStatement.GroupType;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class GroupedStatementTest {
 	private GroupedStatement groupedStatement;
 	private IEvaluatedTestStatement statement;
@@ -95,7 +93,7 @@ public class GroupedStatementTest {
 		assertEquals(3,groupedStatement.size());
 	}
 	
-	@Test (expected=NotImplementedException.class)
+	@Test (expected=RuntimeException.class)
 	public void throwsExceptionIfNegated() throws Exception {
 		aGroupedStatement();
 		groupedStatement.setNegated(true);

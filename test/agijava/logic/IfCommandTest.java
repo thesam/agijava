@@ -1,4 +1,4 @@
-package agijava;
+package agijava.logic;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;

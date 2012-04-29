@@ -1,4 +1,4 @@
-package agijava;
+package agijava.main;
 
 import static org.junit.Assert.*;
 
