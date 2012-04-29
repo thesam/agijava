@@ -5,7 +5,7 @@ public interface ICel extends IDrawable {
 	public void appendPixelsToRow(int numberOfScannedLines, int colorNumber,
 			int length);
 
-	public void FillAllEmptyPixelsWithTransparency();
+	public void fillAllEmptyPixelsWithTransparency();
 
 	public int getTransparency();
 

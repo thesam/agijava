@@ -34,7 +34,7 @@ public class CelFactory {
 		if (isMirrored && mirrorLoop != loopNo) {
 			cel = createMirrorCel(cel);
 		}
-		cel.FillAllEmptyPixelsWithTransparency();
+		cel.fillAllEmptyPixelsWithTransparency();
 		return cel;
 	}
 	

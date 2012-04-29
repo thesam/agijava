@@ -36,7 +36,7 @@ public class Cel implements ICel {
 		
 	}
 
-	public void FillAllEmptyPixelsWithTransparency() {
+	public void fillAllEmptyPixelsWithTransparency() {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				if (celData[x][y] == -1) {

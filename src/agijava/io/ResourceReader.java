@@ -22,8 +22,11 @@ public class ResourceReader {
 		List<Integer> rawdata = new ArrayList<Integer>();
 		FileInputStream inputStream = new FileInputStream(base + resourceReference.getVolNumber());
 		inputStream.skip(resourceReference.getOffset());
+		@SuppressWarnings("unused")
 		int signature1 = inputStream.read();
+		@SuppressWarnings("unused")
 		int signature2 = inputStream.read();
+		@SuppressWarnings("unused")
 		int volNumber = inputStream.read();
 		int length1 = inputStream.read();
 		int length2 = inputStream.read();

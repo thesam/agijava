@@ -10,6 +10,7 @@ public class ResourceTest {
 	@Test
 	public void canBeCreated() throws Exception {
 		Resource resource = createResourceWithEntryNumber(0);
+		assertNotNull(resource);
 	}
 
 	private Resource createResourceWithEntryNumber(int number) {

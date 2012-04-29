@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
-import agijava.io.ResourceReference;
 import agijava.io.ViewFactory;
 import agijava.view.IView;
 
