@@ -1,8 +1,8 @@
 package agijava.picture.impl;
 
 public class PicturePixel {
-	public int x;
-	public int y;
+	public final int x;
+	public final int y;
 	public PicturePixel(int x, int y) {
 		this.x = x;
 		this.y = y;

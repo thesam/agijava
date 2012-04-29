@@ -171,6 +171,12 @@ public class GameEngine {
 	private void waitForKeyPress() {
 		inputListener.setWaitingForDeblockingKeyPress(true);
 		while (inputListener.isWaitingForDeblockingKeyPress()) {
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
