@@ -53,7 +53,8 @@ public class GameEngineTest {
 	private void aGameEngine() {
 		gameState = mock(IGameState.class);
 		runningGame = mock(IRunningGame.class);
-		gameEngine = new GameEngine(gameState, runningGame, null,null);
+		IInputListener listener = mock(IInputListener.class);
+		gameEngine = new GameEngine(gameState, runningGame, listener,null);
 	}
 
 	private void anExitedGameState() {
