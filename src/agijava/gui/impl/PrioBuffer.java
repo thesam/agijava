@@ -14,6 +14,7 @@ public class PrioBuffer implements IPrioBuffer {
 		reset();
 	}
 
+	@Override
 	public void reset() {
 		this.buffer = new int[gfxWidth][gfxHeight];
 		for (int i = 0; i < gfxWidth; i++) {
@@ -21,12 +22,9 @@ public class PrioBuffer implements IPrioBuffer {
 		}
 	}
 
+	@Override
 	public void drawPixel(int x, int y, int prio) {
 		this.buffer[x][y] = prio;
-	}
-
-	public int getPrioAt(int x, int y) {
-		return this.buffer[x][y];
 	}
 
 	@Override
