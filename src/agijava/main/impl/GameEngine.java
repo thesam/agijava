@@ -12,7 +12,7 @@ public class GameEngine {
 	// Vars
 	public final static int VAR_ROOM_NO = 0;
 	private static final int VAR_PREVIOUS_ROOM_NO = 1;
-	static final int VAR_EGO_DIRECTION = 6;
+	public static final int VAR_EGO_DIRECTION = 6;
 	private static final int VAR_EGO_VIEW_NO = 16;
 
 	// Flags

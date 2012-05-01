@@ -30,12 +30,28 @@ public class InputListener implements IInputListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		this.keyPressWaiting = true;
-		int keyCode = e.getKeyCode();
-		IAnimatedObject ego = gameState.getAnimatedObject(0);
+		setKeyPressWaiting(true);
 		if (!gameState.playerControl() && !waitingForDeblockingKeyPress) {
 			return;
 		}
+		int keyCode = e.getKeyCode();
+		int newDirection = parseKeyCode(keyCode);
+		if (newDirection != -1) {
+			IAnimatedObject ego = gameState.getAnimatedObject(0);
+			if (ego != null) {
+				if (ego.isMoving()) {
+					if (ego.getDirection() == newDirection) {
+						ego.setMoving(false);
+					}
+				} else {
+					ego.setMoving(true);
+				}
+				gameState.setVar(GameEngine.VAR_EGO_DIRECTION, newDirection);
+			}
+		}
+	}
+
+	private int parseKeyCode(int keyCode) {
 		int newDirection = -1;
 		switch (keyCode) {
 		case KeyEvent.VK_LEFT:
@@ -54,7 +70,7 @@ public class InputListener implements IInputListener {
 			this.waitingForDeblockingKeyPress = false;
 			String textInput = gui.getCurrentInputLine();
 			if (!textInput.isEmpty()) {
-				inputIsWaiting = true;
+				setInputIsWaiting(true);
 				input = textInput;
 				gui.clearCurrentInputLine();
 			}
@@ -65,19 +81,7 @@ public class InputListener implements IInputListener {
 		default:
 			// String textInput = JOptionPane.showInputDialog("Input");
 		}
-		if (ego == null) {
-			return;
-		}
-		if (newDirection != -1) {
-			if (ego.isMoving()) {
-				if (ego.getDirection() == newDirection) {
-					ego.setMoving(false);
-				}
-			} else {
-				ego.setMoving(true);
-			}
-			gameState.setVar(GameEngine.VAR_EGO_DIRECTION, newDirection);
-		}
+		return newDirection;
 	}
 
 	@Override
@@ -116,5 +120,5 @@ public class InputListener implements IInputListener {
 	public boolean isWaitingForDeblockingKeyPress() {
 		return waitingForDeblockingKeyPress;
 	}
-	
+
 }

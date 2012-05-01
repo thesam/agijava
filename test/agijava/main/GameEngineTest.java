@@ -1,5 +1,6 @@
 package agijava.main;
 
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class GameEngineTest {
 	@Test
 	public void canBeCreated() throws Exception {
 		aGameEngine();
+		assertNotNull(gameEngine);
 	}
 
 	@Test
