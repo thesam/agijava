@@ -4,12 +4,15 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
+import agijava.io.RawByteArray;
 import agijava.logic.impl.Logic;
+import static org.mockito.Mockito.*;
 
 public class LogicTest {
 	@Test
 	public void canBeCreated() throws Exception {
-		Logic logic = new Logic(0, null, null);
+		RawByteArray rawByteArray = mock(RawByteArray.class);
+		Logic logic = new Logic(0, rawByteArray, null);
 		assertNotNull(logic);
 	}
 }
