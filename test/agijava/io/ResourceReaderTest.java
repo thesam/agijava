@@ -7,7 +7,7 @@ import org.junit.Test;
 public class ResourceReaderTest {
 	@Test
 	public void canBeCreated() throws Exception {
-		ResourceReader resourceReader = new ResourceReader(null);
+		ResourceReader resourceReader = new ResourceReader(null,null);
 		assertNotNull(resourceReader);
 	}
 }

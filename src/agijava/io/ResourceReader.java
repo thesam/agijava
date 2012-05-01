@@ -12,9 +12,9 @@ public class ResourceReader {
 	private ResourceReference resourceReference;
 	private String base;
 	
-	public ResourceReader(ResourceReference resourceReference) throws IOException {
+	public ResourceReader(ResourceReference resourceReference, String volBase) {
 		this.resourceReference = resourceReference;
-		this.base = "resource/sq2/vol.";
+		this.base = volBase;
 	}
 
 	public Resource read()

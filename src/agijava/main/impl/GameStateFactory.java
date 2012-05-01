@@ -13,6 +13,7 @@ public class GameStateFactory {
 	public static IGameState createInstance(String gameDir) throws IOException {
 		ResourceDir picDir = new ResourceDir(gameDir + "picdir");
 		List<ResourceReference> pictureReferences = picDir.getResourceReferences();
+		
 		PictureRepository pictureRepository = new PictureRepository(pictureReferences);
 
 		ResourceDir viewDir = new ResourceDir(gameDir + "viewdir");

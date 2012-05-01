@@ -117,4 +117,27 @@ public class InputListenerTest {
 
 		assertFalse(listener.isWaitingForDeblockingKeyPress());
 	}
+	
+	@Test
+	public void chopsGuiInputOnBackspace() throws Exception {
+		when(event.getKeyCode()).thenReturn(KeyEvent.VK_BACK_SPACE);
+		
+		listener.keyPressed(event);
+		
+		verify(gui).chopInput();
+	}
+	
+	@Test
+	public void storesInputFromGuiIfNotEmptyWhenEnterIsPressed() throws Exception {
+		when(gui.getCurrentInputLine()).thenReturn("test");
+		when(event.getKeyCode()).thenReturn(KeyEvent.VK_ENTER);
+		
+		assertFalse(listener.isInputWaiting());
+		
+		listener.keyPressed(event);
+		
+		assertTrue(listener.isInputWaiting());
+		assertEquals("test",listener.getLatestInput());
+		verify(gui).clearCurrentInputLine();
+	}
 }
