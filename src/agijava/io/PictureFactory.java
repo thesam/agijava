@@ -11,10 +11,12 @@ public class PictureFactory {
 	
 
 	private final Resource res;
+	private PictureCommandFactory pictureCommandFactory;
 
-	public PictureFactory(Resource res)
+	public PictureFactory(Resource res,PictureCommandFactory pictureCommandFactory)
 			throws IOException {
 				this.res = res;
+				this.pictureCommandFactory = pictureCommandFactory;
 	}
 	
 	public IPicture getPicture() {
@@ -25,8 +27,8 @@ public class PictureFactory {
 			if (currentByte == 0xff) {
 				break;
 			}
-			if (PictureCommandFactory.isCommandNumber(currentByte)) {
-				currentCommand = PictureCommandFactory.getPictureCommand(currentByte);
+			if (pictureCommandFactory.isCommandNumber(currentByte)) {
+				currentCommand = pictureCommandFactory.getPictureCommand(currentByte);
 				if (!currentCommand.needsArguments()) {
 					currentCommand.run(picture,currentByte);
 				}

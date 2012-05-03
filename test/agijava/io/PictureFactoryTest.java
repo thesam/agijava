@@ -1,13 +1,56 @@
 package agijava.io;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+
+import org.junit.Before;
 import org.junit.Test;
 
+import agijava.picture.IPicture;
+import agijava.picture.IPictureCommand;
+import agijava.picture.impl.PictureCommandFactory;
+
 public class PictureFactoryTest {
-@Test
-public void canBeCreated() throws Exception {
-	PictureFactory pictureFactory = new PictureFactory(null);
-	assertNotNull(pictureFactory);
-}
+	private PictureFactory pictureFactory;
+	private ArrayList<Integer> rawByteArray;
+	private PictureCommandFactory cmdFactory;
+
+	@Before
+	public void setup() throws Exception {
+		Resource resource = mock(Resource.class);
+		cmdFactory = mock(PictureCommandFactory.class);
+		
+		rawByteArray = new ArrayList<Integer>();
+		when(resource.getRawData()).thenReturn(rawByteArray);
+		pictureFactory = new PictureFactory(resource,cmdFactory);
+	}
+	
+	@Test
+	public void canBeCreated() throws Exception {
+		assertNotNull(pictureFactory);
+	}
+	
+	@Test
+	public void canGetPictureWithNoCommands() throws Exception {
+		IPicture picture = pictureFactory.getPicture();
+		
+		assertNotNull(picture);
+	}
+	
+	@Test
+	public void canGetPictureWithOneCommandWithNoArguments() throws Exception {
+		IPictureCommand cmd = mock(IPictureCommand.class);
+		when(cmd.needsArguments()).thenReturn(false);
+		
+		rawByteArray.add(0x55);
+		when(cmdFactory.isCommandNumber(0x55)).thenReturn(true);
+		when(cmdFactory.getPictureCommand(0x55)).thenReturn(cmd);
+		
+		IPicture picture = pictureFactory.getPicture();
+		
+		assertNotNull(picture);
+		verify(cmd).run(picture, 0x55);
+	}
 }
