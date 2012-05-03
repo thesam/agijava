@@ -53,4 +53,31 @@ public class PictureFactoryTest {
 		assertNotNull(picture);
 		verify(cmd).run(picture, 0x55);
 	}
+	
+	@Test
+	public void canGetPictureWithOneCommandWithOneArgumentByte() throws Exception {
+		IPictureCommand cmd = mock(IPictureCommand.class);
+		when(cmd.needsArguments()).thenReturn(true).thenReturn(false);
+		
+		rawByteArray.add(0x55);
+		when(cmdFactory.isCommandNumber(0x55)).thenReturn(true);
+		when(cmdFactory.getPictureCommand(0x55)).thenReturn(cmd);
+		rawByteArray.add(0x66);
+		
+		IPicture picture = pictureFactory.getPicture();
+		assertNotNull(picture);
+		verify(cmd).run(picture, 0x66);
+		
+	}
+	
+	@Test
+	public void ignoresBytesAfterFF() throws Exception {
+		rawByteArray.add(0xff);
+		rawByteArray.add(0x55);
+		
+		IPicture picture = pictureFactory.getPicture();
+		
+		assertNotNull(picture);
+		verifyZeroInteractions(cmdFactory);;
+	}
 }
