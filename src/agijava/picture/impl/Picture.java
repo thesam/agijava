@@ -1,6 +1,5 @@
 package agijava.picture.impl;
 
-import java.io.FileInputStream;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -21,7 +20,6 @@ public class Picture implements IPicture {
 	private int pictureData[][] = new int[PICTURE_X][PICTURE_Y];
 	private int priorityData[][] = new int[PICTURE_X][PICTURE_Y];
 
-	FileInputStream inputStream;
 	private int pictureColor;
 	private boolean pictureDrawingEnabled;
 
@@ -87,7 +85,7 @@ public class Picture implements IPicture {
 
 	}
 
-	int lineRound(float aNumber, float dirn) {
+	private int lineRound(float aNumber, float dirn) {
 		if (dirn < 0) {
 			return (int) ((aNumber - Math.floor(aNumber) <= 0.501) ? Math
 					.floor(aNumber) : Math.ceil(aNumber));
