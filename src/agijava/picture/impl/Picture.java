@@ -177,10 +177,10 @@ public class Picture implements IPicture {
 //		return priorityData;
 //	}
 
-	public int[][] getPictureData() {
-		return pictureData;
-//		return priorityData;
-	}
+//	public int[][] getPictureData() {
+//		return pictureData;
+////		return priorityData;
+//	}
 
 	@Override
 	public int getPrioForDrawing(int x, int y) {

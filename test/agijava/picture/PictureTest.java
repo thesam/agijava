@@ -9,6 +9,8 @@ import agijava.picture.impl.Picture;
 
 public class PictureTest {
 
+	private static final int DEFAULT_PICTURE_COLOR = 15;
+	private static final int DEFAULT_PRIO_COLOR = 4;
 	private static final int HEIGHT = 168;
 	private static final int WIDTH = 160;
 	private Picture picture;
@@ -37,7 +39,7 @@ public class PictureTest {
 	public void hasDefaultPictureColor() throws Exception {
 		for(int x = 0; x < WIDTH; x++) {
 			for (int y= 0; y < HEIGHT; y++) {
-				assertEquals(15,picture.getPictureColorAt(x, y));
+				assertEquals(DEFAULT_PICTURE_COLOR,picture.getPictureColorAt(x, y));
 			}
 		}
 	}
@@ -46,8 +48,39 @@ public class PictureTest {
 	public void hasDefaultPriorityColor() throws Exception {
 		for(int x = 0; x < WIDTH; x++) {
 			for (int y= 0; y < HEIGHT; y++) {
-				assertEquals(4,picture.getPrioColorAt(x, y));
+				assertEquals(DEFAULT_PRIO_COLOR,picture.getPrioColorAt(x, y));
 			}
 		}
+	}
+	
+	@Test
+	public void canDrawPictureColorOnly() throws Exception {
+		picture.setPictureDrawingEnabled(true);
+		picture.setPriorityDrawingEnabled(false);
+		picture.setPictureColor(10);
+		picture.drawPixel(0, 0);
+		assertEquals(10,picture.getPictureColorAt(0, 0));
+		assertEquals(DEFAULT_PRIO_COLOR,picture.getPrioColorAt(0, 0));
+	}
+	
+	@Test
+	public void canDrawPriorityColorOnly() throws Exception {
+		picture.setPictureDrawingEnabled(false);
+		picture.setPriorityDrawingEnabled(true);
+		picture.setPriorityColor(10);
+		picture.drawPixel(0, 0);
+		assertEquals(DEFAULT_PICTURE_COLOR,picture.getPictureColorAt(0, 0));
+		assertEquals(10,picture.getPrioColorAt(0, 0));		
+	}
+	
+	@Test
+	public void canDrawPictureAndPriorityColorAtTheSameTime() throws Exception {
+		picture.setPictureDrawingEnabled(true);
+		picture.setPriorityDrawingEnabled(true);
+		picture.setPictureColor(11);
+		picture.setPriorityColor(10);
+		picture.drawPixel(0, 0);
+		assertEquals(11,picture.getPictureColorAt(0, 0));
+		assertEquals(10,picture.getPrioColorAt(0, 0));				
 	}
 }
