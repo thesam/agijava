@@ -200,7 +200,7 @@ public class Picture implements IPicture {
 	}
 
 	@Override
-	public int getActualPrio(int x, int y) {
+	public int getPrioColorAt(int x, int y) {
 		if (x < 0 || y < 0 || x >= getWidth()
 				|| y >= getHeight()) {
 			return 0;
@@ -210,7 +210,7 @@ public class Picture implements IPicture {
 	}
 
 	@Override
-	public int getVisibleColorAt(int x, int y) {
+	public int getPictureColorAt(int x, int y) {
 		return pictureData[x][y];
 	}
 }

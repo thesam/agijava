@@ -214,7 +214,7 @@ public class ObjectUpdater implements IObjectUpdater {
 		ICel currentCel = currentLoop.getCels().get(
 				movingObject.getCurrentViewCel());
 		for (int x = 0; x < currentCel.getWidth(); x++) {
-			if (currentPicture.getActualPrio(bottomLeft.getX() + x, bottomLeft.getY()) == priority) {
+			if (currentPicture.getPrioColorAt(bottomLeft.getX() + x, bottomLeft.getY()) == priority) {
 				isTouching = true;
 				break;
 			}

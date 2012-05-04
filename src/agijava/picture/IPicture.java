@@ -4,7 +4,7 @@ public interface IPicture {
 
 //	int[][] getPictureData();
 	
-	public int getVisibleColorAt(int x, int y);
+	public int getPictureColorAt(int x, int y);
 
 	int getWidth();
 
@@ -23,7 +23,7 @@ public interface IPicture {
 	 */
 	public int getPrioForDrawing(int x, int y);
 
-	int getActualPrio(int i, int bottomLeftY);
+	int getPrioColorAt(int i, int bottomLeftY);
 
 	void setPriorityColor(int currentByte);
 

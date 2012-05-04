@@ -54,7 +54,7 @@ public class GameGuiTest {
 	}
 
 	private void firstPixelOfPictureIsAskedFor() {
-		verify(pic).getVisibleColorAt(0, 0);
+		verify(pic).getPictureColorAt(0, 0);
 	}
 
 	private void pictureIsDrawn() {
@@ -269,7 +269,7 @@ public class GameGuiTest {
 	}
 
 	private void aPicWithOnePixel(int colorIndex) {
-		when(pic.getVisibleColorAt(0, 0)).thenReturn(colorIndex);
+		when(pic.getPictureColorAt(0, 0)).thenReturn(colorIndex);
 		when(pic.getHeight()).thenReturn(1);
 		when(pic.getWidth()).thenReturn(1);
 	}
