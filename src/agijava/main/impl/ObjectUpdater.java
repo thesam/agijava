@@ -107,21 +107,6 @@ public class ObjectUpdater implements IObjectUpdater {
 	
 	}
 
-	private void rotateCelBackward(IAnimatedObject movingObject, int noCels,
-			int currentViewCel) {
-		int nextCel = currentViewCel - 1;
-		if (nextCel < 0) {
-			nextCel = noCels - 1;
-		}
-		movingObject.setCurrentViewCel(nextCel);
-	}
-
-	private void rotateCelForward(IAnimatedObject movingObject, int noCels,
-			int currentViewCel) {
-		movingObject.setCurrentViewCel((currentViewCel + 1)
-				% noCels);
-	}
-
 	@Override
 	public void updateSingleLoop(IAnimatedObject animatedObject) {
 		if (animatedObject.isInSingleloop()) {
@@ -142,6 +127,21 @@ public class ObjectUpdater implements IObjectUpdater {
 		}
 	}
 
+	private void rotateCelBackward(IAnimatedObject movingObject, int noCels,
+			int currentViewCel) {
+		int nextCel = currentViewCel - 1;
+		if (nextCel < 0) {
+			nextCel = noCels - 1;
+		}
+		movingObject.setCurrentViewCel(nextCel);
+	}
+
+	private void rotateCelForward(IAnimatedObject movingObject, int noCels,
+			int currentViewCel) {
+		movingObject.setCurrentViewCel((currentViewCel + 1)
+				% noCels);
+	}
+
 	private Position calculateNewPosition(IAnimatedObject movingObject) {
 		Position newPos = new Position(0,0);
 		if (movingObject.isMovingToDestination()) {
@@ -159,16 +159,16 @@ public class ObjectUpdater implements IObjectUpdater {
 		gameState.setFlag(movingObject.getMoveFinishedFlagNo());
 	}
 
-	private void handleEgoMovement(IAnimatedObject movingObject, Position newPos, IPicture currentPicture) {
+	private void handleEgoMovement(IAnimatedObject ego, Position newPos, IPicture currentPicture) {
 		if (isOutsidePicture(newPos, currentPicture)) {
-			movingObject.setMoving(false);
+			ego.setMoving(false);
 		} else {
-			if (viewIsOnBlockingLineInPicture(movingObject, newPos,
+			if (viewIsOnBlockingLineInPicture(ego, newPos,
 					currentPicture)) {
-				movingObject.setMoving(false);
+				ego.setMoving(false);
 			} else {
-				keepMovingObject(movingObject, newPos);
-				checkIfObjectIsOnTriggerLine(movingObject, newPos,
+				keepMovingObject(ego, newPos);
+				checkIfObjectIsOnTriggerLine(ego, newPos,
 						currentPicture);
 			}
 		}
