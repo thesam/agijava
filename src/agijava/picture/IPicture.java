@@ -21,7 +21,7 @@ public interface IPicture {
 	 * @param y
 	 * @return
 	 */
-	public int getPrioForDrawing(int x, int y);
+	public int getPrioForDrawingAt(int x, int y);
 
 	int getPrioColorAt(int i, int bottomLeftY);
 

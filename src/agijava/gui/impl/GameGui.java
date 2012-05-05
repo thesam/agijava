@@ -27,7 +27,7 @@ public class GameGui implements IGameGui {
 	public void drawPicture(IPicture pic) {
 		for (int x = 0; x < pic.getWidth(); x++) {
 			for (int y = 0; y < pic.getHeight(); y++) {
-				drawToGfxArea(x, y, pic.getPictureColorAt(x, y), pic.getPrioForDrawing(x, y));
+				drawToGfxArea(x, y, pic.getPictureColorAt(x, y), pic.getPrioForDrawingAt(x, y));
 			}
 		}
 	}

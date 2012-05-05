@@ -83,4 +83,65 @@ public class PictureTest {
 		assertEquals(11,picture.getPictureColorAt(0, 0));
 		assertEquals(10,picture.getPrioColorAt(0, 0));				
 	}
+	
+	@Test
+	public void canFillEmptyPictureWithPictureColor() throws Exception {
+		picture.setPictureDrawingEnabled(true);
+		picture.setPictureColor(11);
+		picture.fillFrom(0, 0);
+		for(int x = 0; x < WIDTH; x++) {
+			for (int y= 0; y < HEIGHT; y++) {
+				assertEquals(11,picture.getPictureColorAt(x, y));
+			}
+		}
+	}
+	
+	@Test
+	public void doesNotOverwriteNonDefaultPicturePixelsWhenFillingWithPictureColor() throws Exception {
+		picture.setPictureDrawingEnabled(true);
+		picture.setPictureColor(11);
+		picture.drawPixel(0, 0);
+		picture.setPictureColor(12);
+		picture.fillFrom(0, 0);
+		picture.fillFrom(0, 1);
+		
+		assertEquals(11,picture.getPictureColorAt(0, 0));
+	}
+	
+	@Test
+	public void doesNotOverwriteNonDefaultPrioPixelsWhenFillingWithPriorityColorOnly() throws Exception {
+		picture.setPriorityDrawingEnabled(true);
+		picture.setPriorityColor(11);
+		picture.drawPixel(0, 0);
+		picture.setPictureColor(12);
+		picture.fillFrom(0, 0);
+		picture.fillFrom(0, 1);
+		
+		assertEquals(11,picture.getPrioColorAt(0, 0));
+	}
+	
+	@Test
+	public void doesNotFillAnyPictureOrPrioOnNonDefaultPicturePixelsWhenBothDrawingModesAreEnabled() throws Exception {
+		picture.setPictureDrawingEnabled(true);
+		picture.setPictureColor(11);
+		picture.drawPixel(0, 0);
+		
+		picture.setPriorityDrawingEnabled(true);
+		picture.setPriorityColor(12);
+		
+		picture.fillFrom(0, 0);
+		picture.fillFrom(0, 1);
+		
+		assertEquals(11, picture.getPictureColorAt(0, 0));
+		assertEquals(DEFAULT_PRIO_COLOR, picture.getPrioColorAt(0, 0));
+	}
+	
+	@Test
+	public void usesPrioFromClosestPixelWithColorBelowForDrawingSpecialPrioPixels() throws Exception {
+		picture.setPriorityDrawingEnabled(true);
+		picture.setPriorityColor(1);
+		picture.drawPixel(0, 0);
+		int prioForDrawing = picture.getPrioForDrawingAt(0, 0);
+		assertEquals(DEFAULT_PRIO_COLOR,prioForDrawing);
+	}
 }
