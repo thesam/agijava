@@ -1,5 +1,7 @@
 package agijava.main.impl;
 
+import java.util.List;
+
 import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
 import agijava.main.IMovementCalculator;
@@ -53,9 +55,54 @@ public class ObjectUpdater implements IObjectUpdater {
 			return;
 		}
 		int currentLoop = movingObject.getCurrentViewLoop();
+
+		int newLoop = getNewLoop(movingObject.getDirection(), noLoops, currentLoop);
+		movingObject.setCurrentViewLoop(newLoop);
+		if (newLoop != currentLoop) {
+			movingObject.setCurrentViewCel(0);
+		} else {
+			if (movingObject.isCycling()) {
+				cycleCel(movingObject, currentLoop);
+			}
+		}
+	
+	}
+
+	@Override
+	public void updateSingleLoop(IAnimatedObject animatedObject) {
+		if (animatedObject.isInSingleloop()) {
+			IView view = animatedObject.getView();
+			int loopIndex = animatedObject.getCurrentViewLoop();
+			int celIndex = animatedObject.getCurrentViewCel();
+			int lastCelIndex = getLastCelIndex(view, loopIndex);
+			if (animatedObject.getSingleLoopDirection() == LoopDirection.FORWARD
+					&& celIndex < lastCelIndex) {
+				animatedObject.setCurrentViewCel(celIndex + 1);
+			} else if (animatedObject.getSingleLoopDirection() == LoopDirection.REVERSE
+					&& celIndex > 0) {
+				animatedObject.setCurrentViewCel(celIndex - 1);
+			} else {
+				gameState.setFlag(animatedObject.getSingleLoopFinishFlag());
+				animatedObject.setInSingleLoop(false);
+			}
+		}
+	}
+
+	private void cycleCel(IAnimatedObject movingObject, int currentLoop) {
+		int noCels = movingObject.getView().getLoops().get(currentLoop)
+				.getCels().size();
+		int currentViewCel = movingObject.getCurrentViewCel();
+		if (movingObject.isReverseCycle()) {
+			rotateCelForward(movingObject, noCels, currentViewCel);
+		} else {
+			rotateCelBackward(movingObject, noCels, currentViewCel);
+		}
+	}
+
+	private int getNewLoop(int direction, int noLoops,
+			int currentLoop) {
 		int newLoop = 0;
 	
-		int direction = movingObject.getDirection();
 		switch (direction) {
 		case Directions.STOP:
 			newLoop = currentLoop;
@@ -89,42 +136,12 @@ public class ObjectUpdater implements IObjectUpdater {
 			newLoop = 1;
 			break;
 		}
-		movingObject.setCurrentViewLoop(newLoop);
-		if (newLoop != currentLoop) {
-			movingObject.setCurrentViewCel(0);
-		} else {
-			if (movingObject.isCycling()) {
-				int noCels = movingObject.getView().getLoops().get(currentLoop)
-						.getCels().size();
-				int currentViewCel = movingObject.getCurrentViewCel();
-				if (movingObject.isReverseCycle()) {
-					rotateCelForward(movingObject, noCels, currentViewCel);
-				} else {
-					rotateCelBackward(movingObject, noCels, currentViewCel);
-				}
-			}
-		}
-	
+		return newLoop;
 	}
 
-	@Override
-	public void updateSingleLoop(IAnimatedObject animatedObject) {
-		if (animatedObject.isInSingleloop()) {
-			IView view = animatedObject.getView();
-			int loopIndex = animatedObject.getCurrentViewLoop();
-			int celIndex = animatedObject.getCurrentViewCel();
-			int lastIndex = view.getLoops().get(loopIndex).getCels().size() - 1;
-			if (animatedObject.getSingleLoopDirection() == LoopDirection.FORWARD
-					&& celIndex < lastIndex) {
-				animatedObject.setCurrentViewCel(celIndex + 1);
-			} else if (animatedObject.getSingleLoopDirection() == LoopDirection.REVERSE
-					&& celIndex > 0) {
-				animatedObject.setCurrentViewCel(celIndex - 1);
-			} else {
-				gameState.setFlag(animatedObject.getSingleLoopFinishFlag());
-				animatedObject.setInSingleLoop(false);
-			}
-		}
+	private int getLastCelIndex(IView view, int loopIndex) {
+		List<ILoop> loops = view.getLoops();
+		return loops.get(loopIndex).getCels().size() - 1;
 	}
 
 	private void rotateCelBackward(IAnimatedObject movingObject, int noCels,

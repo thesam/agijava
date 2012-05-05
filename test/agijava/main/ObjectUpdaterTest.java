@@ -13,9 +13,11 @@ import static org.mockito.Mockito.*;
 public class ObjectUpdaterTest {
 	private ObjectUpdater objectUpdater;
 	private IGameState gameState;
+	private IAnimatedObject object;
 	
 	@Before
 	public void setup() {
+		object = mock(IAnimatedObject.class);
 		gameState = mock(IGameState.class);
 		objectUpdater = new ObjectUpdater(gameState, null);
 	}
@@ -42,8 +44,6 @@ public class ObjectUpdaterTest {
 	
 	@Test
 	public void doesNotStopObjectIfDestinationIsNotReached() throws Exception {
-		IAnimatedObject object = mock(IAnimatedObject.class);
-		
 		Position position1 = new Position(0, 0);
 		Position position2 = new Position(0, 1);
 		
@@ -59,7 +59,6 @@ public class ObjectUpdaterTest {
 	
 	@Test
 	public void doesNotStopObjectsThatAreNotMovingToDestination() throws Exception {
-		IAnimatedObject object = mock(IAnimatedObject.class);
 		when(object.isMovingToDestination()).thenReturn(false);
 		
 		objectUpdater.stopIfDestinationIsReached(object);
@@ -67,5 +66,17 @@ public class ObjectUpdaterTest {
 		verify(object,never()).setMoving(false);
 		verify(object,never()).setMovingToDestination(false);
 	}
+	
+	@Test
+	public void canUpdateSingleLoopObject() throws Exception {
+		when(object.isInSingleloop()).thenReturn(true);
+		
+		objectUpdater.updateSingleLoop(object);
+	}
+	
+//	@Test
+//	public void canUpdateCel() throws Exception {
+//		objectUpdater.updateLoopAndCel(object)
+//	}
 	
 }
