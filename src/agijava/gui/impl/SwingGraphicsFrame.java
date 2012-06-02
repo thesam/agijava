@@ -4,16 +4,19 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import agijava.gui.IGraphicsDevice;
+import agijava.gui.IGuiController;
+import agijava.gui.IGuiView;
 import agijava.gui.IGraphicsPalette;
+import agijava.main.impl.Directions;
 
-public class SwingGraphicsFrame implements IGraphicsDevice {
+public class SwingGraphicsFrame implements IGuiView, KeyListener {
 
 	private final BufferedImage bufferGfxImage;
 	private final Font consoleFont;
@@ -37,8 +40,9 @@ public class SwingGraphicsFrame implements IGraphicsDevice {
 
 	private final int height;
 	private final int scale;
+	private final IGuiController gui;
 
-	public SwingGraphicsFrame(int width, int height, int scale, Font font, BufferedImage img, JFrame frame, int x0, int y0) {
+	public SwingGraphicsFrame(int width, int height, int scale, Font font, BufferedImage img, JFrame frame, int x0, int y0, IGuiController gui) {
 		this.width = width;
 		this.height = height;
 		this.consoleFont = font;
@@ -47,6 +51,8 @@ public class SwingGraphicsFrame implements IGraphicsDevice {
 		this.scale = scale;
 		this.x0 = x0;
 		this.y0 = y0;
+		this.gui = gui;
+		frame.addKeyListener(this);
 	}
 
 	@Override
@@ -112,8 +118,41 @@ public class SwingGraphicsFrame implements IGraphicsDevice {
 	}
 
 	@Override
-	public void addKeyListener(KeyListener listener) {
-		getFrame().addKeyListener(listener);
+	public void keyTyped(KeyEvent e) {
+		char rawInput = e.getKeyChar();
+		String clean = cleanInputChar(rawInput);
+		gui.letterKeyPressed(clean);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+		
+		switch (keyCode) {
+		case KeyEvent.VK_LEFT:
+			gui.changeDirection(Directions.WEST);
+			break;
+		case KeyEvent.VK_UP:
+			gui.changeDirection(Directions.NORTH);
+			break;
+		case KeyEvent.VK_RIGHT:
+			gui.changeDirection(Directions.EAST);
+			break;
+		case KeyEvent.VK_DOWN:
+			gui.changeDirection(Directions.SOUTH);
+			break;
+		case KeyEvent.VK_ENTER:
+			gui.enterKeyPressed();
+			break;
+		case KeyEvent.VK_BACK_SPACE:
+			gui.backspaceKeyPressed();
+			break;
+		default:
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
 	}
 
 	private int getScaledHeight() {
@@ -154,6 +193,11 @@ public class SwingGraphicsFrame implements IGraphicsDevice {
 	private void setTextColor(Graphics g, int row) {
 		int colorVal = textRowColors[row];
 		g.setColor(new Color(colorVal));
+	}
+	
+	private String cleanInputChar(char rawInput) {
+		String foo = "" + rawInput;
+		return foo.replaceAll("[^A-Za-z, ]", "");
 	}
 
 }

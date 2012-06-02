@@ -3,7 +3,7 @@ package agijava.main.impl;
 import java.util.Collection;
 import java.util.List;
 
-import agijava.gui.IGameGui;
+import agijava.gui.IGuiController;
 import agijava.main.IGameState;
 import agijava.main.IGuiDrawer;
 import agijava.picture.IPicture;
@@ -14,9 +14,9 @@ import agijava.view.IView;
 public class GuiDrawer implements IGuiDrawer {
 
 	private IGameState gameState;
-	private IGameGui gui;
+	private IGuiController gui;
 
-	public GuiDrawer(IGameState gameState, IGameGui gui) {
+	public GuiDrawer(IGameState gameState, IGuiController gui) {
 		this.gameState = gameState;
 		this.gui = gui;
 	}

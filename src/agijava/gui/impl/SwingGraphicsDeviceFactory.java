@@ -6,15 +6,18 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import agijava.gui.IGraphicsDevice;
+import agijava.gui.IGuiController;
+import agijava.gui.IGuiView;
+import agijava.gui.IGraphicsDeviceFactory;
 
-public class GraphicsDeviceFactory {
+public class SwingGraphicsDeviceFactory implements IGraphicsDeviceFactory {
 
 	private static final int GFX_SCREEN_X = 320;
 	private static final int GFX_SCREEN_Y = 200;
 	private static final int SCALE = 2;
 
-	public static IGraphicsDevice createSwingGraphicsDevice() {
+	@Override
+	public IGuiView createGraphicsDevice(IGuiController gameGui) {
 		Font font = ConsoleFontFactory.createFont();
 		BufferedImage bufferImage = BufferedImageFactory.createBufferGfxImage(
 				GFX_SCREEN_X, GFX_SCREEN_Y);
@@ -22,10 +25,11 @@ public class GraphicsDeviceFactory {
 		Insets insets = frame.getInsets();
 		int x0 = insets.left;
 		int y0 = insets.top;
-		return new SwingGraphicsFrame(GFX_SCREEN_X, GFX_SCREEN_Y, SCALE, font,bufferImage,frame,x0,y0);
+		SwingGraphicsFrame swingGraphicsFrame = new SwingGraphicsFrame(GFX_SCREEN_X, GFX_SCREEN_Y, SCALE, font,bufferImage,frame,x0,y0,gameGui);
+		return swingGraphicsFrame;
 	}
 
-	private static JFrame setupJFrame() {
+	private JFrame setupJFrame() {
 		JFrame frame = new JFrame();
 
 		frame.setIgnoreRepaint(true);

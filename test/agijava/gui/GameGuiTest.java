@@ -3,15 +3,15 @@ package agijava.gui;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import java.awt.event.KeyListener;
 import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.gui.IGraphicsDevice;
+import agijava.gui.IGuiView;
 import agijava.gui.impl.GameGui;
 import agijava.gui.impl.IPrioBuffer;
+import agijava.main.IGameState;
 import agijava.main.impl.Text;
 import agijava.picture.IPicture;
 import agijava.view.ICel;
@@ -22,7 +22,7 @@ public class GameGuiTest {
 
 	private static final int MENU_BAR_HEIGHT = 8;
 	private GameGui gui;
-	private IGraphicsDevice graphics;
+	private IGuiView graphics;
 	private IPicture pic;
 	private IPrioCalculator prioCalculator;
 	private IView view;
@@ -36,10 +36,11 @@ public class GameGuiTest {
 	@Before
 	public void setup() throws Exception {
 		prioCalculator = mock(IPrioCalculator.class);
-		graphics = mock(IGraphicsDevice.class);
+		graphics = mock(IGuiView.class);
 		prioBuffer = mock(IPrioBuffer.class);
 		pic = mock(IPicture.class);
-		gui = new GameGui(graphics, prioCalculator, prioBuffer);
+		IGameState gameState = mock(IGameState.class);
+		gui = new GameGui(prioCalculator,gameState,null);
 	}
 
 	@Test
@@ -73,7 +74,7 @@ public class GameGuiTest {
 	}
 
 	private void aPicWithOneWhitePixel() {
-		aPicWithOnePixel(IGraphicsDevice.WHITE);
+		aPicWithOnePixel(IGuiView.WHITE);
 	}
 
 	@Test
@@ -82,7 +83,7 @@ public class GameGuiTest {
 		gui.setCurrentInputLine("hej");
 		gui.drawCurrentInputLine();
 		verify(graphics).printText(0, 23, ">" + "hej" + "_",
-				IGraphicsDevice.WHITE);
+				IGuiView.WHITE);
 	}
 
 	@Test
@@ -162,7 +163,7 @@ public class GameGuiTest {
 	public void canPrintTextDirectlyToGraphicsDevice() throws Exception {
 		Text text = new Text(0, 0, "HEJ");
 		gui.printText(text);
-		verify(graphics).printText(0, 0, "HEJ", IGraphicsDevice.WHITE);
+		verify(graphics).printText(0, 0, "HEJ", IGuiView.WHITE);
 	}
 
 	@Test
@@ -208,15 +209,8 @@ public class GameGuiTest {
 	@Test
 	public void canAppendToInputLine() throws Exception {
 		gui.setCurrentInputLine("a");
-		gui.appendInput("b");
+		gui.letterKeyPressed("b");
 		assertEquals("ab", gui.getCurrentInputLine());
-	}
-
-	@Test
-	public void canAddKeyListenerToGraphicsDevice() throws Exception {
-		KeyListener listener = mock(KeyListener.class);
-		gui.addKeyListener(listener);
-		verify(graphics).addKeyListener(listener);
 	}
 
 	@Test
@@ -224,7 +218,7 @@ public class GameGuiTest {
 		gui.drawStatusBar();
 		for (int x = 0; x < graphics.getWidth(); x++) {
 			for (int y = 0; y < 8; y++) {
-				verify(graphics).drawPixel(x, y, IGraphicsDevice.WHITE);
+				verify(graphics).drawPixel(x, y, IGuiView.WHITE);
 			}
 		}
 	}
@@ -234,7 +228,7 @@ public class GameGuiTest {
 	}
 
 	private void firstPixelInPicAreaIsDrawnWhite() {
-		firstPixelInPicAreaIsDrawn(IGraphicsDevice.WHITE);
+		firstPixelInPicAreaIsDrawn(IGuiView.WHITE);
 	}
 
 	private int getTopYForPictureArea() {
@@ -246,7 +240,7 @@ public class GameGuiTest {
 	}
 
 	private void firstPixelInPictureAreaOfGraphicsDeviceIsDrawnBlack() {
-		firstPixelInPicAreaIsDrawn(IGraphicsDevice.BLACK);
+		firstPixelInPicAreaIsDrawn(IGuiView.BLACK);
 	}
 
 	private void aOnePixelWhiteCel() {
@@ -257,7 +251,7 @@ public class GameGuiTest {
 		cel = mock(ICel.class);
 		ICel cels[] = { cel };
 		when(loop.getCels()).thenReturn(Arrays.asList(cels));
-		when(cel.getPixel(0, 0)).thenReturn(IGraphicsDevice.WHITE);
+		when(cel.getPixel(0, 0)).thenReturn(IGuiView.WHITE);
 		x0 = 0;
 		y0 = 1; // coordinates are at the bottom
 		when(cel.getHeight()).thenReturn(1);
@@ -265,7 +259,7 @@ public class GameGuiTest {
 	}
 
 	private void aPicWithOneBlackPixel() {
-		aPicWithOnePixel(IGraphicsDevice.BLACK);
+		aPicWithOnePixel(IGuiView.BLACK);
 	}
 
 	private void aPicWithOnePixel(int colorIndex) {

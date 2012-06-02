@@ -1,8 +1,6 @@
 package agijava.gui;
 
-import java.awt.event.KeyListener;
-
-public interface IGraphicsDevice {
+public interface IGuiView {
 
 	int WHITE = 15;
 	int BLACK = 0;
@@ -10,8 +8,6 @@ public interface IGraphicsDevice {
 	void drawPixel(int x, int y, int colorIndex);
 
 	void updateToScreen();
-
-	void addKeyListener(KeyListener listener);
 
 	void clearScreen();
 

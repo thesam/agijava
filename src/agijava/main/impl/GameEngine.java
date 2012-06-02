@@ -1,9 +1,10 @@
 package agijava.main.impl;
 
 import java.io.IOException;
+
+import agijava.gui.IGuiController;
 import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
-import agijava.main.IInputListener;
 import agijava.main.IMovementCalculator;
 import agijava.main.IRunningGame;
 
@@ -28,18 +29,18 @@ public class GameEngine {
 	private IGameState gameState;
 
 	private IRunningGame runningGame;
-	private IInputListener inputListener;
 
 	@SuppressWarnings("unused")
 	private long lastGuiUpdate = System.currentTimeMillis();
 	@SuppressWarnings("unused")
 	private long now;
+	private final IGuiController gui;
 
 	public GameEngine(IGameState gameState, IRunningGame runningGame,
-			IInputListener listener, IMovementCalculator calculator) {
+			IMovementCalculator calculator, IGuiController gui) {
 		this.gameState = gameState;
 		this.runningGame = runningGame;
-		this.inputListener = listener;
+		this.gui = gui;
 	}
 
 	public void run() throws IOException {
@@ -59,7 +60,7 @@ public class GameEngine {
 		boolean couldExecuteCommand = gameState.executeNextCommand();
 		if (!couldExecuteCommand) {
 			resetInputState();
-			handleKeyboardInput();
+			gui.handleKeyboardInput();
 			handleNewRoom();
 			reloadFirstLogic();
 			updateEgoDirection();
@@ -154,23 +155,9 @@ public class GameEngine {
 		}
 	}
 
-	private void handleKeyboardInput() {
-		if (inputListener.isKeyPressWaiting()) {
-			gameState.setHaveKey(true);
-			inputListener.setKeyPressWaiting(false);
-		} else {
-			gameState.setHaveKey(false);
-		}
-		if (inputListener.isInputWaiting()) {
-			gameState.setLatestInput(inputListener.getLatestInput());
-			gameState.setFlag(GameEngine.FLAG_TEXT_ENTERED);
-			inputListener.setInputIsWaiting(false);
-		}
-	}
-
 	private void waitForKeyPress() {
-		inputListener.setWaitingForDeblockingKeyPress(true);
-		while (inputListener.isWaitingForDeblockingKeyPress()) {
+		gui.setWaitingForDeblockingKeyPress(true);
+		while (gui.isWaitingForDeblockingKeyPress()) {
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
