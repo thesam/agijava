@@ -2,7 +2,6 @@ package agijava.gui.impl;
 
 import agijava.gui.IGuiController;
 import agijava.gui.IGuiView;
-import agijava.gui.IGraphicsDeviceFactory;
 import agijava.gui.IPrioCalculator;
 import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;

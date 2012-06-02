@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import agijava.gui.IGuiController;
 import agijava.gui.IGuiView;
 import agijava.gui.IGraphicsDeviceFactory;
 
