@@ -40,9 +40,9 @@ public class SwingGraphicsFrame implements IGuiView, KeyListener {
 
 	private final int height;
 	private final int scale;
-	private final IGuiController gui;
+	private IGuiController gui;
 
-	public SwingGraphicsFrame(int width, int height, int scale, Font font, BufferedImage img, JFrame frame, int x0, int y0, IGuiController gui) {
+	public SwingGraphicsFrame(int width, int height, int scale, Font font, BufferedImage img, JFrame frame, int x0, int y0) {
 		this.width = width;
 		this.height = height;
 		this.consoleFont = font;
@@ -51,8 +51,6 @@ public class SwingGraphicsFrame implements IGuiView, KeyListener {
 		this.scale = scale;
 		this.x0 = x0;
 		this.y0 = y0;
-		this.gui = gui;
-		frame.addKeyListener(this);
 	}
 
 	@Override
@@ -198,6 +196,11 @@ public class SwingGraphicsFrame implements IGuiView, KeyListener {
 	private String cleanInputChar(char rawInput) {
 		String foo = "" + rawInput;
 		return foo.replaceAll("[^A-Za-z, ]", "");
+	}
+
+	@Override
+	public void setController(IGuiController gui) {
+		this.gui = gui;
 	}
 
 }

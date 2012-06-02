@@ -67,12 +67,12 @@ public class ObjectUpdaterTest {
 		verify(object,never()).setMovingToDestination(false);
 	}
 	
-	@Test
-	public void canUpdateSingleLoopObject() throws Exception {
-		when(object.isInSingleloop()).thenReturn(true);
-		
-		objectUpdater.updateSingleLoop(object);
-	}
+//	@Test
+//	public void canUpdateSingleLoopObject() throws Exception {
+//		when(object.isInSingleloop()).thenReturn(true);
+//		
+//		objectUpdater.updateSingleLoop(object);
+//	}
 	
 //	@Test
 //	public void canUpdateCel() throws Exception {

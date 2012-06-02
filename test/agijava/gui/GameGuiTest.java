@@ -40,7 +40,9 @@ public class GameGuiTest {
 		prioBuffer = mock(IPrioBuffer.class);
 		pic = mock(IPicture.class);
 		IGameState gameState = mock(IGameState.class);
-		gui = new GameGui(prioCalculator,gameState,null);
+		when(graphics.getHeight()).thenReturn(1);
+		when(graphics.getWidth()).thenReturn(1);
+		gui = new GameGui(prioCalculator,gameState,graphics,prioBuffer);
 	}
 
 	@Test

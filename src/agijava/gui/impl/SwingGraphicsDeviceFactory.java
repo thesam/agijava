@@ -17,7 +17,7 @@ public class SwingGraphicsDeviceFactory implements IGraphicsDeviceFactory {
 	private static final int SCALE = 2;
 
 	@Override
-	public IGuiView createGraphicsDevice(IGuiController gameGui) {
+	public IGuiView createGraphicsDevice() {
 		Font font = ConsoleFontFactory.createFont();
 		BufferedImage bufferImage = BufferedImageFactory.createBufferGfxImage(
 				GFX_SCREEN_X, GFX_SCREEN_Y);
@@ -25,7 +25,8 @@ public class SwingGraphicsDeviceFactory implements IGraphicsDeviceFactory {
 		Insets insets = frame.getInsets();
 		int x0 = insets.left;
 		int y0 = insets.top;
-		SwingGraphicsFrame swingGraphicsFrame = new SwingGraphicsFrame(GFX_SCREEN_X, GFX_SCREEN_Y, SCALE, font,bufferImage,frame,x0,y0,gameGui);
+		SwingGraphicsFrame swingGraphicsFrame = new SwingGraphicsFrame(GFX_SCREEN_X, GFX_SCREEN_Y, SCALE, font,bufferImage,frame,x0,y0);
+		frame.addKeyListener(swingGraphicsFrame);
 		return swingGraphicsFrame;
 	}
 

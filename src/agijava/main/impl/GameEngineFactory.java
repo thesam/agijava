@@ -3,7 +3,9 @@ package agijava.main.impl;
 import java.io.IOException;
 
 import agijava.gui.IGuiController;
+import agijava.gui.IGuiView;
 import agijava.gui.impl.GameGui;
+import agijava.gui.impl.PrioBuffer;
 import agijava.gui.impl.SwingGraphicsDeviceFactory;
 import agijava.gui.impl.PrioCalculator;
 import agijava.main.IGameState;
@@ -17,7 +19,9 @@ public class GameEngineFactory {
 			
 			SwingGraphicsDeviceFactory graphicsDeviceFactory = new SwingGraphicsDeviceFactory();
 			IGameState gameState = GameStateFactory.createInstance(gameDir);
-			IGuiController gui = new GameGui(new PrioCalculator(), gameState,graphicsDeviceFactory);
+			IGuiView guiView = graphicsDeviceFactory.createGraphicsDevice();
+			IGuiController gui = new GameGui(new PrioCalculator(), gameState,guiView,new PrioBuffer(guiView.getHeight(),guiView.getWidth()));
+			guiView.setController(gui);
 			
 			IGuiDrawer guiDrawer = new GuiDrawer(gameState, gui);
 			IMovementCalculator calculator = new MovementCalculator();

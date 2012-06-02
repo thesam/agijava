@@ -21,4 +21,6 @@ public interface IGuiView {
 
 	int getTextWidth();
 
+	void setController(IGuiController gui);
+
 }

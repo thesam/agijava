@@ -17,7 +17,7 @@ public class SwingGraphicsFrameTest {
 	@Before
 	public void setup() throws Exception {
 		BufferedImage img = mock(BufferedImage.class);
-		frame = new SwingGraphicsFrame(1,1,1,null,img,null,0,0, null);
+		frame = new SwingGraphicsFrame(1,1,1,null,img,null,0,0);
 	}
 	
 	@Test

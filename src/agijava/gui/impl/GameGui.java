@@ -25,11 +25,11 @@ public class GameGui implements IGuiController {
 	private final IGameState gameState;
 
 	public GameGui(IPrioCalculator prioCalculator, IGameState gameState,
-			IGraphicsDeviceFactory graphicsDeviceFactory) {
+			IGuiView graphics, IPrioBuffer prioBuffer) {
 		this.prioCalculator = prioCalculator;
 		this.gameState = gameState;
-		graphics = graphicsDeviceFactory.createGraphicsDevice(this);
-		prioBuffer = new PrioBuffer(graphics.getHeight(), graphics.getWidth());
+		this.graphics = graphics;
+		this.prioBuffer = prioBuffer;
 	}
 
 	public void drawPicture(IPicture pic) {
