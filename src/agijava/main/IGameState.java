@@ -29,7 +29,7 @@ public interface IGameState {
 
 	void callNewLogic(Integer integer);
 
-	boolean gameExited();
+	boolean isGameExited();
 
 	boolean executeNextCommand();
 
@@ -118,7 +118,7 @@ public interface IGameState {
 
 	String getCurrentMessage();
 
-	boolean messageShowing();
+	boolean isMessageShowing();
 
 	void clearMessage();
 

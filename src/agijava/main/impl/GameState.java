@@ -26,12 +26,18 @@ public class GameState implements IGameState {
 	private IWordsTok wordsTok;
 	private IInventoryObjects inventoryObjects;
 	
+	// State
 	private boolean isGameExited;
 	private boolean haveKey;
 	private boolean newRoomWaiting;
 	private boolean statusLineOn;
 	private boolean playerControl;
 	private boolean messageShown;
+	private int horizon;
+	
+	private boolean[] flags;
+	private int[] vars;
+	private String[] strings;
 
 	private String currentMessage;
 	private char cursorChar;
@@ -42,18 +48,16 @@ public class GameState implements IGameState {
 	private Map<Integer, AnimatedObject> animatedObjects;
 	private Stack<ILogic> logicStack;
 	private List<Text> displayedTexts;
-	private String[] strings;
+
 	private Map<Integer, Integer> scanStarts;
 	private List<AnimatedObject> displayedBackgroundViews;
 	private List<AnimatedObject> bufferBackgroundViews;
 	private List<Integer> latestSaidWords;
 	
-	private boolean[] flags;
-	private int[] vars;
-	private int horizon;
+	
+	
 	private int newRoomNumber;
 	private String latestInput = "";
-	@SuppressWarnings("unused")
 	private boolean acceptInput;
 	
 
@@ -81,23 +85,8 @@ public class GameState implements IGameState {
 
 	}
 
-	public boolean gameExited() {
+	public boolean isGameExited() {
 		return isGameExited;
-	}
-
-	public boolean executeNextCommand() {
-		if (currentLogic == null) {
-			return false;
-		} else {
-			ILogicCommand nextCommand = currentLogic.getNextCommand();
-			nextCommand.execute(this);
-			return true;
-		}
-	}
-
-	public void setLogic(ILogic logic) {
-		this.currentLogic = logic;
-
 	}
 
 	public void jumpForward(int blockSize) {
@@ -158,16 +147,6 @@ public class GameState implements IGameState {
 			return 0;
 		}
 
-	}
-
-	@Override
-	public void returnToCallingLogic() {
-		// System.err.println("RETURN");
-		if (logicStack.isEmpty()) {
-			currentLogic = null;
-		} else {
-			currentLogic = logicStack.pop();
-		}
 	}
 
 	@Override
@@ -411,7 +390,7 @@ public class GameState implements IGameState {
 	}
 
 	@Override
-	public boolean messageShowing() {
+	public boolean isMessageShowing() {
 		return messageShown;
 	}
 
@@ -440,6 +419,26 @@ public class GameState implements IGameState {
 	@Override
 	public void setAcceptInput(boolean b) {
 		this.acceptInput = b;
+	}
+
+	public boolean executeNextCommand() {
+		if (currentLogic == null) {
+			return false;
+		} else {
+			ILogicCommand nextCommand = currentLogic.getNextCommand();
+			nextCommand.execute(this);
+			return true;
+		}
+	}
+
+	@Override
+	public void returnToCallingLogic() {
+		// System.err.println("RETURN");
+		if (logicStack.isEmpty()) {
+			currentLogic = null;
+		} else {
+			currentLogic = logicStack.pop();
+		}
 	}
 
 }

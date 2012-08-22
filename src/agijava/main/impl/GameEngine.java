@@ -45,7 +45,7 @@ public class GameEngine {
 
 	public void run() throws IOException {
 		initGameState();
-		while (!gameState.gameExited()) {
+		while (!gameState.isGameExited()) {
 			tick();
 		}
 		// System.out.println(logic.replaceAll(";", ";\n"));
@@ -149,7 +149,7 @@ public class GameEngine {
 	}
 
 	private void waitForUserToCloseMessage() {
-		if (gameState.messageShowing()) {
+		if (gameState.isMessageShowing()) {
 			waitForKeyPress();
 			gameState.clearMessage();
 		}

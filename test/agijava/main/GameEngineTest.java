@@ -48,9 +48,9 @@ public class GameEngineTest {
 	@Test
 	public void refreshesGuiOnRunningGame() throws Exception {
 		aGameEngine();
-		when(gameState.gameExited()).thenReturn(false).thenReturn(true);
+		when(gameState.isGameExited()).thenReturn(false).thenReturn(true);
 		gameEngine.run();
-		verify(gameState,times(2)).gameExited();
+		verify(gameState,times(2)).isGameExited();
 		verify(runningGame).refreshGui();
 	}
 	
@@ -62,6 +62,6 @@ public class GameEngineTest {
 	}
 
 	private void anExitedGameState() {
-		when(gameState.gameExited()).thenReturn(true);
+		when(gameState.isGameExited()).thenReturn(true);
 	}
 }

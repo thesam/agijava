@@ -30,13 +30,13 @@ public class GuiDrawerTest {
 	@Test
 	public void drawsCurrentMessageToGuiIfShowing() throws Exception {
 		aGuiDrawer();
-		when(gameState.messageShowing()).thenReturn(true);
+		when(gameState.isMessageShowing()).thenReturn(true);
 		String message = "foo";
 		when(gameState.getCurrentMessage()).thenReturn(message);
 
 		drawer.drawCurrentMessage();
 
-		verify(gameState).messageShowing();
+		verify(gameState).isMessageShowing();
 		verify(gui).drawTextDialog(message);
 	}
 

@@ -49,7 +49,7 @@ public class GuiDrawer implements IGuiDrawer {
 
 	@Override
 	public void drawCurrentMessage() {
-		if (gameState.messageShowing()) {
+		if (gameState.isMessageShowing()) {
 			gui.drawTextDialog(gameState.getCurrentMessage());
 		}
 	}

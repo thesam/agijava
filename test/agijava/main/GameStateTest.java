@@ -72,14 +72,14 @@ public class GameStateTest {
 	@Test
 	public void returnsFalseWhenAskedIfGameIsExited() throws Exception {
 		aGameState();
-		assertFalse(gameState.gameExited());
+		assertFalse(gameState.isGameExited());
 	}
 
 	@Test
 	public void canSetAndGetLogic() throws Exception {
 		aGameState();
 		aLogic();
-		gameState.setLogic(logic);
+		gameState.setCurrentLogic(logic);
 		assertEquals(logic, gameState.getCurrentLogic());
 	}
 
@@ -87,7 +87,7 @@ public class GameStateTest {
 	public void canIncreaseLogicOffset() throws Exception {
 		aGameState();
 		aLogic();
-		gameState.setLogic(logic);
+		gameState.setCurrentLogic(logic);
 		int offset = 100;
 		gameState.jumpForward(offset);
 		verify(logic).increaseOffset(100);
@@ -145,7 +145,7 @@ public class GameStateTest {
 		aGameState();
 		showsMessage();
 		assertEquals(message, gameState.getCurrentMessage());
-		assertTrue(gameState.messageShowing());
+		assertTrue(gameState.isMessageShowing());
 
 	}
 
@@ -154,7 +154,7 @@ public class GameStateTest {
 		aGameState();
 		showsMessage();
 		gameState.clearMessage();
-		assertFalse(gameState.messageShowing());
+		assertFalse(gameState.isMessageShowing());
 	}
 
 	private void showsMessage() {
