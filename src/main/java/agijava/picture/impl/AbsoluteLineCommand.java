@@ -28,13 +28,10 @@ public class AbsoluteLineCommand implements IPictureCommand {
 		} else {
 			nextY = currentByte;
 			picture.drawLine(currentX,currentY,nextX,nextY);
-//			System.err.println("Abs line :" + currentX+","+currentY+" to " + nextX+","+nextY);
 			currentX = nextX;
 			currentY = nextY;
 		}
 		writeX = !writeX;
-//		System.err.println("Absolute line");
-
 	}
 
 	@Override

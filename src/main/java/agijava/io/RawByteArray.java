@@ -33,12 +33,7 @@ public class RawByteArray {
 	public int getNextAndStep() {
 		int retVal = rawdata.get(offset);
 		offset++;
-		// System.err.println("Stepping to: " + offset);
-		// if (retVal != -1) {
 		return retVal & 0xff;
-		// } else {
-		// return -1;
-		// }
 	}
 
 	public int getNextOffsetToBeRead() {

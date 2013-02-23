@@ -15,7 +15,6 @@ public class DrawXCornerCommand implements IPictureCommand {
 	
 	@Override
 	public void run(IPicture picture, int currentByte) {
-//		System.err.println("Draw X corner");
 		System.exit(1);
 		if (startX == -1) {
 			startX = currentByte;

@@ -122,9 +122,6 @@ public class GameState implements IGameState {
 	@Override
 	public void setVar(int varNo, int newValue) {
 		vars[varNo] = newValue;
-		// if (varNo == 31) {
-		// System.err.println("Setting 31 to :" + newValue);
-		// }
 	}
 
 	@Override
@@ -433,7 +430,6 @@ public class GameState implements IGameState {
 
 	@Override
 	public void returnToCallingLogic() {
-		// System.err.println("RETURN");
 		if (logicStack.isEmpty()) {
 			currentLogic = null;
 		} else {

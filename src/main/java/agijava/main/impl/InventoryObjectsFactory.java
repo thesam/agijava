@@ -11,17 +11,16 @@ import agijava.io.RawByteArray;
 public class InventoryObjectsFactory {
 
 	private static String ENCRYPTION_KEY = "Avis Durgan";
-	private static int currentOffset;
 
 	public static InventoryObjects createInstance(String path)
 			throws IOException {
-		currentOffset = 0;
 		InventoryObjects inv = new InventoryObjects();
 		FileInputStream inputStream = new FileInputStream(path);
 		List<Integer> fileContent = new ArrayList<Integer>();
 		int nextByte = inputStream.read();
+		int currentOffset = 0;
 		while (nextByte != -1) {
-			int decrp = decrypt(nextByte);
+			int decrp = decrypt(nextByte,currentOffset);
 			currentOffset++;
 			fileContent.add(decrp);
 			nextByte = inputStream.read();
@@ -82,7 +81,7 @@ public class InventoryObjectsFactory {
 //		return decrupted;
 //	}
 
-	private static int decrypt(int encryptedByte) {
+	private static int decrypt(int encryptedByte, int currentOffset) {
 		char token = ENCRYPTION_KEY.charAt(currentOffset 
 				% ENCRYPTION_KEY.length());
 		return encryptedByte ^ token;

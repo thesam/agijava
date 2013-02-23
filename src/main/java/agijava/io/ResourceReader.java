@@ -31,7 +31,6 @@ public class ResourceReader {
 		int length1 = inputStream.read();
 		int length2 = inputStream.read();
 		int length = length2 << 8 | length1;
-//		System.err.println("Arraylen: " + length);
 		byte[] rawdataBytes = new byte[length];
 		inputStream.read(rawdataBytes);
 		for (byte b : rawdataBytes) {

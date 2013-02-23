@@ -11,9 +11,8 @@ public class ChangePriorityColorCommand implements IPictureCommand {
 	public void run(IPicture picture, int currentByte) {
 		picture.setPriorityColor(currentByte);
 		picture.setPriorityDrawingEnabled(true);
-//		System.err.println("Change Priority Color");
-
 	}
+	
 	@Override
 	public boolean needsArguments() {
 		return true;

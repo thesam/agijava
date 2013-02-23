@@ -33,9 +33,8 @@ public class RelativeLineCommand implements IPictureCommand {
 		picture.drawLine(startX, startY, startX + offsetX, startY + offsetY);
 		startX = startX + offsetX;
 		startY = startY + offsetY;
-		
-//		System.err.println("Relative Line");
 	}
+	
 	@Override
 	public boolean needsArguments() {
 		return true;

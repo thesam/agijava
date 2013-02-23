@@ -19,7 +19,6 @@ public class FillCommand implements IPictureCommand {
 			writeX = false;
 		} else {
 			nextY = currentByte;
-//			System.err.println("Fill at " + nextX + ":" + nextY);
 			picture.fillFrom(nextX,nextY);
 			writeX = true;
 		}

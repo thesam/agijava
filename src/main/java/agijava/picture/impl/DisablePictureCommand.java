@@ -9,7 +9,6 @@ public class DisablePictureCommand implements IPictureCommand {
 
 	@Override
 	public void run(IPicture picture, int currentByte) {
-//		System.err.println("Disable picture drawing");
 		picture.setPictureDrawingEnabled(false);
 	}
 

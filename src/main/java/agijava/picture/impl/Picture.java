@@ -39,7 +39,6 @@ public class Picture implements IPicture {
 	}
 
 	public void drawLine(int x1, int y1, int x2, int y2) {
-		// System.err.println("Draw from " + x1+":"+y1+" to " + x2+":"+y2);
 		int height, width;
 		float x, y, addX, addY;
 

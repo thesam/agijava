@@ -7,7 +7,6 @@ public class GetStringCommand extends AbstractLogicCommand {
 	@Override
 	public void execute(IGameState gameState) {
 		// TODO Auto-generated method stub
-		System.err.println("getString called.");
 	}
 
 	@Override

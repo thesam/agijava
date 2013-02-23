@@ -11,9 +11,8 @@ public class ChangePictureColorCommand implements IPictureCommand {
 	public void run(IPicture picture, int currentByte) {
 		picture.setPictureColor(currentByte);
 		picture.setPictureDrawingEnabled(true);
-//		System.err.println("Change picture color to: " + currentByte);
-
 	}
+	
 	@Override
 	public boolean needsArguments() {
 		return true;
