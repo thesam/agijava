@@ -27,7 +27,7 @@ public class GameStateFactory {
 
 		WordsTok wordsTok = WordsTokFactory.createInstance(gameDir + "words.tok");
 		
-		InventoryObjects inventory = InventoryObjectsFactory.createInstance(gameDir + "object");
+		InventoryObjects inventory = InventoryObjectsFactory.createFromFile(gameDir + "object");
 		IGameState gameState = new GameState(logicRepository,pictureRepository,viewRepository,wordsTok,inventory);
 		return gameState;
 	}

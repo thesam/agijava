@@ -35,6 +35,13 @@ public class RawByteArray {
 		offset++;
 		return retVal & 0xff;
 	}
+	
+	public int getNextUInt16AndStep() {
+		int offset1 = getNextAndStep();
+		int offset2 = getNextAndStep();
+		int offset = (offset2 << 8) | offset1;
+		return offset;
+	}
 
 	public int getNextOffsetToBeRead() {
 		return offset;
