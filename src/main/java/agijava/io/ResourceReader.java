@@ -1,7 +1,6 @@
 package agijava.io;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ public class ResourceReader {
 	}
 
 	public Resource read()
-			throws FileNotFoundException, IOException {
+			throws IOException {
 		List<Integer> rawdata = new ArrayList<Integer>();
 		FileInputStream inputStream = new FileInputStream(base + resourceReference.getVolNumber());
 		inputStream.skip(resourceReference.getOffset());
@@ -33,6 +32,7 @@ public class ResourceReader {
 		int length = length2 << 8 | length1;
 		byte[] rawdataBytes = new byte[length];
 		inputStream.read(rawdataBytes);
+		inputStream.close();
 		for (byte b : rawdataBytes) {
 			rawdata.add((int)b);
 		}

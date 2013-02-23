@@ -54,6 +54,7 @@ public class WordsTokFactory {
 				}
 			}
 		}
+		inputStream.close();
 		return wordsTok;
 	}
 
