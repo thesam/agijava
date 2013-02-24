@@ -2,9 +2,9 @@ package agijava.main;
 
 import java.util.List;
 
-public interface ILogicCommand {
+public interface LogicCommand {
 
-	public void execute(IGameState gameState);
+	public void execute(GameState gameState);
 
 	public int getArgsSizeInBytes();
 

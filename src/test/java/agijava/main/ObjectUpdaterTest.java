@@ -10,13 +10,13 @@ import static org.mockito.Mockito.*;
 
 public class ObjectUpdaterTest {
 	private ObjectUpdater objectUpdater;
-	private IGameState gameState;
+	private GameState gameState;
 	private AnimatedObject object;
 	
 	@Before
 	public void setup() {
 		object = mock(AnimatedObject.class);
-		gameState = mock(IGameState.class);
+		gameState = mock(GameState.class);
 		objectUpdater = new ObjectUpdater(gameState, null);
 	}
 

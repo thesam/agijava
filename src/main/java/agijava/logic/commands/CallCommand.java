@@ -1,11 +1,11 @@
 package agijava.logic.commands;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class CallCommand extends AbstractLogicCommand {
 
 	@Override
-	public void execute(IGameState gameState) {
+	public void execute(GameState gameState) {
 		gameState.callNewLogic(args.get(0));
 
 	}

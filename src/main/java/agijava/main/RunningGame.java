@@ -6,10 +6,10 @@ public class RunningGame {
 
 	private GuiDrawer drawer;
 	private ObjectUpdater updater;
-	private IGameState gameState;
+	private GameState gameState;
 
 	public RunningGame(GuiDrawer drawer, ObjectUpdater updater,
-			IGameState gameState) {
+			GameState gameState) {
 		this.drawer = drawer;
 		this.updater = updater;
 		this.gameState = gameState;

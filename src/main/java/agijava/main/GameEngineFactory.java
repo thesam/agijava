@@ -13,7 +13,7 @@ public class GameEngineFactory {
 	public static GameEngine createInstance(String gameDir) throws IOException {
 			
 			SwingGraphicsDeviceFactory graphicsDeviceFactory = new SwingGraphicsDeviceFactory();
-			IGameState gameState = GameStateFactory.createInstance(gameDir);
+			GameState gameState = GameStateFactory.createInstance(gameDir);
 			SwingGraphicsFrame guiView = graphicsDeviceFactory.createGraphicsDevice();
 			GameGui gui = new GameGui(new PrioCalculator(), gameState,guiView,new PrioBuffer(guiView.getHeight(),guiView.getWidth()));
 			guiView.setController(gui);

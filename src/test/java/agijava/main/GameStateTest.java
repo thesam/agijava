@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 import agijava.logic.Logic;
-import agijava.main.ILogicCommand;
+import agijava.main.LogicCommand;
 import agijava.picture.IPicture;
 import agijava.view.View;
 import static org.mockito.Mockito.*;
@@ -39,7 +39,7 @@ public class GameStateTest {
 		aGameState();
 		aLogic();
 		gameState.setCurrentLogic(logic);
-		ILogicCommand command = mock(ILogicCommand.class);
+		LogicCommand command = mock(LogicCommand.class);
 		when(logic.getNextCommand()).thenReturn(command);
 		gameState.executeNextCommand();
 		verify(command).execute(gameState);

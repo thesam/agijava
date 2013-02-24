@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class AbstractLogicCommandTest {
 	private AbstractLogicCommand command;
@@ -26,7 +26,7 @@ public class AbstractLogicCommandTest {
 			}
 			
 			@Override
-			public void execute(IGameState gameState) {
+			public void execute(GameState gameState) {
 			}
 		};
 	}

@@ -8,13 +8,13 @@ import java.util.List;
 import org.junit.Test;
 
 import agijava.logic.Logic;
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class PrintAtvCommandTest {
 	@Test
 	public void usesFirstParameterAsVariableForMessageNumber() throws Exception {
 		PrintAtvCommand cmd = new PrintAtvCommand();
-		IGameState gameState = mock(IGameState.class);
+		GameState gameState = mock(GameState.class);
 		Logic currentLogic = mock(Logic.class);
 		List<Integer> args = new ArrayList<Integer>();
 		args.add(5);

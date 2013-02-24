@@ -1,13 +1,13 @@
 package agijava.logic.commands;
 
 import agijava.main.AnimatedObject;
-import agijava.main.IGameState;
+import agijava.main.GameState;
 import agijava.main.Position;
 
 public class PositionCommand extends AbstractLogicCommand {
 
 	@Override
-	public void execute(IGameState gameState) {
+	public void execute(GameState gameState) {
 		int objNo = args.get(0);
 		int x = getX(gameState);
 		int y = getY(gameState);
@@ -15,11 +15,11 @@ public class PositionCommand extends AbstractLogicCommand {
 		animatedObject.setPosition(new Position(x,y));
 	}
 
-	protected int getY(IGameState gameState) {
+	protected int getY(GameState gameState) {
 		return args.get(2);
 	}
 
-	protected int getX(IGameState gameState) {
+	protected int getX(GameState gameState) {
 		return args.get(1);
 	}
 

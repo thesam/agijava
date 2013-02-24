@@ -1,12 +1,12 @@
 package agijava.logic.commands;
 
 import agijava.main.AnimatedObject;
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class EraseCommand extends AbstractLogicCommand {
 
 	@Override
-	public void execute(IGameState gameState) {
+	public void execute(GameState gameState) {
 		AnimatedObject animatedObject = gameState.getAnimatedObject(args.get(0));
 		animatedObject.setVisible(false);
 	}

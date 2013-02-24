@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import agijava.io.RawByteArray;
 import agijava.logic.IEvaluatedTestStatement;
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 @SuppressWarnings("unused")
 public class IfCommandTest {
@@ -33,7 +33,7 @@ public class IfCommandTest {
 	private static final int BYTE_NOT = 0xFD;
 	private IfCommand ifCommand;
 	private ArrayList<Integer> args;
-	private IGameState gameState;
+	private GameState gameState;
 	private TestStatementEvaluator evaluator;
 	private List<Integer> input;
 	private IEvaluatedTestStatement evaluatedTestStatement;
@@ -42,13 +42,13 @@ public class IfCommandTest {
 	public void anIfCommand() throws Exception {
 		evaluator = mock(TestStatementEvaluator.class);
 		evaluatedTestStatement = mock(IEvaluatedTestStatement.class);
-		when(evaluator.createStatementsFromBytes((RawByteArray) anyObject(),(IGameState) anyObject())).thenReturn(evaluatedTestStatement);
+		when(evaluator.createStatementsFromBytes((RawByteArray) anyObject(),(GameState) anyObject())).thenReturn(evaluatedTestStatement);
 		
 		anEmptyArgumentList();
 		ifCommand = new IfCommand(evaluator);
 		// TODO: Boo! The Factory should create a new ifCommand every time without any resets..
 		ifCommand.reset();
-		gameState = mock(IGameState.class);
+		gameState = mock(GameState.class);
 	}
 
 	private void anEmptyArgumentList() {

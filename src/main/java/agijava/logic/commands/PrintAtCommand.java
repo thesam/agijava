@@ -1,11 +1,11 @@
 package agijava.logic.commands;
 
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class PrintAtCommand extends PrintCommand {
 
-	protected int getMessageNo(IGameState gameState) {
+	protected int getMessageNo(GameState gameState) {
 		return args.get(0);
 	}
 

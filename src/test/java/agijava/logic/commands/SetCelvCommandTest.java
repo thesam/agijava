@@ -8,11 +8,11 @@ import java.util.List;
 import org.junit.Test;
 
 import agijava.main.AnimatedObject;
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class SetCelvCommandTest {
 	private SetCelvCommand cmd;
-	private IGameState state;
+	private GameState state;
 	private AnimatedObject animatedObject;
 
 	@Test
@@ -39,7 +39,7 @@ public class SetCelvCommandTest {
 	}
 
 	private void aGameState() {
-		state = mock(IGameState.class);
+		state = mock(GameState.class);
 	}
 
 	private void aSetCelvCommand() {

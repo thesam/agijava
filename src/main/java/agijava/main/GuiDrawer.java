@@ -11,10 +11,10 @@ import agijava.view.View;
 
 public class GuiDrawer {
 
-	private IGameState gameState;
+	private GameState gameState;
 	private GameGui gui;
 
-	public GuiDrawer(IGameState gameState, GameGui gui) {
+	public GuiDrawer(GameState gameState, GameGui gui) {
 		this.gameState = gameState;
 		this.gui = gui;
 	}

@@ -2,12 +2,12 @@ package agijava.logic.commands;
 
 import java.util.Random;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class RandomCommand extends AbstractLogicCommand {
 
 	@Override
-	public void execute(IGameState gameState) {
+	public void execute(GameState gameState) {
 		int min = args.get(0);
 		int max = args.get(1);
 		int varNo =  args.get(2);

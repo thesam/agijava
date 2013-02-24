@@ -6,12 +6,12 @@ import java.util.Map;
 
 import agijava.io.RawByteArray;
 import agijava.logic.commands.*;
-import agijava.main.ILogicCommand;
+import agijava.main.LogicCommand;
 
 public class Logic {
 
 	private RawByteArray raw;
-	private Map<Integer, ILogicCommand> commandMap = new HashMap<Integer, ILogicCommand>();
+	private Map<Integer, LogicCommand> commandMap = new HashMap<Integer, LogicCommand>();
 	private int startOffset;
 	private Map<Integer,String> messages;
 	private int entryNumber;
@@ -212,27 +212,27 @@ public class Logic {
 		commandMap.put(0xFF, new IfCommand());
 	}
 
-	public ILogicCommand getNextCommand() {
+	public LogicCommand getNextCommand() {
 		int nextByte = raw.getNextAndStep();
-		ILogicCommand command = getCommand(nextByte);
+		LogicCommand command = getCommand(nextByte);
 		feedArgumentsToCommand(command);
 		return command;
 	}
 
-	private void feedArgumentsToCommand(ILogicCommand command) {
+	private void feedArgumentsToCommand(LogicCommand command) {
 		while (!command.hasAllNeededArgs()) {
 			feedBytesToCommand(command);
 		}
 	}
 
-	private void feedBytesToCommand(ILogicCommand command) {
+	private void feedBytesToCommand(LogicCommand command) {
 		int numberOfArgs = command.getArgsSizeInBytes();
 		List<Integer> args = raw.getBytes(numberOfArgs);
 		command.setArgs(args);
 	}
 
-	private ILogicCommand getCommand(int nextByte) {
-		ILogicCommand command = commandMap.get(nextByte);
+	private LogicCommand getCommand(int nextByte) {
+		LogicCommand command = commandMap.get(nextByte);
 		command.reset();
 		return command;
 	}

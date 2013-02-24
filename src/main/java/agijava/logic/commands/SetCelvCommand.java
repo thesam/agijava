@@ -1,11 +1,11 @@
 package agijava.logic.commands;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class SetCelvCommand extends SetCelCommand {
 
 	@Override
-	protected int getCelNo(IGameState gameState) {
+	protected int getCelNo(GameState gameState) {
 		int varNo = args.get(1);
 		int celNo = gameState.getVar(varNo);
 		return celNo;

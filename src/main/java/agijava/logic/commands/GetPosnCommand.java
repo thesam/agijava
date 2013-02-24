@@ -1,12 +1,12 @@
 package agijava.logic.commands;
 
 import agijava.main.AnimatedObject;
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class GetPosnCommand extends AbstractLogicCommand {
 
 	@Override
-	public void execute(IGameState gameState) {
+	public void execute(GameState gameState) {
 		int objNo = args.get(0);
 		int xVarNo = args.get(1);
 		int yVarNo = args.get(2);

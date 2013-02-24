@@ -3,13 +3,13 @@ package agijava.main;
 import org.junit.Test;
 
 import agijava.gui.GameGui;
-import agijava.main.IGameState;
+import agijava.main.GameState;
 import agijava.picture.IPicture;
 import static org.mockito.Mockito.*;
 
 public class GuiDrawerTest {
 	private GuiDrawer drawer;
-	private IGameState gameState;
+	private GameState gameState;
 	private GameGui gui;
 
 	@Test
@@ -56,7 +56,7 @@ public class GuiDrawerTest {
 	}
 
 	private void aGuiDrawer() {
-		gameState = mock(IGameState.class);
+		gameState = mock(GameState.class);
 		gui = mock(GameGui.class);
 		this.drawer = new GuiDrawer(gameState, gui);
 	}

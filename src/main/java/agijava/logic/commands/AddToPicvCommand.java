@@ -1,33 +1,33 @@
 package agijava.logic.commands;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class AddToPicvCommand extends AddToPicCommand {
-	protected Integer getMargin(IGameState gameState) {
+	protected Integer getMargin(GameState gameState) {
 		return gameState.getVar(args.get(6));
 	}
 
-	protected Integer getPrio(IGameState gameState) {
+	protected Integer getPrio(GameState gameState) {
 		return gameState.getVar(args.get(5));
 	}
 
-	protected Integer getY(IGameState gameState) {
+	protected Integer getY(GameState gameState) {
 		return gameState.getVar(args.get(4));
 	}
 
-	protected Integer getX(IGameState gameState) {
+	protected Integer getX(GameState gameState) {
 		return gameState.getVar(args.get(3));
 	}
 
-	protected Integer getCelNo(IGameState gameState) {
+	protected Integer getCelNo(GameState gameState) {
 		return gameState.getVar(args.get(2));
 	}
 
-	protected Integer getLoopNo(IGameState gameState) {
+	protected Integer getLoopNo(GameState gameState) {
 		return gameState.getVar(args.get(1));
 	}
 
-	protected Integer getViewNo(IGameState gameState) {
+	protected Integer getViewNo(GameState gameState) {
 		return gameState.getVar(args.get(0));
 	}
 }

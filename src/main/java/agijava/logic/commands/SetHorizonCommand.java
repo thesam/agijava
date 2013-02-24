@@ -1,11 +1,11 @@
 package agijava.logic.commands;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class SetHorizonCommand extends AbstractLogicCommand {
 
 	@Override
-	public void execute(IGameState gameState) {
+	public void execute(GameState gameState) {
 		int newHorizon = args.get(0);
 		gameState.setHorizon(newHorizon);
 	}

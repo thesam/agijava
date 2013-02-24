@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import agijava.io.RawByteArray;
-import agijava.main.IGameState;
-import agijava.main.ILogicCommand;
+import agijava.main.GameState;
+import agijava.main.LogicCommand;
 
-public class IfCommand implements ILogicCommand {
+public class IfCommand implements LogicCommand {
 
 	private static final int BYTE_IF = 0xFF;
 	private List<Integer> args;
@@ -25,7 +25,7 @@ public class IfCommand implements ILogicCommand {
 	}
 
 	@Override
-	public void execute(IGameState gameState) {
+	public void execute(GameState gameState) {
 		int blockSize = (args.get(args.size() - 1) << 8)
 				| args.get(args.size() - 2);
 		List<Integer> testStatementBytes = args.subList(0, args.size() - 3);
@@ -35,17 +35,17 @@ public class IfCommand implements ILogicCommand {
 		}
 	}
 
-	private boolean ifStatementIsNotTrue(IGameState gameState,
+	private boolean ifStatementIsNotTrue(GameState gameState,
 			RawByteArray rawByteArray) {
 		return !evaluateTestStatement(rawByteArray, gameState);
 	}
 
-	private void skipContentOfIfBlock(IGameState gameState, int blockSize) {
+	private void skipContentOfIfBlock(GameState gameState, int blockSize) {
 		gameState.jumpForward(blockSize);
 	}
 
 	private boolean evaluateTestStatement(RawByteArray testStatementBytes,
-			IGameState gameState) {
+			GameState gameState) {
 		IEvaluatedTestStatement andedStatements = evaluator
 				.createStatementsFromBytes(testStatementBytes, gameState);
 		return andedStatements.getValue();

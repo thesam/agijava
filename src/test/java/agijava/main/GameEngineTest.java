@@ -6,11 +6,11 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 import agijava.gui.GameGui;
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class GameEngineTest {
 	private GameEngine gameEngine;
-	private IGameState gameState;
+	private GameState gameState;
 	private RunningGame runningGame;
 	private GameGui controller;
 
@@ -53,7 +53,7 @@ public class GameEngineTest {
 	}
 	
 	private void aGameEngine() {
-		gameState = mock(IGameState.class);
+		gameState = mock(GameState.class);
 		runningGame = mock(RunningGame.class);
 		controller = mock(GameGui.class);
 		gameEngine = new GameEngine(gameState, runningGame, null, controller);

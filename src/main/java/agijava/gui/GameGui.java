@@ -2,7 +2,7 @@ package agijava.gui;
 
 import agijava.main.AnimatedObject;
 import agijava.main.GameEngine;
-import agijava.main.IGameState;
+import agijava.main.GameState;
 import agijava.main.Text;
 import agijava.picture.IPicture;
 import agijava.view.Cel;
@@ -18,9 +18,9 @@ public class GameGui {
 	private boolean inputIsWaiting;
 	private String input;
 	private boolean waitingForDeblockingKeyPress;
-	private final IGameState gameState;
+	private final GameState gameState;
 
-	public GameGui(PrioCalculator prioCalculator, IGameState gameState,
+	public GameGui(PrioCalculator prioCalculator, GameState gameState,
 			SwingGraphicsFrame graphics, PrioBuffer prioBuffer) {
 		this.prioCalculator = prioCalculator;
 		this.gameState = gameState;

@@ -1,6 +1,6 @@
 package agijava.logic.commands;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class GotoCommand extends AbstractLogicCommand {
 
@@ -20,7 +20,7 @@ public class GotoCommand extends AbstractLogicCommand {
 	}
 
 	@Override
-	public void execute(IGameState gameState) {
+	public void execute(GameState gameState) {
 		int part1 = args.get(0);
 		int part2 = args.get(1);
 		int number = part2 << 8 | part1;

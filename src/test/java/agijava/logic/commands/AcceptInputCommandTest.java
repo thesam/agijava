@@ -5,12 +5,12 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class AcceptInputCommandTest {
 	@Test
 	public void acceptsInputWithoutArguments() throws Exception {
-		IGameState state = mock(IGameState.class);
+		GameState state = mock(GameState.class);
 		
 		AcceptInputCommand cmd = new AcceptInputCommand();
 		

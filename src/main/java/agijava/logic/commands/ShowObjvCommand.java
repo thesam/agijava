@@ -2,12 +2,12 @@ package agijava.logic.commands;
 
 import java.util.List;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class ShowObjvCommand extends AbstractLogicCommand {
 
 	@Override
-	public void execute(IGameState gameState) {
+	public void execute(GameState gameState) {
 		// TODO Auto-generated method stub
 
 	}

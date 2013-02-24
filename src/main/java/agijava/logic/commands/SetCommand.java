@@ -1,11 +1,11 @@
 package agijava.logic.commands;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class SetCommand extends AbstractLogicCommand {
 
 	@Override
-	public void execute(IGameState gameState) {
+	public void execute(GameState gameState) {
 		int flagNo = args.get(0);
 		gameState.setFlag(flagNo);
 	}

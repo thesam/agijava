@@ -12,7 +12,7 @@ import agijava.gui.GameGui;
 import agijava.gui.PrioBuffer;
 import agijava.gui.PrioCalculator;
 import agijava.gui.SwingGraphicsFrame;
-import agijava.main.IGameState;
+import agijava.main.GameState;
 import agijava.main.Text;
 import agijava.picture.IPicture;
 import agijava.view.Cel;
@@ -40,7 +40,7 @@ public class GameGuiTest {
 		graphics = mock(SwingGraphicsFrame.class);
 		prioBuffer = mock(PrioBuffer.class);
 		pic = mock(IPicture.class);
-		IGameState gameState = mock(IGameState.class);
+		GameState gameState = mock(GameState.class);
 		when(graphics.getHeight()).thenReturn(1);
 		when(graphics.getWidth()).thenReturn(1);
 		gui = new GameGui(prioCalculator,gameState,graphics,prioBuffer);

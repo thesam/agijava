@@ -10,7 +10,7 @@ import org.junit.Test;
 import agijava.io.RawByteArray;
 import agijava.main.AnimatedObject;
 import agijava.main.GameEngine;
-import agijava.main.IGameState;
+import agijava.main.GameState;
 import agijava.main.InventoryObject;
 import agijava.main.Position;
 import agijava.main.WordsTok;
@@ -51,7 +51,7 @@ public class TestStatementEvaluatorTest {
 	private static final int BYTE_NOT = 0xFD;
 
 	private TestStatementEvaluator testStatementEvaluator;
-	private IGameState gameState;
+	private GameState gameState;
 	private IEvaluatedTestStatement statement;
 	private RawByteArray rawByteArray;
 	private List<Integer> inputList = new ArrayList<Integer>();
@@ -509,7 +509,7 @@ public class TestStatementEvaluatorTest {
 	}
 
 	private void aGameState() {
-		gameState = mock(IGameState.class);
+		gameState = mock(GameState.class);
 	}
 
 	private void anEvaluator() {

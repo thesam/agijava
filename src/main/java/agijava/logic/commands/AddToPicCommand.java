@@ -1,11 +1,11 @@
 package agijava.logic.commands;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class AddToPicCommand extends AbstractLogicCommand {
 
 	@Override
-	public void execute(IGameState gameState) {
+	public void execute(GameState gameState) {
 //		a (va): number of the VIEW resource;
 //		b (vb): loop number;
 //		c (vc): cel number;
@@ -24,31 +24,31 @@ public class AddToPicCommand extends AbstractLogicCommand {
 
 	}
 
-	protected Integer getMargin(IGameState gameState) {
+	protected Integer getMargin(GameState gameState) {
 		return args.get(6);
 	}
 
-	protected Integer getPrio(IGameState gameState) {
+	protected Integer getPrio(GameState gameState) {
 		return args.get(5);
 	}
 
-	protected Integer getY(IGameState gameState) {
+	protected Integer getY(GameState gameState) {
 		return args.get(4);
 	}
 
-	protected Integer getX(IGameState gameState) {
+	protected Integer getX(GameState gameState) {
 		return args.get(3);
 	}
 
-	protected Integer getCelNo(IGameState gameState) {
+	protected Integer getCelNo(GameState gameState) {
 		return args.get(2);
 	}
 
-	protected Integer getLoopNo(IGameState gameState) {
+	protected Integer getLoopNo(GameState gameState) {
 		return args.get(1);
 	}
 
-	protected Integer getViewNo(IGameState gameState) {
+	protected Integer getViewNo(GameState gameState) {
 		return args.get(0);
 	}
 

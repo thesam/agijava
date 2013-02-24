@@ -5,9 +5,9 @@ import java.util.regex.Pattern;
 
 public class MessageParser {
 
-	private final IGameState gameState;
+	private final GameState gameState;
 
-	public MessageParser(IGameState gameState) {
+	public MessageParser(GameState gameState) {
 		this.gameState = gameState;
 	}
 

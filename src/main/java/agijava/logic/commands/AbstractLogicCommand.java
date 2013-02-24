@@ -3,15 +3,15 @@ package agijava.logic.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import agijava.main.IGameState;
-import agijava.main.ILogicCommand;
+import agijava.main.GameState;
+import agijava.main.LogicCommand;
 
-public abstract class AbstractLogicCommand implements ILogicCommand {
+public abstract class AbstractLogicCommand implements LogicCommand {
 
 	protected List<Integer> args = new ArrayList<Integer>();
 
 	@Override
-	public abstract void execute(IGameState gameState);
+	public abstract void execute(GameState gameState);
 
 	@Override
 	public abstract int getArgsSizeInBytes();

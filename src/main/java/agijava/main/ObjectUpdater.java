@@ -13,10 +13,10 @@ public class ObjectUpdater {
 
 	private static final int GREENLINE_TRIGGER = 3;
 	
-	private IGameState gameState;
+	private GameState gameState;
 	private MovementCalculator calculator;
 
-	public ObjectUpdater(IGameState gameState, MovementCalculator calculator) {
+	public ObjectUpdater(GameState gameState, MovementCalculator calculator) {
 		this.gameState = gameState;
 		this.calculator = calculator;
 	}

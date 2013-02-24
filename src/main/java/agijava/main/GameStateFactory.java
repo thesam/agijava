@@ -8,7 +8,7 @@ import agijava.io.ResourceReference;
 
 public class GameStateFactory {
 
-	public static IGameState createInstance(String gameDir) throws IOException {
+	public static GameState createInstance(String gameDir) throws IOException {
 		ResourceDir picDir = new ResourceDir(gameDir + "picdir");
 		List<ResourceReference> pictureReferences = picDir.getResourceReferences();
 		
@@ -26,7 +26,7 @@ public class GameStateFactory {
 		WordsTok wordsTok = WordsTokFactory.createInstance(gameDir + "words.tok");
 		
 		InventoryObjects inventory = InventoryObjectsFactory.createFromFile(gameDir + "object");
-		IGameState gameState = new GameState(logicRepository,pictureRepository,viewRepository,wordsTok,inventory);
+		GameState gameState = new GameState(logicRepository,pictureRepository,viewRepository,wordsTok,inventory);
 		return gameState;
 	}
 

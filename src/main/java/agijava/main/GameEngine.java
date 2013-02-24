@@ -22,7 +22,7 @@ public class GameEngine {
 	// Other
 	public static final int PLAYER_INVENTORY_ROOM = 255;
 
-	private IGameState gameState;
+	private GameState gameState;
 
 	private RunningGame runningGame;
 
@@ -32,7 +32,7 @@ public class GameEngine {
 	private long now;
 	private final GameGui gui;
 
-	public GameEngine(IGameState gameState, RunningGame runningGame,
+	public GameEngine(GameState gameState, RunningGame runningGame,
 			MovementCalculator calculator, GameGui gui) {
 		this.gameState = gameState;
 		this.runningGame = runningGame;

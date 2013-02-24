@@ -5,10 +5,10 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import agijava.main.IGameState;
+import agijava.main.GameState;
 
 public class MessageParserTest {
-	private IGameState gameState;
+	private GameState gameState;
 	private MessageParser messageParser;
 
 	@Test
@@ -38,7 +38,7 @@ public class MessageParserTest {
 	}
 
 	private void aMessageParser() {
-		gameState = mock(IGameState.class);
+		gameState = mock(GameState.class);
 		messageParser = new MessageParser(gameState);
 	}
 
