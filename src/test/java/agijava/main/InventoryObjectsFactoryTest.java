@@ -27,21 +27,23 @@ public class InventoryObjectsFactoryTest {
 	@Test
 	public void canParseOneInventoryObject() throws Exception {
 		List<Integer> bytes = new ArrayList<Integer>();
-		bytes.add(1);
-		bytes.add(0);
+		bytes.add(3);
+		bytes.add(0); // names section offset
+		
+		bytes.add(0); // maxNumber
+		
+		bytes.add(3); // first item name offset
 		bytes.add(0);
 		
-		bytes.add(0);
-		bytes.add(0);
+		bytes.add(10); // room number
 		
-		bytes.add(6);
-		
-		bytes.add((int)'a');
+		bytes.add((int)'a'); // first item name
+		bytes.add(0); // null terminator
 		RawByteArray raw = new RawByteArray(bytes);
 		InventoryObjects inventoryObjects = InventoryObjectsFactory.createFromByteArray(raw);
 		InventoryObject inventoryObject = inventoryObjects.get(0);
-		assertEquals("",inventoryObject.getName());
-		assertEquals(6,inventoryObject.getRoomNumber());
+		assertEquals("a",inventoryObject.getName());
+		assertEquals(10,inventoryObject.getRoomNumber());
 	}
 	
 	@Test

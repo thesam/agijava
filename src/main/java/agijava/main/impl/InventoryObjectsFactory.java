@@ -38,32 +38,40 @@ public class InventoryObjectsFactory {
 	}
 
 	public static InventoryObjects createFromByteArray(RawByteArray raw) {
-		int namesOffset = raw.getNextUInt16AndStep();
+		int namesSectionOffset = getNamesSectionOffset(raw);	
 		raw.getNextAndStep(); // max number (discarded)
-		namesOffset += FIRST_ENTRY_OFFSET; // offsets are counted from the start
-											// of the first entry (offset 3)
-		raw.setStopOffset(namesOffset);
-
 		HashMap<Integer, Integer> roomNumbers = new HashMap<Integer, Integer>();
 		HashMap<Integer, Integer> offsets = new HashMap<Integer, Integer>();
-		readRoomNumbersAndOffsets(raw, offsets, roomNumbers);
+		readRoomNumbersAndOffsets(raw, offsets, roomNumbers, namesSectionOffset);
 		InventoryObjects inv = readNamesAndCreateInventoryObjects(raw, offsets,
 				roomNumbers);
 		return inv;
 	}
 
+	private static int getNamesSectionOffset(RawByteArray raw) {
+		int namesOffset = raw.getNextUInt16AndStep();
+		namesOffset += FIRST_ENTRY_OFFSET; // offsets are counted from the start
+		return namesOffset;
+	}
+
 	private static void readRoomNumbersAndOffsets(RawByteArray raw,
 			HashMap<Integer, Integer> offsets,
-			HashMap<Integer, Integer> roomNumbers) {
+			HashMap<Integer, Integer> roomNumbers, int namesOffset) {
 		int currentItem = 0;
+		raw.setStopOffset(namesOffset);
 		while (raw.getNextOffsetToBeRead() < raw.getStopOffset()) {
-			int itemNameOffset = raw.getNextUInt16AndStep();
-			itemNameOffset += FIRST_ENTRY_OFFSET;
+			int itemNameOffset = getItemNameSectionOffset(raw);
 			int startingRoomNumber = raw.getNextAndStep();
 			roomNumbers.put(currentItem, startingRoomNumber);
 			offsets.put(currentItem, itemNameOffset);
 			currentItem++;
 		}
+	}
+
+	private static int getItemNameSectionOffset(RawByteArray raw) {
+		int namesOffset = raw.getNextUInt16AndStep();
+		namesOffset += FIRST_ENTRY_OFFSET; // offsets are counted from the start
+		return namesOffset;
 	}
 
 	private static InventoryObjects readNamesAndCreateInventoryObjects(
