@@ -9,7 +9,7 @@ public class UnanimateAllCommand extends AbstractLogicCommand {
 
 	@Override
 	public void execute(GameState gameState) {
-		Collection<AnimatedObject> animatedObjects = gameState.getAnimatedObjects();
+		Collection<AnimatedObject> animatedObjects = gameState.animatedObjects.values();
 		for (AnimatedObject animatedObject : animatedObjects) {
 			animatedObject.setShouldBeUpdated(false);
 			animatedObject.setVisible(false);

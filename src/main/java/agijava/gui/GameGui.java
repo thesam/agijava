@@ -251,7 +251,7 @@ public class GameGui {
 		setKeyPressWaiting(true);
 		if (acceptsInput()) {
 			if (direction != -1) {
-				AnimatedObject ego = gameState.getAnimatedObject(0);
+				AnimatedObject ego = gameState.animatedObjects.get(0);
 				if (ego != null) {
 					if (ego.isMoving()) {
 						if (ego.getDirection() == direction) {

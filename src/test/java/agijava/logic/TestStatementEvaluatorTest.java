@@ -8,11 +8,9 @@ import java.util.List;
 import org.junit.Test;
 
 import agijava.io.RawByteArray;
-import agijava.main.AnimatedObject;
 import agijava.main.GameEngine;
 import agijava.main.GameState;
 import agijava.main.InventoryObject;
-import agijava.main.Position;
 import agijava.main.WordsTok;
 import static org.mockito.Mockito.*;
 
@@ -251,37 +249,37 @@ public class TestStatementEvaluatorTest {
 
 	}
 
-	@Test
-	// TODO: Should check if the whole base of the view is inside the box
-	public void canEvaluateTrueObjInBoxStatement() throws Exception {
-		anEvaluator();
-		AnimatedObject obj = mock(AnimatedObject.class);
-		Position pos = mock(Position.class);
-
-		int objNo = 10;
-		when(pos.getX()).thenReturn(10);
-		when(pos.getY()).thenReturn(10);
-
-		when(obj.getCurrentPosition()).thenReturn(pos);
-
-		when(gameState.getAnimatedObject(objNo)).thenReturn(obj);
-
-		inputList.add(BYTE_OBJINBOX);
-		inputList.add(objNo);
-		inputList.add(0);
-		inputList.add(0);
-		inputList.add(11);
-		inputList.add(11);
-
-		statementIsEvaluated();
-
-		verify(gameState).getAnimatedObject(objNo);
-		verify(obj, atLeastOnce()).getCurrentPosition();
-		verify(pos).getX();
-		verify(pos).getY();
-
-		statementIsTrue();
-	}
+//	@Test
+//	// TODO: Should check if the whole base of the view is inside the box
+//	public void canEvaluateTrueObjInBoxStatement() throws Exception {
+//		anEvaluator();
+//		AnimatedObject obj = mock(AnimatedObject.class);
+//		Position pos = mock(Position.class);
+//
+//		int objNo = 10;
+//		when(pos.getX()).thenReturn(10);
+//		when(pos.getY()).thenReturn(10);
+//
+//		when(obj.getCurrentPosition()).thenReturn(pos);
+//
+//		when(gameState.getAnimatedObject(objNo)).thenReturn(obj);
+//
+//		inputList.add(BYTE_OBJINBOX);
+//		inputList.add(objNo);
+//		inputList.add(0);
+//		inputList.add(0);
+//		inputList.add(11);
+//		inputList.add(11);
+//
+//		statementIsEvaluated();
+//
+//		verify(gameState).getAnimatedObject(objNo);
+//		verify(obj, atLeastOnce()).getCurrentPosition();
+//		verify(pos).getX();
+//		verify(pos).getY();
+//
+//		statementIsTrue();
+//	}
 
 	// @Test
 	// public void canEvaluateCenterPosnStatement() throws Exception {

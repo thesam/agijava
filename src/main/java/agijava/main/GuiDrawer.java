@@ -34,7 +34,7 @@ public class GuiDrawer {
 	}
 
 	public void drawAnimatedObjects() {
-		Collection<AnimatedObject> objects = gameState.getAnimatedObjects();
+		Collection<AnimatedObject> objects = gameState.animatedObjects.values();
 		for (AnimatedObject animatedObject : objects) {
 			if (animatedObject.isVisible()) {
 				drawAnimatedObject(animatedObject);

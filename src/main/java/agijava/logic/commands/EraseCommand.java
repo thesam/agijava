@@ -7,7 +7,7 @@ public class EraseCommand extends AbstractLogicCommand {
 
 	@Override
 	public void execute(GameState gameState) {
-		AnimatedObject animatedObject = gameState.getAnimatedObject(args.get(0));
+		AnimatedObject animatedObject = gameState.animatedObjects.get(args.get(0));
 		animatedObject.setVisible(false);
 	}
 

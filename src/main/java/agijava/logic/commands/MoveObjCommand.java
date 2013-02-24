@@ -13,7 +13,7 @@ public class MoveObjCommand extends AbstractLogicCommand {
 		int y = getY(gameState);
 		int stepsize = args.get(3);
 		int finishFlag = args.get(4);
-		AnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
+		AnimatedObject animatedObject = gameState.animatedObjects.get(objNo);
 		animatedObject.setMoving(true);
 		animatedObject.setMovingToDestination(true);
 		animatedObject.setDestination(new Position(x,y));

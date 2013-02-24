@@ -1,7 +1,6 @@
 package agijava.main;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,7 @@ public class GameState {
 
 	private LogicRepository logicRepository;
 	private PictureRepository pictureRepository;
-	private ViewRepository viewRepository;
+	public final ViewRepository viewRepository;
 	private WordsTok wordsTok;
 	private InventoryObjects inventoryObjects;
 	
@@ -38,7 +37,7 @@ public class GameState {
 	private Logic currentLogic;
 	private Picture currentPicture;
 	private Picture bufferPicture;
-	private Map<Integer, AnimatedObject> animatedObjects;
+	public Map<Integer, AnimatedObject> animatedObjects;
 	private Stack<Logic> logicStack;
 	private List<Text> displayedTexts;
 
@@ -148,45 +147,7 @@ public class GameState {
 			return true;
 		}
 	}
-
-
-
-
-
-	public void addAnimatedObject(int objNo) {
-		AnimatedObject obj = null;
-		obj = getAnimatedObjectWithNumber(objNo);
-		obj.setShouldBeUpdated(true);
-		animatedObjects.put(objNo, obj);
-
-	}
-
-	private AnimatedObject getAnimatedObjectWithNumber(int objNo) {
-		AnimatedObject obj;
-		if (animatedObjects.containsKey(objNo)) {
-			obj = animatedObjects.get(objNo);
-		} else {
-			obj = new AnimatedObject(this.viewRepository);
-		}
-		if (objNo == 0) {
-			obj.setEgo(true);
-		}
-		obj.setNumber(objNo);
-		return obj;
-	}
-
-	public AnimatedObject getAnimatedObject(int objNo) {
-		return animatedObjects.get(objNo);
-	}
 	
-	public Collection<AnimatedObject> getAnimatedObjects() {
-		return animatedObjects.values();
-	}
-	
-	public void clearAnimatedObjects() {
-		animatedObjects.clear();
-	}
-
 	public void showPictureFromBuffer() {
 		currentPicture = bufferPicture;
 		displayedBackgroundViews = bufferBackgroundViews;
@@ -211,7 +172,6 @@ public class GameState {
 		bufferBackgroundViews.clear();
 	}
 
-
 	public void setPictureInBuffer(int picNo) {
 		bufferPicture = pictureRepository.getPicture(picNo);
 	}
@@ -220,11 +180,8 @@ public class GameState {
 		return currentPicture;
 	}
 
-
-
 	public void addText(int row, int col, String message) {
 		displayedTexts.add(new Text(row, col, message));
-
 	}
 
 	public List<Text> getDisplayedTexts() {
@@ -249,7 +206,6 @@ public class GameState {
 		} else {
 			return 0;
 		}
-
 	}
 	
 	public void setScanStart(int entryNumber, int offset) {
@@ -266,7 +222,6 @@ public class GameState {
 
 	public void setNewRoomWaiting(boolean b) {
 		this.newRoomWaiting = b;
-
 	}
 
 	public void setNewRoomNumber(int newRoomNumber) {

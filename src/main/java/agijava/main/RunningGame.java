@@ -29,7 +29,7 @@ public class RunningGame {
 
 	public void updateAnimatedObjects() {
 		Collection<AnimatedObject> animatedObjects = gameState
-				.getAnimatedObjects();
+				.animatedObjects.values();
 		for (AnimatedObject animatedObject : animatedObjects) {
 			if (animatedObject.shouldBeUpdated()) {
 				updater.updateLoopAndCel(animatedObject);

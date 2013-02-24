@@ -11,7 +11,7 @@ public class PositionCommand extends AbstractLogicCommand {
 		int objNo = args.get(0);
 		int x = getX(gameState);
 		int y = getY(gameState);
-		AnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
+		AnimatedObject animatedObject = gameState.animatedObjects.get(objNo);
 		animatedObject.setPosition(new Position(x,y));
 	}
 

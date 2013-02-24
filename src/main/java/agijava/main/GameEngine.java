@@ -95,12 +95,12 @@ public class GameEngine {
 		if (gameState.isNewRoomWaiting()) {
 			gameState.setNewRoomWaiting(false);
 			// Commands stop.update and unanimate are issued to all objects;
-			AnimatedObject ego = gameState.getAnimatedObject(0);
+			AnimatedObject ego = gameState.animatedObjects.get(0);
 			if (ego != null) {
 				int egoView = ego.getView().getNumber();
 				gameState.setVar(GameEngine.VAR_EGO_VIEW_NO, egoView);
 			}
-			gameState.clearAnimatedObjects();
+			gameState.animatedObjects.clear();
 			// All resources except Logic(0) are discarded;
 			// Command player.control is issued;
 			// unblock command is issued;
@@ -134,7 +134,7 @@ public class GameEngine {
 	}
 
 	private void updateEgoDirection() {
-		AnimatedObject ego = gameState.getAnimatedObject(0);
+		AnimatedObject ego = gameState.animatedObjects.get(0);
 		if (ego != null) {
 			ego.setDirection(gameState.getVar(VAR_EGO_DIRECTION));
 		}

@@ -3,7 +3,6 @@ package agijava.main;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.junit.Test;
@@ -111,15 +110,6 @@ public class GameStateTest {
 		aGameState();
 		assertFalse(gameState.controller(5));
 		assertFalse(gameState.controller(99));
-	}
-
-	@Test
-	public void canRememberThatObjectIsAnimated() throws Exception {
-		aGameState();
-		gameState.addAnimatedObject(10);
-		AnimatedObject animatedObject = gameState.getAnimatedObject(10);
-		assertNotNull(animatedObject);
-		assertNull(gameState.getAnimatedObject(9));
 	}
 
 	@Test
@@ -280,36 +270,46 @@ public class GameStateTest {
 		
 	}
 	
-	@Test
-	public void canStoreAnimatedObjects() throws Exception {
-		aGameState();
-		gameState.addAnimatedObject(10);
-		AnimatedObject obj = gameState.getAnimatedObject(10);
-		assertEquals(obj.getNumber(),10);
-		assertTrue(obj.shouldBeUpdated());
-		gameState.addAnimatedObject(20);
-		Collection<AnimatedObject> animatedObjects = gameState.getAnimatedObjects();
-		assertEquals(2,animatedObjects.size());
-	}
+//TODO: Move to AnimateObjCommandTest
+//	@Test
+//	public void canStoreAnimatedObjects() throws Exception {
+//		aGameState();
+//		gameState.addAnimatedObject(10);
+//		AnimatedObject obj = gameState.getAnimatedObject(10);
+//		assertEquals(obj.getNumber(),10);
+//		assertTrue(obj.shouldBeUpdated());
+//		gameState.addAnimatedObject(20);
+//		Collection<AnimatedObject> animatedObjects = gameState.getAnimatedObjects();
+//		assertEquals(2,animatedObjects.size());
+//	}
 	
-	@Test
-	public void usesExistingObjectIfAlreadyAnimated() throws Exception {
-		aGameState();
-		gameState.addAnimatedObject(10);
-		AnimatedObject obj = gameState.getAnimatedObject(10);
-		gameState.addAnimatedObject(10);
-		AnimatedObject obj2 = gameState.getAnimatedObject(10);
-		assertEquals(obj,obj2);
-	}
-	
-	@Test
-	public void setsAnimatedObjectZeroToEgo() throws Exception {
-		aGameState();
-		gameState.addAnimatedObject(0);
-		AnimatedObject obj = gameState.getAnimatedObject(0);
-		assertTrue(obj.isEgo());
-	}
-	
+//	@Test
+//	public void usesExistingObjectIfAlreadyAnimated() throws Exception {
+//		aGameState();
+//		gameState.addAnimatedObject(10);
+//		AnimatedObject obj = gameState.getAnimatedObject(10);
+//		gameState.addAnimatedObject(10);
+//		AnimatedObject obj2 = gameState.getAnimatedObject(10);
+//		assertEquals(obj,obj2);
+//	}
+//	
+//	@Test
+//	public void setsAnimatedObjectZeroToEgo() throws Exception {
+//		aGameState();
+//		gameState.addAnimatedObject(0);
+//		AnimatedObject obj = gameState.getAnimatedObject(0);
+//		assertTrue(obj.isEgo());
+//	}
+//	
+//	@Test
+//	public void canClearAllAnimatedObjects() throws Exception {
+//		aGameState();
+//		gameState.addAnimatedObject(10);
+//		gameState.addAnimatedObject(20);
+//		gameState.clearAnimatedObjects();
+//		Collection<AnimatedObject> animatedObjects = gameState.getAnimatedObjects();
+//		assertEquals(0,animatedObjects.size());
+//	}	
 	@Test
 	public void returnsToPreviousLogicWhenSecondLogicEnds() throws Exception {
 		aGameState();
@@ -324,16 +324,6 @@ public class GameStateTest {
 		gameState.returnToCallingLogic();
 		assertEquals(firstLogic,gameState.getCurrentLogic());
 		
-	}
-	
-	@Test
-	public void canClearAllAnimatedObjects() throws Exception {
-		aGameState();
-		gameState.addAnimatedObject(10);
-		gameState.addAnimatedObject(20);
-		gameState.clearAnimatedObjects();
-		Collection<AnimatedObject> animatedObjects = gameState.getAnimatedObjects();
-		assertEquals(0,animatedObjects.size());
 	}
 	
 	@Test

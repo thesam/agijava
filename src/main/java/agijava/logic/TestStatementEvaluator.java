@@ -402,7 +402,7 @@ public class TestStatementEvaluator {
 	private boolean objInBox(int objNo, int x0, int y0, int x1, int y1,
 			GameState gameState) {
 		//TODO: Check that the whole view base is inside box
-		AnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
+		AnimatedObject animatedObject = gameState.animatedObjects.get(objNo);
 		int x = animatedObject.getCurrentPosition().getX();
 		int y = animatedObject.getCurrentPosition().getY();
 		if (x >= x0 && y >= x0 && x <= x1 && y <= y1) {
@@ -426,7 +426,7 @@ public class TestStatementEvaluator {
 
 	private boolean posn(GameState gameState, int objNo, int x1, int y1,
 			int x2, int y2) {
-		AnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
+		AnimatedObject animatedObject = gameState.animatedObjects.get(objNo);
 		int x = animatedObject.getCurrentPosition().getX();
 		int y = animatedObject.getCurrentPosition().getY();
 

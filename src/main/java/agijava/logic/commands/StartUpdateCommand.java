@@ -8,7 +8,7 @@ public class StartUpdateCommand extends AbstractLogicCommand {
 	@Override
 	public void execute(GameState gameState) {
 		int objNo = args.get(0);
-		AnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
+		AnimatedObject animatedObject = gameState.animatedObjects.get(objNo);
 		animatedObject.setShouldBeUpdated(true);
 	}
 
