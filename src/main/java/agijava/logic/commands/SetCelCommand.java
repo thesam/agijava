@@ -1,7 +1,7 @@
 package agijava.logic.commands;
 
-import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
+import agijava.main.impl.AnimatedObject;
 
 public class SetCelCommand extends AbstractLogicCommand {
 
@@ -9,7 +9,7 @@ public class SetCelCommand extends AbstractLogicCommand {
 	public void execute(IGameState gameState) {
 		int objNo = getObjNo();
 		int celNo = getCelNo(gameState);
-		IAnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
+		AnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
 		animatedObject.setCurrentViewCel(celNo);
 	}
 

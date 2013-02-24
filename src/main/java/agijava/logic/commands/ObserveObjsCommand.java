@@ -1,14 +1,14 @@
 package agijava.logic.commands;
 
-import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
+import agijava.main.impl.AnimatedObject;
 
 public class ObserveObjsCommand extends AbstractLogicCommand {
 
 	@Override
 	public void execute(IGameState gameState) {
 		int objNo = args.get(0);
-		IAnimatedObject obj = gameState.getAnimatedObject(objNo);
+		AnimatedObject obj = gameState.getAnimatedObject(objNo);
 		obj.setObserveObjects(true);
 	}
 

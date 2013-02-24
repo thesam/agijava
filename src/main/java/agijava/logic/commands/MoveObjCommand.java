@@ -1,7 +1,7 @@
 package agijava.logic.commands;
 
-import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
+import agijava.main.impl.AnimatedObject;
 import agijava.main.impl.Position;
 
 public class MoveObjCommand extends AbstractLogicCommand {
@@ -13,7 +13,7 @@ public class MoveObjCommand extends AbstractLogicCommand {
 		int y = getY(gameState);
 		int stepsize = args.get(3);
 		int finishFlag = args.get(4);
-		IAnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
+		AnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
 		animatedObject.setMoving(true);
 		animatedObject.setMovingToDestination(true);
 		animatedObject.setDestination(new Position(x,y));

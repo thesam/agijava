@@ -3,7 +3,6 @@ package agijava.main.impl;
 import java.io.IOException;
 
 import agijava.gui.IGuiController;
-import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
 import agijava.main.IMovementCalculator;
 import agijava.main.IRunningGame;
@@ -99,7 +98,7 @@ public class GameEngine {
 		if (gameState.isNewRoomWaiting()) {
 			gameState.setNewRoomWaiting(false);
 			// Commands stop.update and unanimate are issued to all objects;
-			IAnimatedObject ego = gameState.getAnimatedObject(0);
+			AnimatedObject ego = gameState.getAnimatedObject(0);
 			if (ego != null) {
 				int egoView = ego.getView().getNumber();
 				gameState.setVar(GameEngine.VAR_EGO_VIEW_NO, egoView);
@@ -138,7 +137,7 @@ public class GameEngine {
 	}
 
 	private void updateEgoDirection() {
-		IAnimatedObject ego = gameState.getAnimatedObject(0);
+		AnimatedObject ego = gameState.getAnimatedObject(0);
 		if (ego != null) {
 			ego.setDirection(gameState.getVar(VAR_EGO_DIRECTION));
 		}

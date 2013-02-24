@@ -43,7 +43,7 @@ public interface IGameState {
 
 	void addAnimatedObject(int objNo);
 
-	IAnimatedObject getAnimatedObject(int objNo);
+	AnimatedObject getAnimatedObject(int objNo);
 
 	List<Integer> getLatestSaidWords();
 

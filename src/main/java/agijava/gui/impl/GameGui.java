@@ -3,8 +3,8 @@ package agijava.gui.impl;
 import agijava.gui.IGuiController;
 import agijava.gui.IGuiView;
 import agijava.gui.IPrioCalculator;
-import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
+import agijava.main.impl.AnimatedObject;
 import agijava.main.impl.GameEngine;
 import agijava.main.impl.Text;
 import agijava.picture.IPicture;
@@ -259,7 +259,7 @@ public class GameGui implements IGuiController {
 		setKeyPressWaiting(true);
 		if (acceptsInput()) {
 			if (direction != -1) {
-				IAnimatedObject ego = gameState.getAnimatedObject(0);
+				AnimatedObject ego = gameState.getAnimatedObject(0);
 				if (ego != null) {
 					if (ego.isMoving()) {
 						if (ego.getDirection() == direction) {

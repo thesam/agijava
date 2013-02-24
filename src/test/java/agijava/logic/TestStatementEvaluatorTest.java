@@ -9,8 +9,8 @@ import org.junit.Test;
 
 import agijava.io.RawByteArray;
 import agijava.logic.impl.TestStatementEvaluator;
-import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
+import agijava.main.impl.AnimatedObject;
 import agijava.main.impl.GameEngine;
 import agijava.main.impl.InventoryObject;
 import agijava.main.impl.Position;
@@ -254,7 +254,7 @@ public class TestStatementEvaluatorTest {
 	// TODO: Should check if the whole base of the view is inside the box
 	public void canEvaluateTrueObjInBoxStatement() throws Exception {
 		anEvaluator();
-		IAnimatedObject obj = mock(IAnimatedObject.class);
+		AnimatedObject obj = mock(AnimatedObject.class);
 		Position pos = mock(Position.class);
 
 		int objNo = 10;

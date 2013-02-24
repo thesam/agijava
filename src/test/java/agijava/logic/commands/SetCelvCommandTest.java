@@ -7,13 +7,13 @@ import java.util.List;
 
 import org.junit.Test;
 
-import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
+import agijava.main.impl.AnimatedObject;
 
 public class SetCelvCommandTest {
 	private SetCelvCommand cmd;
 	private IGameState state;
-	private IAnimatedObject animatedObject;
+	private AnimatedObject animatedObject;
 
 	@Test
 	public void canSetCelWithVariableValue() throws Exception {
@@ -25,7 +25,7 @@ public class SetCelvCommandTest {
 		args.add(100);
 		args.add(50);
 		
-		animatedObject = mock(IAnimatedObject.class);
+		animatedObject = mock(AnimatedObject.class);
 		when(state.getAnimatedObject(100)).thenReturn(animatedObject);
 		when(state.getVar(50)).thenReturn(1);
 

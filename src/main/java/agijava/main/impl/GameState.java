@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Stack;
 
 import agijava.logic.ILogic;
-import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
 import agijava.main.IInventoryObjects;
 import agijava.main.ILogicCommand;
@@ -185,7 +184,7 @@ public class GameState implements IGameState {
 	}
 
 	@Override
-	public IAnimatedObject getAnimatedObject(int objNo) {
+	public AnimatedObject getAnimatedObject(int objNo) {
 		return animatedObjects.get(objNo);
 	}
 

@@ -1,11 +1,10 @@
 package agijava.main.impl;
 
-import agijava.main.IAnimatedObject;
 import agijava.main.IViewRepository;
 import agijava.view.IView;
 
 
-public class AnimatedObject implements IAnimatedObject {
+public class AnimatedObject {
 
 	private boolean observeObjects;
 	private IViewRepository viewRepository;
@@ -69,16 +68,6 @@ public class AnimatedObject implements IAnimatedObject {
 
 	public int getCurrentViewCel() {
 		return this.currentViewCel;
-	}
-
-	@Deprecated
-	public void setX(int x) {
-		this.currentPosition = new Position(x,this.currentPosition.getY());
-	}
-
-	@Deprecated
-	public void setY(int y) {
-		this.currentPosition = new Position(this.currentPosition.getX(),y);
 	}
 
 	public boolean isMoving() {
@@ -197,7 +186,6 @@ public class AnimatedObject implements IAnimatedObject {
 		
 	}
 
-	@Override
 	public boolean getIgnoreBlocks() {
 		return ignoreBlocks;
 	}
@@ -227,7 +215,6 @@ public class AnimatedObject implements IAnimatedObject {
 		this.currentPosition = newPos;
 	}
 
-	@Override
 	public void setDestination(Position position) {
 		this.destination = position;
 	}

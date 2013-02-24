@@ -2,10 +2,8 @@ package agijava.main.impl;
 
 import java.util.List;
 
-import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
 import agijava.main.IMovementCalculator;
-import agijava.main.IObjectUpdater;
 import agijava.main.impl.AnimatedObject.LoopDirection;
 import agijava.picture.IPicture;
 import agijava.picture.impl.Picture;
@@ -13,7 +11,7 @@ import agijava.view.ICel;
 import agijava.view.ILoop;
 import agijava.view.IView;
 
-public class ObjectUpdater implements IObjectUpdater {
+public class ObjectUpdater {
 
 	private static final int GREENLINE_TRIGGER = 3;
 	
@@ -25,8 +23,7 @@ public class ObjectUpdater implements IObjectUpdater {
 		this.calculator = calculator;
 	}
 
-	@Override
-	public void updatePosition(IAnimatedObject movingObject) {
+	public void updatePosition(AnimatedObject movingObject) {
 		Position newPos = calculateNewPosition(movingObject);
 		if (!movingObject.isEgo()) {
 			keepMovingObject(movingObject, newPos);
@@ -36,16 +33,13 @@ public class ObjectUpdater implements IObjectUpdater {
 		}
 	}
 
-	@Override
-	public void stopIfDestinationIsReached(IAnimatedObject movingObject) {
+	public void stopIfDestinationIsReached(AnimatedObject movingObject) {
 		if (movingObject.isMovingToDestination() && movingObject.getDestination().equals(movingObject.getCurrentPosition())) {
 			stopMovingObject(movingObject);
 		}
 	}
 
-	//TODO: Unit test
-	@Override
-	public void updateLoopAndCel(IAnimatedObject movingObject) {
+	public void updateLoopAndCel(AnimatedObject movingObject) {
 		IView view = movingObject.getView();
 		if (view == null) {
 			return;
@@ -68,8 +62,7 @@ public class ObjectUpdater implements IObjectUpdater {
 	
 	}
 
-	@Override
-	public void updateSingleLoop(IAnimatedObject animatedObject) {
+	public void updateSingleLoop(AnimatedObject animatedObject) {
 		if (animatedObject.isInSingleloop()) {
 			IView view = animatedObject.getView();
 			int loopIndex = animatedObject.getCurrentViewLoop();
@@ -88,7 +81,7 @@ public class ObjectUpdater implements IObjectUpdater {
 		}
 	}
 
-	private void cycleCel(IAnimatedObject movingObject, int currentLoop) {
+	private void cycleCel(AnimatedObject movingObject, int currentLoop) {
 		int noCels = movingObject.getView().getLoops().get(currentLoop)
 				.getCels().size();
 		int currentViewCel = movingObject.getCurrentViewCel();
@@ -144,7 +137,7 @@ public class ObjectUpdater implements IObjectUpdater {
 		return loops.get(loopIndex).getCels().size() - 1;
 	}
 
-	private void rotateCelBackward(IAnimatedObject movingObject, int noCels,
+	private void rotateCelBackward(AnimatedObject movingObject, int noCels,
 			int currentViewCel) {
 		int nextCel = currentViewCel - 1;
 		if (nextCel < 0) {
@@ -153,13 +146,13 @@ public class ObjectUpdater implements IObjectUpdater {
 		movingObject.setCurrentViewCel(nextCel);
 	}
 
-	private void rotateCelForward(IAnimatedObject movingObject, int noCels,
+	private void rotateCelForward(AnimatedObject movingObject, int noCels,
 			int currentViewCel) {
 		movingObject.setCurrentViewCel((currentViewCel + 1)
 				% noCels);
 	}
 
-	private Position calculateNewPosition(IAnimatedObject movingObject) {
+	private Position calculateNewPosition(AnimatedObject movingObject) {
 		Position newPos = new Position(0,0);
 		if (movingObject.isMovingToDestination()) {
 			Position destinationPosition = movingObject.getDestination();
@@ -170,28 +163,28 @@ public class ObjectUpdater implements IObjectUpdater {
 		return newPos;
 	}
 
-	private void stopMovingObject(IAnimatedObject movingObject) {
+	private void stopMovingObject(AnimatedObject movingObject) {
 		movingObject.setMoving(false);
 		movingObject.setMovingToDestination(false);
 		gameState.setFlag(movingObject.getMoveFinishedFlagNo());
 	}
 
-	private void handleEgoMovement(IAnimatedObject ego, Position newPos, IPicture currentPicture) {
+	private void handleEgoMovement(AnimatedObject movingObject, Position newPos, IPicture currentPicture) {
 		if (isOutsidePicture(newPos, currentPicture)) {
-			ego.setMoving(false);
+			movingObject.setMoving(false);
 		} else {
-			if (viewIsOnBlockingLineInPicture(ego, newPos,
+			if (viewIsOnBlockingLineInPicture(movingObject, newPos,
 					currentPicture)) {
-				ego.setMoving(false);
+				movingObject.setMoving(false);
 			} else {
-				keepMovingObject(ego, newPos);
-				checkIfObjectIsOnTriggerLine(ego, newPos,
+				keepMovingObject(movingObject, newPos);
+				checkIfObjectIsOnTriggerLine(movingObject, newPos,
 						currentPicture);
 			}
 		}
 	}
 	
-	private void checkIfObjectIsOnTriggerLine(IAnimatedObject movingObject,
+	private void checkIfObjectIsOnTriggerLine(AnimatedObject movingObject,
 			Position newPos, IPicture currentPicture) {
 		if (viewIsOnTriggerLineInPicture(movingObject, newPos,
 				currentPicture)) {
@@ -203,18 +196,18 @@ public class ObjectUpdater implements IObjectUpdater {
 		}
 	}
 
-	private void keepMovingObject(IAnimatedObject movingObject, Position newPos) {
+	private void keepMovingObject(AnimatedObject movingObject, Position newPos) {
 		movingObject.setPosition(newPos);
 	}
 
-	private boolean viewIsOnTriggerLineInPicture(IAnimatedObject movingObject,
+	private boolean viewIsOnTriggerLineInPicture(AnimatedObject movingObject,
 			Position newPos, IPicture currentPicture) {
 		return isViewBottomLineOnPriority(currentPicture,
 				movingObject, newPos,
 				Picture.PRIORITY_TRIGGER);
 	}
 
-	private boolean viewIsOnBlockingLineInPicture(IAnimatedObject movingObject,
+	private boolean viewIsOnBlockingLineInPicture(AnimatedObject movingObject,
 			Position newPos, IPicture currentPicture) {
 		//TODO: Blue lines are conditional, check the conditions..
 		return isViewBottomLineOnPriority(currentPicture,
@@ -223,7 +216,7 @@ public class ObjectUpdater implements IObjectUpdater {
 	}
 	
 	private boolean isViewBottomLineOnPriority(IPicture currentPicture,
-			IAnimatedObject movingObject, Position bottomLeft,
+			AnimatedObject movingObject, Position bottomLeft,
 			int priority) {
 		boolean isTouching = false;
 		ILoop currentLoop = movingObject.getView().getLoops()

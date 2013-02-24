@@ -9,7 +9,6 @@ import java.util.List;
 import org.junit.Test;
 
 import agijava.logic.ILogic;
-import agijava.main.IAnimatedObject;
 import agijava.main.IInventoryObjects;
 import agijava.main.ILogicCommand;
 import agijava.main.ILogicRepository;
@@ -135,7 +134,7 @@ public class GameStateTest {
 	public void canRememberThatObjectIsAnimated() throws Exception {
 		aGameState();
 		gameState.addAnimatedObject(10);
-		IAnimatedObject animatedObject = gameState.getAnimatedObject(10);
+		AnimatedObject animatedObject = gameState.getAnimatedObject(10);
 		assertNotNull(animatedObject);
 		assertNull(gameState.getAnimatedObject(9));
 	}
@@ -328,7 +327,7 @@ public class GameStateTest {
 	public void canStoreAnimatedObjects() throws Exception {
 		aGameState();
 		gameState.addAnimatedObject(10);
-		IAnimatedObject obj = gameState.getAnimatedObject(10);
+		AnimatedObject obj = gameState.getAnimatedObject(10);
 		assertEquals(obj.getNumber(),10);
 		assertTrue(obj.shouldBeUpdated());
 		gameState.addAnimatedObject(20);
@@ -340,9 +339,9 @@ public class GameStateTest {
 	public void usesExistingObjectIfAlreadyAnimated() throws Exception {
 		aGameState();
 		gameState.addAnimatedObject(10);
-		IAnimatedObject obj = gameState.getAnimatedObject(10);
+		AnimatedObject obj = gameState.getAnimatedObject(10);
 		gameState.addAnimatedObject(10);
-		IAnimatedObject obj2 = gameState.getAnimatedObject(10);
+		AnimatedObject obj2 = gameState.getAnimatedObject(10);
 		assertEquals(obj,obj2);
 	}
 	
@@ -350,7 +349,7 @@ public class GameStateTest {
 	public void setsAnimatedObjectZeroToEgo() throws Exception {
 		aGameState();
 		gameState.addAnimatedObject(0);
-		IAnimatedObject obj = gameState.getAnimatedObject(0);
+		AnimatedObject obj = gameState.getAnimatedObject(0);
 		assertTrue(obj.isEgo());
 	}
 	

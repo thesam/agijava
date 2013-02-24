@@ -11,7 +11,6 @@ import agijava.gui.impl.PrioCalculator;
 import agijava.main.IGameState;
 import agijava.main.IGuiDrawer;
 import agijava.main.IMovementCalculator;
-import agijava.main.IObjectUpdater;
 
 public class GameEngineFactory {
 
@@ -25,7 +24,7 @@ public class GameEngineFactory {
 			
 			IGuiDrawer guiDrawer = new GuiDrawer(gameState, gui);
 			IMovementCalculator calculator = new MovementCalculator();
-			IObjectUpdater updater = new ObjectUpdater(gameState, calculator);
+			ObjectUpdater updater = new ObjectUpdater(gameState, calculator);
 			RunningGame runningGame = new RunningGame(guiDrawer,updater,gameState);
 //			IInputListener listener = new InputListener(gui,gameState);
 //			gui.addKeyListener(listener);

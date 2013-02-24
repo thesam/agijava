@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import agijava.main.impl.AnimatedObject;
 import agijava.main.impl.ObjectUpdater;
 import agijava.main.impl.Position;
 import static org.mockito.Mockito.*;
@@ -13,11 +14,11 @@ import static org.mockito.Mockito.*;
 public class ObjectUpdaterTest {
 	private ObjectUpdater objectUpdater;
 	private IGameState gameState;
-	private IAnimatedObject object;
+	private AnimatedObject object;
 	
 	@Before
 	public void setup() {
-		object = mock(IAnimatedObject.class);
+		object = mock(AnimatedObject.class);
 		gameState = mock(IGameState.class);
 		objectUpdater = new ObjectUpdater(gameState, null);
 	}
@@ -28,7 +29,7 @@ public class ObjectUpdaterTest {
 	
 	@Test
 	public void canStopMovingObjectIfDestinationIsReached() throws Exception {
-		IAnimatedObject object = mock(IAnimatedObject.class);
+		AnimatedObject object = mock(AnimatedObject.class);
 		
 		Position position1 = new Position(0, 0);
 		

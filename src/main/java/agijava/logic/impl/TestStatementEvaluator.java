@@ -7,8 +7,8 @@ import agijava.io.RawByteArray;
 import agijava.logic.IEvaluatedTestStatement;
 import agijava.logic.ITestStatementEvaluator;
 import agijava.logic.impl.GroupedStatement.GroupType;
-import agijava.main.IAnimatedObject;
 import agijava.main.IGameState;
+import agijava.main.impl.AnimatedObject;
 import agijava.main.impl.GameEngine;
 import agijava.main.impl.InventoryObject;
 
@@ -404,7 +404,7 @@ public class TestStatementEvaluator implements ITestStatementEvaluator {
 	private boolean objInBox(int objNo, int x0, int y0, int x1, int y1,
 			IGameState gameState) {
 		//TODO: Check that the whole view base is inside box
-		IAnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
+		AnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
 		int x = animatedObject.getCurrentPosition().getX();
 		int y = animatedObject.getCurrentPosition().getY();
 		if (x >= x0 && y >= x0 && x <= x1 && y <= y1) {
@@ -428,7 +428,7 @@ public class TestStatementEvaluator implements ITestStatementEvaluator {
 
 	private boolean posn(IGameState gameState, int objNo, int x1, int y1,
 			int x2, int y2) {
-		IAnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
+		AnimatedObject animatedObject = gameState.getAnimatedObject(objNo);
 		int x = animatedObject.getCurrentPosition().getX();
 		int y = animatedObject.getCurrentPosition().getY();
 
