@@ -59,12 +59,6 @@ public class GameStateTest {
 	}
 
 	@Test
-	public void returnsFalseWhenAskedIfGameIsExited() throws Exception {
-		aGameState();
-		assertFalse(gameState.isGameExited());
-	}
-
-	@Test
 	public void canSetAndGetLogic() throws Exception {
 		aGameState();
 		aLogic();
@@ -100,12 +94,6 @@ public class GameStateTest {
 	}
 
 	@Test
-	public void neverHasKey() throws Exception {
-		aGameState();
-		assertFalse(gameState.haveKey());
-	}
-
-	@Test
 	public void returnsFalseWhenAskedForController() throws Exception {
 		aGameState();
 		assertFalse(gameState.controller(5));
@@ -116,7 +104,7 @@ public class GameStateTest {
 	public void canShowMessage() throws Exception {
 		aGameState();
 		showsMessage();
-		assertEquals(message, gameState.getCurrentMessage());
+		assertEquals(message, gameState.currentMessage);
 		assertTrue(gameState.isMessageShowing());
 
 	}
@@ -159,15 +147,6 @@ public class GameStateTest {
 		gameState.setStatusLineOn(false);
 		assertEquals(false, gameState.isStatusLineOn());
 
-	}
-
-	@Test
-	public void canFetchCurrentOffsetFromLogic() throws Exception {
-		aGameState();
-		aLogic();
-		gameState.setCurrentLogic(logic);
-		gameState.getLogicOffset();
-		verify(logic).getCurrentOffset();
 	}
 
 	@Test
@@ -250,14 +229,6 @@ public class GameStateTest {
 	}
 	
 	@Test
-	public void canSetHaveKey() throws Exception {
-		aGameState();
-		assertFalse(gameState.haveKey());
-		gameState.setHaveKey(true);
-		assertTrue(gameState.haveKey());
-	}
-	
-	@Test
 	public void canMovePictureInBufferToCurrentPicture() throws Exception {
 		aGameState();
 		Picture fakePicture = mock(Picture.class);
@@ -331,7 +302,7 @@ public class GameStateTest {
 		aGameState();
 		gameState.addBackgroundViewToBuffer(0, 0, 0, 0, 0, 0, 0);
 		gameState.showPictureFromBuffer();
-		List<AnimatedObject> backgroundViews = gameState.getBackgroundViews();
+		List<AnimatedObject> backgroundViews = gameState.displayedBackgroundViews;
 		assertEquals(1,backgroundViews.size());
 	}
 	
@@ -377,21 +348,6 @@ public class GameStateTest {
 	}
 	
 	@Test
-	public void canClearStackedLogics() throws Exception {
-		aGameState();
-		Logic firstLogic = mock(Logic.class);
-		Logic secondLogic = mock(Logic.class);
-		when(logicRepository.getLogic(0)).thenReturn(firstLogic);
-		when(logicRepository.getLogic(1)).thenReturn(secondLogic);
-		gameState.callNewLogic(0);
-		gameState.callNewLogic(1);
-		gameState.clearLogicStack();
-		gameState.returnToCallingLogic();
-		assertNull(gameState.getCurrentLogic());
-		
-	}
-	
-	@Test
 	public void canClearDisplayedTexts() throws Exception {
 		aGameState();
 		gameState.addText(0, 0, "foo");
@@ -406,9 +362,9 @@ public class GameStateTest {
 		aGameState();
 		gameState.addBackgroundViewToBuffer(0, 0, 0, 0, 0, 0, 0);
 		gameState.showPictureFromBuffer();
-		assertEquals(1,gameState.getBackgroundViews().size());
+		assertEquals(1,gameState.displayedBackgroundViews.size());
 		gameState.clearBackgroundViews();
-		assertEquals(0,gameState.getBackgroundViews().size());
+		assertEquals(0,gameState.displayedBackgroundViews.size());
 	}
 	
 	@Test

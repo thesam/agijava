@@ -14,15 +14,15 @@ public class GameState {
 	public int horizon; // TODO: Default value
 	public boolean playerControl; // TODO: Default value
 
-	private LogicRepository logicRepository;
-	private PictureRepository pictureRepository;
+	private final LogicRepository logicRepository;
+	private final PictureRepository pictureRepository;
 	public final ViewRepository viewRepository;
-	private WordsTok wordsTok;
-	private InventoryObjects inventoryObjects;
+	private final WordsTok wordsTok;
+	private final InventoryObjects inventoryObjects;
 	
 	// State
-	private boolean isGameExited;
-	private boolean haveKey;
+	public boolean isGameExited;  // TODO: Default value
+	public boolean haveKey;
 	private boolean newRoomWaiting;
 	private boolean statusLineOn;
 	private boolean messageShown;
@@ -31,18 +31,18 @@ public class GameState {
 	private int[] vars;
 	private String[] strings;
 
-	private String currentMessage;
+	public String currentMessage;
 	private char cursorChar;
 
 	private Logic currentLogic;
 	private Picture currentPicture;
 	private Picture bufferPicture;
 	public Map<Integer, AnimatedObject> animatedObjects;
-	private Stack<Logic> logicStack;
+	public final Stack<Logic> logicStack;
 	private List<Text> displayedTexts;
 
 	private Map<Integer, Integer> scanStarts;
-	private List<AnimatedObject> displayedBackgroundViews;
+	List<AnimatedObject> displayedBackgroundViews;
 	private List<AnimatedObject> bufferBackgroundViews;
 	private List<Integer> latestSaidWords;
 	
@@ -74,10 +74,6 @@ public class GameState {
 
 	}
 
-	public boolean isGameExited() {
-		return isGameExited;
-	}
-
 	public int getVar(int var) {
 		return vars[var];
 	}
@@ -95,16 +91,8 @@ public class GameState {
 		return false;
 	}
 
-	public boolean haveKey() {
-		return haveKey;
-	}
-
 	public void jumpForward(int blockSize) {
 		currentLogic.increaseOffset(blockSize);
-	}
-
-	public int getLogicOffset() {
-		return currentLogic.getCurrentOffset();
 	}
 
 	public void callNewLogic(Integer logicNo) {
@@ -126,10 +114,6 @@ public class GameState {
 		}
 	}
 
-	public void clearLogicStack() {
-		logicStack.clear();
-	}
-	
 	public Logic getCurrentLogic() {
 		return currentLogic;
 	}
@@ -151,10 +135,6 @@ public class GameState {
 	public void showPictureFromBuffer() {
 		currentPicture = bufferPicture;
 		displayedBackgroundViews = bufferBackgroundViews;
-	}
-	
-	public List<AnimatedObject> getBackgroundViews() {
-		return displayedBackgroundViews;
 	}
 	
 	public void addBackgroundViewToBuffer(int viewNo, int loopNo, int celNo,
@@ -214,10 +194,6 @@ public class GameState {
 
 	public void resetScanStart(int entryNumber) {
 		scanStarts.remove(entryNumber);
-	}
-
-	public void setHaveKey(boolean b) {
-		this.haveKey = b;
 	}
 
 	public void setNewRoomWaiting(boolean b) {
@@ -290,10 +266,6 @@ public class GameState {
 		currentMessage = message;
 	}
 
-	public String getCurrentMessage() {
-		return currentMessage;
-	}
-
 	public boolean isMessageShowing() {
 		return messageShown;
 	}
@@ -313,5 +285,4 @@ public class GameState {
 	public void setAcceptInput(boolean b) {
 		this.acceptInput = b;
 	}
-
 }

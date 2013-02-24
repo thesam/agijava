@@ -240,11 +240,10 @@ public class TestStatementEvaluatorTest {
 	public void canEvaluateHaveKeyStatement() throws Exception {
 		anEvaluator();
 		inputList.add(BYTE_HAVEKEY);
-		when(gameState.haveKey()).thenReturn(true);
+		gameState.haveKey = true;
 
 		statementIsEvaluated();
 
-		verify(gameState).haveKey();
 		statementIsTrue();
 
 	}

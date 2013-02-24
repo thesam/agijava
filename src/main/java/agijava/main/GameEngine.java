@@ -41,7 +41,7 @@ public class GameEngine {
 
 	public void run() throws IOException {
 		initGameState();
-		while (!gameState.isGameExited()) {
+		while (!gameState.isGameExited) {
 			tick();
 		}
 		// System.out.println(logic.replaceAll(";", ";\n"));

@@ -27,7 +27,7 @@ public class GuiDrawer {
 	}
 
 	public void drawBackgroundViews() {
-		for (AnimatedObject obj : gameState.getBackgroundViews()) {
+		for (AnimatedObject obj : gameState.displayedBackgroundViews) {
 			drawAnimatedObject(obj);
 		}
 
@@ -44,7 +44,7 @@ public class GuiDrawer {
 
 	public void drawCurrentMessage() {
 		if (gameState.isMessageShowing()) {
-			gui.drawTextDialog(gameState.getCurrentMessage());
+			gui.drawTextDialog(gameState.currentMessage);
 		}
 	}
 

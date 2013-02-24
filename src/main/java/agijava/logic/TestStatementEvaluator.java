@@ -281,7 +281,7 @@ public class TestStatementEvaluator {
 	}
 
 	private EvaluatedTestStatement createHaveKeyStatement(GameState gameState) {
-		return createStatement(gameState.haveKey());
+		return createStatement(gameState.haveKey);
 	}
 
 	private EvaluatedTestStatement createControllerStatement(

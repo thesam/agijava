@@ -30,7 +30,7 @@ public class GuiDrawerTest {
 		aGuiDrawer();
 		when(gameState.isMessageShowing()).thenReturn(true);
 		String message = "foo";
-		when(gameState.getCurrentMessage()).thenReturn(message);
+		gameState.currentMessage = message;
 
 		drawer.drawCurrentMessage();
 
