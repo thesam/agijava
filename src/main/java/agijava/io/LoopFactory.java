@@ -3,18 +3,17 @@ package agijava.io;
 import java.util.ArrayList;
 import java.util.List;
 
-import agijava.view.ICel;
-import agijava.view.ILoop;
+import agijava.view.impl.Cel;
 import agijava.view.impl.Loop;
 
 public class LoopFactory {
 
-	public ILoop readLoop(List<Integer> rawData, int loopNo, Integer loopOffset) {
-		ILoop loop = new Loop();
+	public Loop readLoop(List<Integer> rawData, int loopNo, Integer loopOffset) {
+		Loop loop = new Loop();
 		List<Integer> celOffsets = readCelOffsets(rawData, loopOffset);
 		for (Integer celOffset : celOffsets) {
 			CelFactory celBuilder = new CelFactory();
-			ICel cel = celBuilder.getCel(rawData, loopNo, celOffset);
+			Cel cel = celBuilder.getCel(rawData, loopNo, celOffset);
 			loop.addCel(cel);
 		}
 		return loop;

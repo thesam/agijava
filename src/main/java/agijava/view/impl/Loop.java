@@ -3,25 +3,22 @@ package agijava.view.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import agijava.view.ICel;
-import agijava.view.ILoop;
 
 
-
-public class Loop implements ILoop {
+public class Loop {
 	
-	private List<ICel> cels;
+	private List<Cel> cels;
 	
 	public Loop() {
-		cels = new ArrayList<ICel>();
+		cels = new ArrayList<Cel>();
 	}
 
-	public void addCel(ICel cel) {
+	public void addCel(Cel cel) {
 		cels.add(cel);
 		
 	}
 
-	public List<ICel> getCels() {
+	public List<Cel> getCels() {
 		return cels;
 	}
 

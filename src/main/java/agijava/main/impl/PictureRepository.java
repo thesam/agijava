@@ -8,11 +8,10 @@ import agijava.io.PictureFactory;
 import agijava.io.Resource;
 import agijava.io.ResourceReaderFactory;
 import agijava.io.ResourceReference;
-import agijava.main.IPictureRepository;
 import agijava.picture.IPicture;
 import agijava.picture.impl.PictureCommandFactory;
 
-public class PictureRepository implements IPictureRepository {
+public class PictureRepository {
 	private Map<Integer,IPicture> allPics;
 
 	public PictureRepository(List<ResourceReference> pictureReferences) {
@@ -29,7 +28,6 @@ public class PictureRepository implements IPictureRepository {
 		}
 	}
 
-	@Override
 	public IPicture getPicture(int picNo) {
 		IPicture requestedLogic = allPics.get(picNo);
 		return requestedLogic;

@@ -8,10 +8,10 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 
+import static org.mockito.Mockito.*;
 import agijava.io.ViewFactory;
-import agijava.view.IView;
+import agijava.view.impl.View;
 
 public class ViewFactoryTest {
 
@@ -40,7 +40,7 @@ public class ViewFactoryTest {
 		populateByteListForResource(0);
 
 
-		IView view = factory.getView();
+		View view = factory.getView();
 
 		assertNotNull(view);
 		assertEquals(0, view.getLoops().size());
@@ -50,7 +50,7 @@ public class ViewFactoryTest {
 	public void canBuildViewFromResourceWithOneLoopAndNoCel() throws Exception {
 		populateByteListForResource(1);
 
-		IView view = factory.getView();
+		View view = factory.getView();
 
 		assertNotNull(view);
 		assertNotNull(view.getLoops());

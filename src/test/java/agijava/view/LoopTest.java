@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import agijava.view.impl.Cel;
 import agijava.view.impl.Loop;
 import static org.mockito.Mockito.*;
 
@@ -12,7 +13,7 @@ public class LoopTest {
 	@Test
 	public void canAddAndGetCel() throws Exception {
 		Loop loop = new Loop();
-		ICel cel = mock(ICel.class);
+		Cel cel = mock(Cel.class);
 		loop.addCel(cel);
 		assertEquals(cel,loop.getCels().get(0));
 	}

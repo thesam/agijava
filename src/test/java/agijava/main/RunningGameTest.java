@@ -4,12 +4,12 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import agijava.main.IGuiDrawer;
+import agijava.main.impl.GuiDrawer;
 import agijava.main.impl.RunningGame;
 
 public class RunningGameTest {
 	private RunningGame runningGame;
-	private IGuiDrawer drawer;
+	private GuiDrawer drawer;
 
 	@Test
 	public void canBeCreated() throws Exception {
@@ -68,7 +68,7 @@ public class RunningGameTest {
 	}
 
 	private void aRunningGame() {
-		drawer = mock(IGuiDrawer.class);
+		drawer = mock(GuiDrawer.class);
 		runningGame = new RunningGame(drawer, null, null);
 	}
 

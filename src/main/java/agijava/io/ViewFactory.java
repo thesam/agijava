@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import agijava.view.ILoop;
-import agijava.view.IView;
+import agijava.view.impl.Loop;
 import agijava.view.impl.View;
 
 public class ViewFactory {
@@ -16,7 +15,7 @@ public class ViewFactory {
 		this.res = res;
 	}
 
-	public IView getView() {
+	public View getView() {
 		View view = new View(res.getEntryNumber());
 
 		List<Integer> rawData = res.getRawData();
@@ -26,7 +25,7 @@ public class ViewFactory {
 		int loopNo = 0;
 		for (Integer loopOffset : loopOffsets) {
 			LoopFactory loopBuilder = new LoopFactory();
-			ILoop loop = loopBuilder.readLoop(rawData, loopNo, loopOffset);
+			Loop loop = loopBuilder.readLoop(rawData, loopNo, loopOffset);
 			view.addLoop(loop);
 			loopNo++;
 		}

@@ -7,13 +7,13 @@ import org.junit.Test;
 
 import agijava.gui.impl.GameGui;
 import agijava.main.IGameState;
-import agijava.main.IRunningGame;
 import agijava.main.impl.GameEngine;
+import agijava.main.impl.RunningGame;
 
 public class GameEngineTest {
 	private GameEngine gameEngine;
 	private IGameState gameState;
-	private IRunningGame runningGame;
+	private RunningGame runningGame;
 	private GameGui controller;
 
 	@Test
@@ -56,7 +56,7 @@ public class GameEngineTest {
 	
 	private void aGameEngine() {
 		gameState = mock(IGameState.class);
-		runningGame = mock(IRunningGame.class);
+		runningGame = mock(RunningGame.class);
 		controller = mock(GameGui.class);
 		gameEngine = new GameEngine(gameState, runningGame, null, controller);
 	}

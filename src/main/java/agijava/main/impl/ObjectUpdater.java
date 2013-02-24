@@ -3,22 +3,21 @@ package agijava.main.impl;
 import java.util.List;
 
 import agijava.main.IGameState;
-import agijava.main.IMovementCalculator;
 import agijava.main.impl.AnimatedObject.LoopDirection;
 import agijava.picture.IPicture;
 import agijava.picture.impl.Picture;
-import agijava.view.ICel;
-import agijava.view.ILoop;
-import agijava.view.IView;
+import agijava.view.impl.Cel;
+import agijava.view.impl.Loop;
+import agijava.view.impl.View;
 
 public class ObjectUpdater {
 
 	private static final int GREENLINE_TRIGGER = 3;
 	
 	private IGameState gameState;
-	private IMovementCalculator calculator;
+	private MovementCalculator calculator;
 
-	public ObjectUpdater(IGameState gameState, IMovementCalculator calculator) {
+	public ObjectUpdater(IGameState gameState, MovementCalculator calculator) {
 		this.gameState = gameState;
 		this.calculator = calculator;
 	}
@@ -40,7 +39,7 @@ public class ObjectUpdater {
 	}
 
 	public void updateLoopAndCel(AnimatedObject movingObject) {
-		IView view = movingObject.getView();
+		View view = movingObject.getView();
 		if (view == null) {
 			return;
 		}
@@ -64,7 +63,7 @@ public class ObjectUpdater {
 
 	public void updateSingleLoop(AnimatedObject animatedObject) {
 		if (animatedObject.isInSingleloop()) {
-			IView view = animatedObject.getView();
+			View view = animatedObject.getView();
 			int loopIndex = animatedObject.getCurrentViewLoop();
 			int celIndex = animatedObject.getCurrentViewCel();
 			int lastCelIndex = getLastCelIndex(view, loopIndex);
@@ -132,8 +131,8 @@ public class ObjectUpdater {
 		return newLoop;
 	}
 
-	private int getLastCelIndex(IView view, int loopIndex) {
-		List<ILoop> loops = view.getLoops();
+	private int getLastCelIndex(View view, int loopIndex) {
+		List<Loop> loops = view.getLoops();
 		return loops.get(loopIndex).getCels().size() - 1;
 	}
 
@@ -219,9 +218,9 @@ public class ObjectUpdater {
 			AnimatedObject movingObject, Position bottomLeft,
 			int priority) {
 		boolean isTouching = false;
-		ILoop currentLoop = movingObject.getView().getLoops()
+		Loop currentLoop = movingObject.getView().getLoops()
 				.get(movingObject.getCurrentViewLoop());
-		ICel currentCel = currentLoop.getCels().get(
+		Cel currentCel = currentLoop.getCels().get(
 				movingObject.getCurrentViewCel());
 		for (int x = 0; x < currentCel.getWidth(); x++) {
 			if (currentPicture.getPrioColorAt(bottomLeft.getX() + x, bottomLeft.getY()) == priority) {

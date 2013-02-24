@@ -20,9 +20,9 @@ public class ViewTest {
 	
 	@Test
 	public void canHaveLoopAdded() throws Exception {
-		ILoop loop = new Loop();
+		Loop loop = new Loop();
 		view.addLoop(loop);
-		List<ILoop> loops = view.getLoops();
+		List<Loop> loops = view.getLoops();
 		assertEquals(loop,loops.get(0));
 	}
 	

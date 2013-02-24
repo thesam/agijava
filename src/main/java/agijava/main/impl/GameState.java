@@ -7,23 +7,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-import agijava.logic.ILogic;
+import agijava.logic.impl.Logic;
 import agijava.main.IGameState;
-import agijava.main.IInventoryObjects;
 import agijava.main.ILogicCommand;
-import agijava.main.ILogicRepository;
-import agijava.main.IPictureRepository;
-import agijava.main.IViewRepository;
-import agijava.main.IWordsTok;
 import agijava.picture.IPicture;
 
 public class GameState implements IGameState {
 
-	private ILogicRepository logicRepository;
-	private IPictureRepository pictureRepository;
-	private IViewRepository viewRepository;
-	private IWordsTok wordsTok;
-	private IInventoryObjects inventoryObjects;
+	private LogicRepository logicRepository;
+	private PictureRepository pictureRepository;
+	private ViewRepository viewRepository;
+	private WordsTok wordsTok;
+	private InventoryObjects inventoryObjects;
 	
 	// State
 	private boolean isGameExited;
@@ -41,11 +36,11 @@ public class GameState implements IGameState {
 	private String currentMessage;
 	private char cursorChar;
 
-	private ILogic currentLogic;
+	private Logic currentLogic;
 	private IPicture currentPicture;
 	private IPicture bufferPicture;
 	private Map<Integer, AnimatedObject> animatedObjects;
-	private Stack<ILogic> logicStack;
+	private Stack<Logic> logicStack;
 	private List<Text> displayedTexts;
 
 	private Map<Integer, Integer> scanStarts;
@@ -60,10 +55,10 @@ public class GameState implements IGameState {
 	private boolean acceptInput;
 	
 
-	public GameState(ILogicRepository logicRepository,
-			IPictureRepository pictureRepository,
-			IViewRepository viewRepository, IWordsTok wordsTok,
-			IInventoryObjects inventoryObjects) {
+	public GameState(LogicRepository logicRepository,
+			PictureRepository pictureRepository,
+			ViewRepository viewRepository, WordsTok wordsTok,
+			InventoryObjects inventoryObjects) {
 		this.logicRepository = logicRepository;
 		this.pictureRepository = pictureRepository;
 		this.viewRepository = viewRepository;
@@ -75,7 +70,7 @@ public class GameState implements IGameState {
 		this.scanStarts = new HashMap<Integer, Integer>();
 		this.displayedBackgroundViews = new ArrayList<AnimatedObject>();
 		this.bufferBackgroundViews = new ArrayList<AnimatedObject>();
-		this.logicStack = new Stack<ILogic>();
+		this.logicStack = new Stack<Logic>();
 		this.flags = new boolean[256];
 		this.vars = new int[256];
 		this.strings = new String[256];
@@ -216,7 +211,7 @@ public class GameState implements IGameState {
 	}
 
 	@Override
-	public ILogic getCurrentLogic() {
+	public Logic getCurrentLogic() {
 		return currentLogic;
 	}
 
@@ -272,8 +267,7 @@ public class GameState implements IGameState {
 		return this.newRoomNumber;
 	}
 
-	@Override
-	public void setCurrentLogic(ILogic object) {
+	public void setCurrentLogic(Logic object) {
 		currentLogic = object;
 	}
 
@@ -342,7 +336,6 @@ public class GameState implements IGameState {
 		return new ArrayList<Integer>();
 	}
 
-	@Override
 	public void setLastSaidWords(List<Integer> saidWords) {
 		this.latestSaidWords = saidWords;
 	}

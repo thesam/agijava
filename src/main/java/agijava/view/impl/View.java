@@ -3,31 +3,27 @@ package agijava.view.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import agijava.view.ILoop;
-import agijava.view.IView;
 
 
+public class View {
 
-public class View implements IView {
-
-	List<ILoop> loops;
+	List<Loop> loops;
 	private int entryNo;
 
 	public View(int entryNo) {
 		this.entryNo = entryNo;
-		loops = new ArrayList<ILoop>();
+		loops = new ArrayList<Loop>();
 	}
 
-	public void addLoop(ILoop loop) {
+	public void addLoop(Loop loop) {
 		loops.add(loop);
 
 	}
 
-	public List<ILoop> getLoops() {
+	public List<Loop> getLoops() {
 		return loops;
 	}
 
-	@Override
 	public int getNumber() {
 		return entryNo;
 	}

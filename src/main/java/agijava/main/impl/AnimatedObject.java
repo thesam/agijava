@@ -1,14 +1,11 @@
 package agijava.main.impl;
 
-import agijava.main.IViewRepository;
-import agijava.view.IView;
-
+import agijava.view.impl.View;
 
 public class AnimatedObject {
-
 	private boolean observeObjects;
-	private IViewRepository viewRepository;
-	private IView currentView;
+	private ViewRepository viewRepository;
+	private View currentView;
 	private boolean visible;
 	private Position currentPosition;
 	private boolean isMoving;
@@ -32,7 +29,7 @@ public class AnimatedObject {
 	
 	public enum LoopDirection {FORWARD,REVERSE};
 
-	public AnimatedObject(IViewRepository viewRepository) {
+	public AnimatedObject(ViewRepository viewRepository) {
 		this.visible = false;
 		this.viewRepository = viewRepository;
 		currentPosition = new Position(0,0);
@@ -58,7 +55,7 @@ public class AnimatedObject {
 		return visible;
 	}
 
-	public IView getView() {
+	public View getView() {
 		return this.currentView;
 	}
 

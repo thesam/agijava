@@ -1,6 +1,7 @@
 package agijava.logic;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,8 @@ import org.junit.Test;
 
 import agijava.io.RawByteArray;
 import agijava.logic.IEvaluatedTestStatement;
-import agijava.logic.ITestStatementEvaluator;
 import agijava.logic.impl.IfCommand;
+import agijava.logic.impl.TestStatementEvaluator;
 import agijava.main.IGameState;
 
 @SuppressWarnings("unused")
@@ -35,13 +36,13 @@ public class IfCommandTest {
 	private IfCommand ifCommand;
 	private ArrayList<Integer> args;
 	private IGameState gameState;
-	private ITestStatementEvaluator evaluator;
+	private TestStatementEvaluator evaluator;
 	private List<Integer> input;
 	private IEvaluatedTestStatement evaluatedTestStatement;
 
 
 	public void anIfCommand() throws Exception {
-		evaluator = mock(ITestStatementEvaluator.class);
+		evaluator = mock(TestStatementEvaluator.class);
 		evaluatedTestStatement = mock(IEvaluatedTestStatement.class);
 		when(evaluator.createStatementsFromBytes((RawByteArray) anyObject(),(IGameState) anyObject())).thenReturn(evaluatedTestStatement);
 		

@@ -5,14 +5,13 @@ import java.util.List;
 
 import agijava.io.RawByteArray;
 import agijava.logic.IEvaluatedTestStatement;
-import agijava.logic.ITestStatementEvaluator;
 import agijava.logic.impl.GroupedStatement.GroupType;
 import agijava.main.IGameState;
 import agijava.main.impl.AnimatedObject;
 import agijava.main.impl.GameEngine;
 import agijava.main.impl.InventoryObject;
 
-public class TestStatementEvaluator implements ITestStatementEvaluator {
+public class TestStatementEvaluator {
 
 	private static final int BYTE_EQUALN = 0x01;
 	private static final int BYTE_EQUALV = 0x02;

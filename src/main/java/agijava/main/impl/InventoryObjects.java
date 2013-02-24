@@ -2,9 +2,7 @@ package agijava.main.impl;
 
 import java.util.HashMap;
 
-import agijava.main.IInventoryObjects;
-
-public class InventoryObjects implements IInventoryObjects {
+public class InventoryObjects {
 
 	private HashMap<Integer, InventoryObject> objects;
 

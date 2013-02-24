@@ -5,7 +5,6 @@ import java.util.List;
 
 import agijava.io.RawByteArray;
 import agijava.logic.IEvaluatedTestStatement;
-import agijava.logic.ITestStatementEvaluator;
 import agijava.main.IGameState;
 import agijava.main.ILogicCommand;
 
@@ -15,13 +14,13 @@ public class IfCommand implements ILogicCommand {
 	private List<Integer> args;
 	private boolean testStatementPassed;
 	private int remainingSizeBytesNeeded;
-	private ITestStatementEvaluator evaluator;
+	private TestStatementEvaluator evaluator;
 
 	public IfCommand() {
 		this(new TestStatementEvaluator());
 	}
 
-	public IfCommand(ITestStatementEvaluator evaluator) {
+	public IfCommand(TestStatementEvaluator evaluator) {
 		this.evaluator = evaluator;
 		args = new ArrayList<Integer>();
 	}

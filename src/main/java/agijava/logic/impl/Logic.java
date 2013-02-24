@@ -5,11 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import agijava.io.RawByteArray;
-import agijava.logic.ILogic;
 import agijava.logic.commands.*;
 import agijava.main.ILogicCommand;
 
-public class Logic implements ILogic {
+public class Logic {
 
 	private RawByteArray raw;
 	private Map<Integer, ILogicCommand> commandMap = new HashMap<Integer, ILogicCommand>();
@@ -213,7 +212,6 @@ public class Logic implements ILogic {
 		commandMap.put(0xFF, new IfCommand());
 	}
 
-	@Override
 	public ILogicCommand getNextCommand() {
 		int nextByte = raw.getNextAndStep();
 		ILogicCommand command = getCommand(nextByte);
@@ -239,33 +237,27 @@ public class Logic implements ILogic {
 		return command;
 	}
 
-	@Override
 	public void increaseOffset(int blockSize) {
 		raw.step(blockSize);
 		
 	}
 
-	@Override
 	public void reset() {
 		raw.setOffset(startOffset);
 	}
 
-	@Override
 	public String getMessage(int messageNo) {
 		return messages.get(messageNo);
 	}
 
-	@Override
 	public int getCurrentOffset() {
 		return raw.getCurrentOffset();
 	}
 
-	@Override
 	public int getEntryNumber() {
 		return entryNumber;
 	}
 
-	@Override
 	public void setOffset(int scanStart) {
 		raw.setOffset(scanStart);
 	}

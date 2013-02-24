@@ -3,16 +3,14 @@ package agijava.main.impl;
 import java.util.Collection;
 
 import agijava.main.IGameState;
-import agijava.main.IGuiDrawer;
-import agijava.main.IRunningGame;
 
-public class RunningGame implements IRunningGame {
+public class RunningGame {
 
-	private IGuiDrawer drawer;
+	private GuiDrawer drawer;
 	private ObjectUpdater updater;
 	private IGameState gameState;
 
-	public RunningGame(IGuiDrawer drawer, ObjectUpdater updater,
+	public RunningGame(GuiDrawer drawer, ObjectUpdater updater,
 			IGameState gameState) {
 		this.drawer = drawer;
 		this.updater = updater;

@@ -15,9 +15,9 @@ import agijava.gui.impl.SwingGraphicsFrame;
 import agijava.main.IGameState;
 import agijava.main.impl.Text;
 import agijava.picture.IPicture;
-import agijava.view.ICel;
-import agijava.view.ILoop;
-import agijava.view.IView;
+import agijava.view.impl.Cel;
+import agijava.view.impl.Loop;
+import agijava.view.impl.View;
 
 public class GameGuiTest {
 
@@ -26,9 +26,9 @@ public class GameGuiTest {
 	private SwingGraphicsFrame graphics;
 	private IPicture pic;
 	private PrioCalculator prioCalculator;
-	private IView view;
-	private ILoop loop;
-	private ICel cel;
+	private View view;
+	private Loop loop;
+	private Cel cel;
 	private int x0;
 	private int y0;
 	private int prio;
@@ -247,12 +247,12 @@ public class GameGuiTest {
 	}
 
 	private void aOnePixelWhiteCel() {
-		view = mock(IView.class);
-		loop = mock(ILoop.class);
-		ILoop loops[] = { loop };
+		view = mock(View.class);
+		loop = mock(Loop.class);
+		Loop[] loops = { loop };
 		when(view.getLoops()).thenReturn(Arrays.asList(loops));
-		cel = mock(ICel.class);
-		ICel cels[] = { cel };
+		cel = mock(Cel.class);
+		Cel[] cels = { cel };
 		when(loop.getCels()).thenReturn(Arrays.asList(cels));
 		when(cel.getPixel(0, 0)).thenReturn(SwingGraphicsFrame.WHITE);
 		x0 = 0;

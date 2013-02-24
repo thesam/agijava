@@ -3,9 +3,7 @@ package agijava.main.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import agijava.main.IWordsTok;
-
-public class WordsTok implements IWordsTok {
+public class WordsTok {
 
 	public static final int WORD_NOT_FOUND = -1;
 	

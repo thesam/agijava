@@ -8,37 +8,37 @@ import java.util.List;
 
 import org.junit.Test;
 
-import agijava.logic.ILogic;
-import agijava.main.IInventoryObjects;
+import agijava.logic.impl.Logic;
 import agijava.main.ILogicCommand;
-import agijava.main.ILogicRepository;
-import agijava.main.IPictureRepository;
-import agijava.main.IViewRepository;
-import agijava.main.IWordsTok;
 import agijava.main.impl.AnimatedObject;
 import agijava.main.impl.GameState;
+import agijava.main.impl.InventoryObjects;
+import agijava.main.impl.LogicRepository;
+import agijava.main.impl.PictureRepository;
 import agijava.main.impl.Position;
 import agijava.main.impl.Text;
+import agijava.main.impl.ViewRepository;
+import agijava.main.impl.WordsTok;
 import agijava.picture.IPicture;
-import agijava.view.IView;
+import agijava.view.impl.View;
 import static org.mockito.Mockito.*;
 
 public class GameStateTest {
 	private GameState gameState;
-	private ILogic logic;
-	private IInventoryObjects inventoryObjects;
+	private Logic logic;
+	private InventoryObjects inventoryObjects;
 	private String message;
-	private ILogicRepository logicRepository;
-	private IViewRepository viewRepository;
-	private IWordsTok wordsTok;
-	private IPictureRepository pictureRepository;
+	private LogicRepository logicRepository;
+	private ViewRepository viewRepository;
+	private WordsTok wordsTok;
+	private PictureRepository pictureRepository;
 
 	public void aGameState() throws Exception {
-		this.inventoryObjects = mock(IInventoryObjects.class);
-		logicRepository = mock(ILogicRepository.class);
-		viewRepository = mock(IViewRepository.class);
-		wordsTok = mock(IWordsTok.class);
-		pictureRepository = mock(IPictureRepository.class);
+		this.inventoryObjects = mock(InventoryObjects.class);
+		logicRepository = mock(LogicRepository.class);
+		viewRepository = mock(ViewRepository.class);
+		wordsTok = mock(WordsTok.class);
+		pictureRepository = mock(PictureRepository.class);
 		gameState = new GameState(logicRepository, pictureRepository, viewRepository, wordsTok,
 				inventoryObjects);
 	}
@@ -56,7 +56,7 @@ public class GameStateTest {
 	}
 
 	private void aLogic() {
-		logic = mock(ILogic.class);
+		logic = mock(Logic.class);
 	}
 
 	@Test
@@ -228,7 +228,7 @@ public class GameStateTest {
 	public void remembersLastLogicWhenNewLogicIsCalled() throws Exception {
 		aGameState();
 		gameState.setCurrentLogic(logic);
-		ILogic otherLogic = mock(ILogic.class);
+		Logic otherLogic = mock(Logic.class);
 		when(logicRepository.getLogic(5)).thenReturn(otherLogic);
 		gameState.callNewLogic(5);
 		assertNotSame(logic, gameState.getCurrentLogic());
@@ -239,7 +239,7 @@ public class GameStateTest {
 	@Test
 	public void canAddBackgroundViewToBuffer() throws Exception {
 		aGameState();
-		IView view = mock(IView.class);
+		View view = mock(View.class);
 		when(viewRepository.getView(0)).thenReturn(view);
 
 		gameState.addBackgroundViewToBuffer(0, 0, 0, 0, 0, 0, 0);
@@ -356,8 +356,8 @@ public class GameStateTest {
 	@Test
 	public void returnsToPreviousLogicWhenSecondLogicEnds() throws Exception {
 		aGameState();
-		ILogic firstLogic = mock(ILogic.class);
-		ILogic secondLogic = mock(ILogic.class);
+		Logic firstLogic = mock(Logic.class);
+		Logic secondLogic = mock(Logic.class);
 		when(logicRepository.getLogic(0)).thenReturn(firstLogic);
 		when(logicRepository.getLogic(1)).thenReturn(secondLogic);
 		gameState.callNewLogic(0);
@@ -432,8 +432,8 @@ public class GameStateTest {
 	@Test
 	public void canClearStackedLogics() throws Exception {
 		aGameState();
-		ILogic firstLogic = mock(ILogic.class);
-		ILogic secondLogic = mock(ILogic.class);
+		Logic firstLogic = mock(Logic.class);
+		Logic secondLogic = mock(Logic.class);
 		when(logicRepository.getLogic(0)).thenReturn(firstLogic);
 		when(logicRepository.getLogic(1)).thenReturn(secondLogic);
 		gameState.callNewLogic(0);

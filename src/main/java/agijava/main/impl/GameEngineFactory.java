@@ -8,8 +8,6 @@ import agijava.gui.impl.SwingGraphicsDeviceFactory;
 import agijava.gui.impl.PrioCalculator;
 import agijava.gui.impl.SwingGraphicsFrame;
 import agijava.main.IGameState;
-import agijava.main.IGuiDrawer;
-import agijava.main.IMovementCalculator;
 
 public class GameEngineFactory {
 
@@ -21,8 +19,8 @@ public class GameEngineFactory {
 			GameGui gui = new GameGui(new PrioCalculator(), gameState,guiView,new PrioBuffer(guiView.getHeight(),guiView.getWidth()));
 			guiView.setController(gui);
 			
-			IGuiDrawer guiDrawer = new GuiDrawer(gameState, gui);
-			IMovementCalculator calculator = new MovementCalculator();
+			GuiDrawer guiDrawer = new GuiDrawer(gameState, gui);
+			MovementCalculator calculator = new MovementCalculator();
 			ObjectUpdater updater = new ObjectUpdater(gameState, calculator);
 			RunningGame runningGame = new RunningGame(guiDrawer,updater,gameState);
 //			IInputListener listener = new InputListener(gui,gameState);

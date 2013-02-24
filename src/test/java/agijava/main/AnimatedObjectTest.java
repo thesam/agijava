@@ -5,18 +5,18 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import agijava.main.IViewRepository;
 import agijava.main.impl.AnimatedObject;
 import agijava.main.impl.Position;
-import agijava.view.IView;
+import agijava.main.impl.ViewRepository;
+import agijava.view.impl.View;
 
 public class AnimatedObjectTest {
 
 	private AnimatedObject animatedObject;
-	private IViewRepository viewRepository;
+	private ViewRepository viewRepository;
 
 	private void anAnimatedObject() {
-		viewRepository = mock(IViewRepository.class);
+		viewRepository = mock(ViewRepository.class);
 		animatedObject = new AnimatedObject(viewRepository);
 	}
 	
@@ -48,7 +48,7 @@ public class AnimatedObjectTest {
 	public void canSetView() throws Exception {
 		anAnimatedObject();
 		
-		IView fakeView = mock(IView.class);
+		View fakeView = mock(View.class);
 		when(viewRepository.getView(100)).thenReturn(fakeView);
 		
 		animatedObject.setView(100);

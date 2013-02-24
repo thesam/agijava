@@ -5,7 +5,7 @@ import agijava.main.impl.AnimatedObject;
 import agijava.main.impl.GameEngine;
 import agijava.main.impl.Text;
 import agijava.picture.IPicture;
-import agijava.view.ICel;
+import agijava.view.impl.Cel;
 
 public class GameGui {
 
@@ -37,7 +37,7 @@ public class GameGui {
 		}
 	}
 
-	public void drawCel(ICel celToDraw, int x0, int y0, int prio) {
+	public void drawCel(Cel celToDraw, int x0, int y0, int prio) {
 		int yBottom = y0;
 		y0 -= celToDraw.getHeight();
 		for (int x = 0; x < celToDraw.getWidth(); x++) {

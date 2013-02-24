@@ -3,7 +3,7 @@ package agijava.main;
 import java.util.Collection;
 import java.util.List;
 
-import agijava.logic.ILogic;
+import agijava.logic.impl.Logic;
 import agijava.main.impl.AnimatedObject;
 import agijava.main.impl.InventoryObject;
 import agijava.main.impl.Text;
@@ -57,7 +57,7 @@ public interface IGameState {
 
 	Collection<AnimatedObject> getAnimatedObjects();
 
-	ILogic getCurrentLogic();
+	Logic getCurrentLogic();
 
 	void addText(int row, int col, String message);
 
@@ -79,7 +79,7 @@ public interface IGameState {
 
 	int getNewRoomNumber();
 
-	void setCurrentLogic(ILogic object);
+	void setCurrentLogic(Logic object);
 
 	void addBackgroundViewToBuffer(int viewNo, int loopNo, int celNo, int x, int y,
 			int priority, int margin);

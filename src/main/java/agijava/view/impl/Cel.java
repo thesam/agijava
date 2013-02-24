@@ -1,8 +1,6 @@
 package agijava.view.impl;
 
-import agijava.view.ICel;
-
-public class Cel implements ICel {
+public class Cel {
 	private final int height;
 	private final int width;
 	private int[][] celData;
@@ -65,12 +63,10 @@ public class Cel implements ICel {
 
 	}
 
-	@Override
 	public int getPixel(int x, int y) {
 		return celData[x][y];
 	}
 
-	@Override
 	public boolean isTransparentAt(int x, int y) {
 		return celData[x][y] == transparencyIndex;
 	}

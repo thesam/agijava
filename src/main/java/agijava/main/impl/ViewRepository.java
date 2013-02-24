@@ -8,20 +8,19 @@ import agijava.io.ResourceReader;
 import agijava.io.ResourceReaderFactory;
 import agijava.io.ResourceReference;
 import agijava.io.ViewFactory;
-import agijava.main.IViewRepository;
-import agijava.view.IView;
+import agijava.view.impl.View;
 
-public class ViewRepository implements IViewRepository {
+public class ViewRepository {
 	
-	private Map<Integer,IView> allViews;
+	private Map<Integer,View> allViews;
 
 	public ViewRepository(List<ResourceReference> viewReferences) {
-		allViews = new HashMap<Integer,IView>();
+		allViews = new HashMap<Integer,View>();
 		for (ResourceReference resourceReference : viewReferences) {
 			try {
 				ResourceReader resReader = ResourceReaderFactory.getInstance(resourceReference);
 				ViewFactory reader = new ViewFactory(resReader.read());
-				IView view = reader.getView();		
+				View view = reader.getView();		
 				allViews.put(resourceReference.getEntryNumber(),view);
 			} catch (Exception e) {
 				System.err.println("TODO: Handle incorrect view better!");
@@ -29,9 +28,8 @@ public class ViewRepository implements IViewRepository {
 		}
 	}
 
-	@Override
-	public IView getView(int viewNo) {
-		IView requestedView = allViews.get(viewNo);
+	public View getView(int viewNo) {
+		View requestedView = allViews.get(viewNo);
 		return requestedView;
 	}
 

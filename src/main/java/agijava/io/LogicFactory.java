@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import agijava.logic.ILogic;
 import agijava.logic.impl.Logic;
 
 public class LogicFactory {
@@ -18,7 +17,7 @@ public class LogicFactory {
 		this.resource = resource;
 	}
 
-	public ILogic getLogic() {
+	public Logic getLogic() {
 		RawByteArray raw = new RawByteArray(resource.getRawData(), 0);
 		int messageOffset1 = raw.getNextAndStep();
 		int messageOffset2 = raw.getNextAndStep();

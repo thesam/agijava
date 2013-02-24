@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.view.ICel;
+import agijava.view.impl.Cel;
 
 public class CelFactoryTest {
 	private CelFactory celFactory;
@@ -27,7 +27,7 @@ public class CelFactoryTest {
 	public void canReadEmptyZeroByZeroCel() throws Exception {
 		List<Integer> celBytes = generateCelBytes(0,0);
 		
-		ICel cel = celFactory.getCel(celBytes, 0, 0);
+		Cel cel = celFactory.getCel(celBytes, 0, 0);
 		
 		assertNotNull(cel);
 		assertEquals(0,cel.getHeight());
@@ -38,7 +38,7 @@ public class CelFactoryTest {
 	public void canReadEmptyOneByOneCel() throws Exception {
 		List<Integer> celBytes = generateCelBytes(1,1);
 		
-		ICel cel = celFactory.getCel(celBytes, 0, 0);
+		Cel cel = celFactory.getCel(celBytes, 0, 0);
 		
 		assertNotNull(cel);
 		assertEquals(1,cel.getHeight());

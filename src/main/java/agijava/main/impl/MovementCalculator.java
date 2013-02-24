@@ -1,8 +1,6 @@
 package agijava.main.impl;
 
-import agijava.main.IMovementCalculator;
-
-public class MovementCalculator implements IMovementCalculator {
+public class MovementCalculator {
 
 	public Position calculateNewPosition(Position currentPosition,
 			Position destinationPosition, int pixelStepSize) {
@@ -13,7 +11,6 @@ public class MovementCalculator implements IMovementCalculator {
 		return new Position(newX, newY);
 	}
 
-	@Override
 	public Position calculateNewPosition(Position currentPosition, int direction) {
 		Position newPos = currentPosition;
 		int currentX = currentPosition.getX();

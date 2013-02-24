@@ -6,7 +6,6 @@ import java.util.List;
 import agijava.io.ResourceDir;
 import agijava.io.ResourceReference;
 import agijava.main.IGameState;
-import agijava.main.IViewRepository;
 
 public class GameStateFactory {
 
@@ -18,7 +17,7 @@ public class GameStateFactory {
 
 		ResourceDir viewDir = new ResourceDir(gameDir + "viewdir");
 		List<ResourceReference> viewReferences = viewDir.getResourceReferences();
-		IViewRepository viewRepository = new ViewRepository(viewReferences);
+		ViewRepository viewRepository = new ViewRepository(viewReferences);
 		
 		ResourceDir logicDir = new ResourceDir(gameDir + "logdir");
 		List<ResourceReference> logicReferences = logicDir.getResourceReferences();

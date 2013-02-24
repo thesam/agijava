@@ -4,13 +4,12 @@ import org.junit.Test;
 
 import agijava.gui.impl.GameGui;
 import agijava.main.IGameState;
-import agijava.main.IGuiDrawer;
 import agijava.main.impl.GuiDrawer;
 import agijava.picture.IPicture;
 import static org.mockito.Mockito.*;
 
 public class GuiDrawerTest {
-	private IGuiDrawer drawer;
+	private GuiDrawer drawer;
 	private IGameState gameState;
 	private GameGui gui;
 
