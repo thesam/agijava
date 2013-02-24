@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import agijava.io.RawByteArray;
+import agijava.main.impl.InventoryObject;
 import agijava.main.impl.InventoryObjects;
 import agijava.main.impl.InventoryObjectsFactory;
 
@@ -33,10 +34,14 @@ public class InventoryObjectsFactoryTest {
 		bytes.add(0);
 		bytes.add(0);
 		
-		bytes.add(0);
+		bytes.add(6);
+		
+		bytes.add((int)'a');
 		RawByteArray raw = new RawByteArray(bytes);
 		InventoryObjects inventoryObjects = InventoryObjectsFactory.createFromByteArray(raw);
-		assertNotNull(inventoryObjects.get(0));
+		InventoryObject inventoryObject = inventoryObjects.get(0);
+		assertEquals("",inventoryObject.getName());
+		assertEquals(6,inventoryObject.getRoomNumber());
 	}
 	
 	@Test

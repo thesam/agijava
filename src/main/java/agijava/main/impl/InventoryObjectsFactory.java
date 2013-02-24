@@ -73,9 +73,7 @@ public class InventoryObjectsFactory {
 		InventoryObjects inv = new InventoryObjects();
 		while (raw.getNextOffsetToBeRead() < raw.getSize()) {
 			String name = readItemName(raw, offsets, currentItem);
-			InventoryObject inventoryObject = new InventoryObject();
-			inventoryObject.setRoomNumber(roomNumbers.get(currentItem));
-			inventoryObject.setName(name);
+			InventoryObject inventoryObject = new InventoryObject(roomNumbers.get(currentItem),name);
 			inv.add(currentItem, inventoryObject);
 			currentItem++;
 		}
@@ -84,12 +82,12 @@ public class InventoryObjectsFactory {
 
 	private static String readItemName(RawByteArray raw,
 			HashMap<Integer, Integer> offsets, int currentItem) {
-		int nextOffset;
-		try {
-			nextOffset = offsets.get(currentItem + 1);
-		} catch (Exception e) {
-			nextOffset = Integer.MAX_VALUE;
-		}
+		int nextOffset = getNextOffset(offsets, currentItem);
+		String name = readString(raw, nextOffset);
+		return name;
+	}
+
+	private static String readString(RawByteArray raw, int nextOffset) {
 		String name = "";
 		while (raw.getNextOffsetToBeRead() < nextOffset) {
 			int currentByte = raw.getNextAndStep();
@@ -100,6 +98,17 @@ public class InventoryObjectsFactory {
 			}
 		}
 		return name;
+	}
+
+	private static int getNextOffset(HashMap<Integer, Integer> offsets,
+			int currentItem) {
+		int nextOffset;
+		try {
+			nextOffset = offsets.get(currentItem + 1);
+		} catch (Exception e) {
+			nextOffset = Integer.MAX_VALUE;
+		}
+		return nextOffset;
 	}
 
 	public static int decrypt(int encryptedByte, int currentOffset) {

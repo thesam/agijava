@@ -211,8 +211,7 @@ public class TestStatementEvaluatorTest {
 		inputList.add(10);
 		inputList.add(20);
 
-		InventoryObject inventoryObject = new InventoryObject();
-		inventoryObject.setRoomNumber(5);
+		InventoryObject inventoryObject = new InventoryObject(null,null);
 
 		when(gameState.getInventoryObject(10)).thenReturn(inventoryObject);
 		when(gameState.getVar(20)).thenReturn(5);

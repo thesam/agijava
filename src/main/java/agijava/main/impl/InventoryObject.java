@@ -3,23 +3,23 @@ package agijava.main.impl;
 public class InventoryObject {
 
 	private int roomNumber;
-	private String name;
+	private final String name;
 
-	public void setRoomNumber(int i) {
-		this.roomNumber = i;
+	public InventoryObject(Integer roomNumber, String name) {
+		this.roomNumber = roomNumber;
+		this.name = name;
 	}
-	
+
 	public int getRoomNumber() {
 		return roomNumber;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getName() {
+		return name;
 	}
 
-	public String getName() {
-		return name
-				;
+	public void setRoomNumber(int playerInventoryRoom) {
+		this.roomNumber = playerInventoryRoom;
 	}
 
 }
