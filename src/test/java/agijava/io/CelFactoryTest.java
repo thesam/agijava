@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.view.impl.Cel;
+import agijava.view.Cel;
 
 public class CelFactoryTest {
 	private CelFactory celFactory;

@@ -6,9 +6,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.main.impl.AnimatedObject;
-import agijava.main.impl.ObjectUpdater;
-import agijava.main.impl.Position;
 import static org.mockito.Mockito.*;
 
 public class ObjectUpdaterTest {

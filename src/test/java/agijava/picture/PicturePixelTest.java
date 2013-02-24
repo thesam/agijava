@@ -4,8 +4,6 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import agijava.picture.impl.PicturePixel;
-
 public class PicturePixelTest {
 	@Test
 	public void PicturePixel() throws Exception {

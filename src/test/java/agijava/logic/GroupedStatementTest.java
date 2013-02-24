@@ -5,8 +5,7 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import agijava.logic.impl.GroupedStatement;
-import agijava.logic.impl.GroupedStatement.GroupType;
+import agijava.logic.GroupedStatement.GroupType;
 
 public class GroupedStatementTest {
 	private GroupedStatement groupedStatement;

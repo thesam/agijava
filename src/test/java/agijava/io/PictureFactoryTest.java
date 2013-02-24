@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import agijava.picture.IPicture;
 import agijava.picture.IPictureCommand;
-import agijava.picture.impl.PictureCommandFactory;
+import agijava.picture.PictureCommandFactory;
 
 public class PictureFactoryTest {
 	private PictureFactory pictureFactory;

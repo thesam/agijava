@@ -5,10 +5,8 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import agijava.gui.impl.GameGui;
+import agijava.gui.GameGui;
 import agijava.main.IGameState;
-import agijava.main.impl.GameEngine;
-import agijava.main.impl.RunningGame;
 
 public class GameEngineTest {
 	private GameEngine gameEngine;

@@ -8,19 +8,10 @@ import java.util.List;
 
 import org.junit.Test;
 
-import agijava.logic.impl.Logic;
+import agijava.logic.Logic;
 import agijava.main.ILogicCommand;
-import agijava.main.impl.AnimatedObject;
-import agijava.main.impl.GameState;
-import agijava.main.impl.InventoryObjects;
-import agijava.main.impl.LogicRepository;
-import agijava.main.impl.PictureRepository;
-import agijava.main.impl.Position;
-import agijava.main.impl.Text;
-import agijava.main.impl.ViewRepository;
-import agijava.main.impl.WordsTok;
 import agijava.picture.IPicture;
-import agijava.view.impl.View;
+import agijava.view.View;
 import static org.mockito.Mockito.*;
 
 public class GameStateTest {

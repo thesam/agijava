@@ -8,13 +8,12 @@ import java.util.List;
 import org.junit.Test;
 
 import agijava.io.RawByteArray;
-import agijava.logic.impl.TestStatementEvaluator;
+import agijava.main.AnimatedObject;
+import agijava.main.GameEngine;
 import agijava.main.IGameState;
-import agijava.main.impl.AnimatedObject;
-import agijava.main.impl.GameEngine;
-import agijava.main.impl.InventoryObject;
-import agijava.main.impl.Position;
-import agijava.main.impl.WordsTok;
+import agijava.main.InventoryObject;
+import agijava.main.Position;
+import agijava.main.WordsTok;
 import static org.mockito.Mockito.*;
 
 public class TestStatementEvaluatorTest {

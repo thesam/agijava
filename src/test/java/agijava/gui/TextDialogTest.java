@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import agijava.gui.impl.TextDialog;
+import agijava.gui.TextDialog;
 
 public class TextDialogTest {
 	@Test

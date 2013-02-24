@@ -2,9 +2,8 @@ package agijava.main;
 
 import org.junit.Test;
 
-import agijava.gui.impl.GameGui;
+import agijava.gui.GameGui;
 import agijava.main.IGameState;
-import agijava.main.impl.GuiDrawer;
 import agijava.picture.IPicture;
 import static org.mockito.Mockito.*;
 

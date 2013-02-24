@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import agijava.view.impl.Loop;
-import agijava.view.impl.View;
+import agijava.view.Loop;
+import agijava.view.View;
 
 public class ViewFactory {
 

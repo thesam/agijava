@@ -3,10 +3,7 @@ package agijava.main;
 import java.util.Collection;
 import java.util.List;
 
-import agijava.logic.impl.Logic;
-import agijava.main.impl.AnimatedObject;
-import agijava.main.impl.InventoryObject;
-import agijava.main.impl.Text;
+import agijava.logic.Logic;
 import agijava.picture.IPicture;
 
 public interface IGameState {

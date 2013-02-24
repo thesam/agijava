@@ -4,7 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import agijava.gui.impl.PrioCalculator;
+import agijava.gui.PrioCalculator;
 
 public class PrioCalculatorTest {
 	@Test

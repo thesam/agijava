@@ -4,9 +4,6 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import agijava.main.impl.GuiDrawer;
-import agijava.main.impl.RunningGame;
-
 public class RunningGameTest {
 	private RunningGame runningGame;
 	private GuiDrawer drawer;

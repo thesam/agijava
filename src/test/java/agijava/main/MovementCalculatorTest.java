@@ -4,9 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import agijava.main.impl.MovementCalculator;
-import agijava.main.impl.Position;
-
 public class MovementCalculatorTest {
 	
 	private MovementCalculator movementCalculator;

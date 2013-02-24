@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.Test;
 
 import agijava.io.ResourceReference;
-import agijava.main.impl.LogicRepository;
 
 public class LogicRepositoryTest {
 	@Test

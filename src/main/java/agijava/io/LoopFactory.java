@@ -3,8 +3,8 @@ package agijava.io;
 import java.util.ArrayList;
 import java.util.List;
 
-import agijava.view.impl.Cel;
-import agijava.view.impl.Loop;
+import agijava.view.Cel;
+import agijava.view.Loop;
 
 public class LoopFactory {
 

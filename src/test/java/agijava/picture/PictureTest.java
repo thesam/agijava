@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.picture.impl.Picture;
-
 public class PictureTest {
 
 	private static final int DEFAULT_PICTURE_COLOR = 15;

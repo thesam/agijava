@@ -9,8 +9,6 @@ import org.junit.Test;
 
 import agijava.io.RawByteArray;
 import agijava.logic.IEvaluatedTestStatement;
-import agijava.logic.impl.IfCommand;
-import agijava.logic.impl.TestStatementEvaluator;
 import agijava.main.IGameState;
 
 @SuppressWarnings("unused")

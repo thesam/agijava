@@ -5,8 +5,6 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import agijava.picture.impl.ChangePictureColorCommand;
-
 public class ChangePictureColorCommandTest {
 	private static final int NEW_COLOR = 100;
 	private ChangePictureColorCommand cmd;

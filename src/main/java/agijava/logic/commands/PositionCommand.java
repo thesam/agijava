@@ -1,8 +1,8 @@
 package agijava.logic.commands;
 
+import agijava.main.AnimatedObject;
 import agijava.main.IGameState;
-import agijava.main.impl.AnimatedObject;
-import agijava.main.impl.Position;
+import agijava.main.Position;
 
 public class PositionCommand extends AbstractLogicCommand {
 

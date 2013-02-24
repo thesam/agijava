@@ -7,15 +7,13 @@ import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import agijava.gui.impl.GameGui;
-import agijava.gui.impl.SwingGraphicsDeviceFactory;
-import agijava.gui.impl.PrioBuffer;
-import agijava.gui.impl.PrioCalculator;
-import agijava.gui.impl.SwingGraphicsFrame;
+import agijava.gui.GameGui;
+import agijava.gui.PrioBuffer;
+import agijava.gui.PrioCalculator;
+import agijava.gui.SwingGraphicsDeviceFactory;
+import agijava.gui.SwingGraphicsFrame;
 import agijava.io.ResourceDir;
 import agijava.io.ResourceReference;
-import agijava.main.impl.PictureRepository;
-import agijava.main.impl.Text;
 import agijava.picture.IPicture;
 
 @SuppressWarnings("unused")

@@ -7,8 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-
-import agijava.gui.impl.SwingGraphicsFrame;
+import agijava.gui.SwingGraphicsFrame;
 
 public class SwingGraphicsFrameTest {
 	

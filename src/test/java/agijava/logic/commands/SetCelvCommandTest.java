@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import agijava.main.AnimatedObject;
 import agijava.main.IGameState;
-import agijava.main.impl.AnimatedObject;
 
 public class SetCelvCommandTest {
 	private SetCelvCommand cmd;

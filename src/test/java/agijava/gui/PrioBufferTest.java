@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import agijava.gui.impl.PrioBuffer;
+import agijava.gui.PrioBuffer;
 
 public class PrioBufferTest {
 	@Test

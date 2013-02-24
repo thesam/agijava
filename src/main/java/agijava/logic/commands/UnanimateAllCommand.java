@@ -2,8 +2,8 @@ package agijava.logic.commands;
 
 import java.util.Collection;
 
+import agijava.main.AnimatedObject;
 import agijava.main.IGameState;
-import agijava.main.impl.AnimatedObject;
 
 public class UnanimateAllCommand extends AbstractLogicCommand {
 

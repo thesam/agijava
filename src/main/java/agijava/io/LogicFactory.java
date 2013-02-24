@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import agijava.logic.impl.Logic;
+import agijava.logic.Logic;
 
 public class LogicFactory {
 

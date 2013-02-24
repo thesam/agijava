@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.picture.impl.PictureCommandFactory;
-
 public class PictureCommandFactoryTest {
 	
 	private PictureCommandFactory factory;

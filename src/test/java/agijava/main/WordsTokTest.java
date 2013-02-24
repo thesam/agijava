@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import agijava.main.impl.WordsTok;
-
 public class WordsTokTest {
 	private WordsTok wordsTok;
 

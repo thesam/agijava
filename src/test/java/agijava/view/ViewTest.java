@@ -7,8 +7,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.view.impl.Loop;
-import agijava.view.impl.View;
+import agijava.view.Loop;
+import agijava.view.View;
 
 public class ViewTest {
 	private View view;

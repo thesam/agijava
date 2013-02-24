@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.*;
 import agijava.io.ViewFactory;
-import agijava.view.impl.View;
+import agijava.view.View;
 
 public class ViewFactoryTest {
 

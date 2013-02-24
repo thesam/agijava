@@ -6,8 +6,6 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.picture.impl.FillCommand;
-
 public class FillCommandTest {
 	private FillCommand cmd;
 

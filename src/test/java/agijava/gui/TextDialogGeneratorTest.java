@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import agijava.gui.impl.TextDialog;
-import agijava.gui.impl.TextDialogGenerator;
+import agijava.gui.TextDialog;
+import agijava.gui.TextDialogGenerator;
 
 public class TextDialogGeneratorTest {
 

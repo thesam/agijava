@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import agijava.picture.impl.ChangePenCommand;
-
 public class ChangePenCommandTest {
 	private ChangePenCommand changePenCommand;
 

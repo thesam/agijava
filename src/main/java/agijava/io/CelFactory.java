@@ -2,7 +2,7 @@ package agijava.io;
 
 import java.util.List;
 
-import agijava.view.impl.Cel;
+import agijava.view.Cel;
 
 public class CelFactory {
 

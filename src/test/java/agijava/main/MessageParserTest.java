@@ -6,7 +6,6 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 import agijava.main.IGameState;
-import agijava.main.impl.MessageParser;
 
 public class MessageParserTest {
 	private IGameState gameState;

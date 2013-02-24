@@ -7,8 +7,6 @@ import static org.mockito.Mockito.verify;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.picture.impl.DisablePriorityDrawCommand;
-
 public class DisablePriorityDrawCommandTest {
 	private DisablePriorityDrawCommand cmd;
 

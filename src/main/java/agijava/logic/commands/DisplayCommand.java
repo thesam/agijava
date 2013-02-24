@@ -1,7 +1,7 @@
 package agijava.logic.commands;
 
 import agijava.main.IGameState;
-import agijava.main.impl.MessageParser;
+import agijava.main.MessageParser;
 
 public class DisplayCommand extends AbstractLogicCommand {
 

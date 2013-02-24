@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import agijava.logic.impl.Logic;
+import agijava.logic.Logic;
 import agijava.main.IGameState;
 
 public class PrintAtvCommandTest {

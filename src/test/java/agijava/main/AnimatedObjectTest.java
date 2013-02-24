@@ -5,10 +5,7 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import agijava.main.impl.AnimatedObject;
-import agijava.main.impl.Position;
-import agijava.main.impl.ViewRepository;
-import agijava.view.impl.View;
+import agijava.view.View;
 
 public class AnimatedObjectTest {
 

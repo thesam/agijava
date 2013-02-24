@@ -6,8 +6,6 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.picture.impl.DisablePictureCommand;
-
 public class DisablePictureCommandTest {
 	
 	private DisablePictureCommand cmd;

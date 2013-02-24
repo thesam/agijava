@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import agijava.picture.IPicture;
 import agijava.picture.IPictureCommand;
-import agijava.picture.impl.Picture;
-import agijava.picture.impl.PictureCommandFactory;
+import agijava.picture.Picture;
+import agijava.picture.PictureCommandFactory;
 
 public class PictureFactory {
 	

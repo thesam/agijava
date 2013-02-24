@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 import agijava.io.RawByteArray;
-import agijava.logic.impl.Logic;
 import static org.mockito.Mockito.*;
 
 public class LogicTest {

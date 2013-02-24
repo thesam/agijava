@@ -8,16 +8,16 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.gui.impl.GameGui;
-import agijava.gui.impl.PrioBuffer;
-import agijava.gui.impl.PrioCalculator;
-import agijava.gui.impl.SwingGraphicsFrame;
+import agijava.gui.GameGui;
+import agijava.gui.PrioBuffer;
+import agijava.gui.PrioCalculator;
+import agijava.gui.SwingGraphicsFrame;
 import agijava.main.IGameState;
-import agijava.main.impl.Text;
+import agijava.main.Text;
 import agijava.picture.IPicture;
-import agijava.view.impl.Cel;
-import agijava.view.impl.Loop;
-import agijava.view.impl.View;
+import agijava.view.Cel;
+import agijava.view.Loop;
+import agijava.view.View;
 
 public class GameGuiTest {
 

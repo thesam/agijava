@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import agijava.view.impl.Cel;
+import agijava.view.Cel;
 
 public class CelTest {
 	@Test

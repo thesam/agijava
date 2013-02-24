@@ -5,8 +5,6 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import agijava.picture.impl.AbsoluteLineCommand;
-
 public class AbsoluteLineCommandTest {
 	private AbsoluteLineCommand cmd;
 

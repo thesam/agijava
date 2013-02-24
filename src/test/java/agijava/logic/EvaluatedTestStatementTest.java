@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import agijava.logic.impl.EvaluatedTestStatement;
-
 public class EvaluatedTestStatementTest {
 	private EvaluatedTestStatement evaluatedTestStatement;
 

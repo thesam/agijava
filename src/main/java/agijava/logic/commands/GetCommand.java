@@ -1,9 +1,9 @@
 package agijava.logic.commands;
 
 
+import agijava.main.GameEngine;
 import agijava.main.IGameState;
-import agijava.main.impl.GameEngine;
-import agijava.main.impl.InventoryObject;
+import agijava.main.InventoryObject;
 
 public class GetCommand extends AbstractLogicCommand {
 
