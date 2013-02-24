@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import agijava.gui.GameGui;
 import agijava.main.GameState;
-import agijava.picture.IPicture;
+import agijava.picture.Picture;
 import static org.mockito.Mockito.*;
 
 public class GuiDrawerTest {
@@ -16,7 +16,7 @@ public class GuiDrawerTest {
 	public void drawsCurrentPictureFromGameStateToGuiBuffer() throws Exception {
 		aGuiDrawer();
 
-		IPicture pic = mock(IPicture.class);
+		Picture pic = mock(Picture.class);
 		when(gameState.getCurrentPicture()).thenReturn(pic);
 
 		drawer.drawCurrentPictureToGui();

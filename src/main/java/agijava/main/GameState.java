@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Stack;
 
 import agijava.logic.Logic;
-import agijava.picture.IPicture;
+import agijava.picture.Picture;
 
 public class GameState {
 
@@ -35,8 +35,8 @@ public class GameState {
 	private char cursorChar;
 
 	private Logic currentLogic;
-	private IPicture currentPicture;
-	private IPicture bufferPicture;
+	private Picture currentPicture;
+	private Picture bufferPicture;
 	private Map<Integer, AnimatedObject> animatedObjects;
 	private Stack<Logic> logicStack;
 	private List<Text> displayedTexts;
@@ -184,7 +184,7 @@ public class GameState {
 		bufferPicture = pictureRepository.getPicture(picNo);
 	}
 
-	public IPicture getCurrentPicture() {
+	public Picture getCurrentPicture() {
 		return currentPicture;
 	}
 

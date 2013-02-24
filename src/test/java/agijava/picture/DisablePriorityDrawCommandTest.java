@@ -22,7 +22,7 @@ public class DisablePriorityDrawCommandTest {
 	
 	@Test
 	public void disablesPriorityDrawing() throws Exception {
-		IPicture picture = mock(IPicture.class);
+		Picture picture = mock(Picture.class);
 		cmd.run(picture, 0);
 		
 		verify(picture).setPriorityDrawingEnabled(false);

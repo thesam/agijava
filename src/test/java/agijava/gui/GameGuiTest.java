@@ -14,7 +14,7 @@ import agijava.gui.PrioCalculator;
 import agijava.gui.SwingGraphicsFrame;
 import agijava.main.GameState;
 import agijava.main.Text;
-import agijava.picture.IPicture;
+import agijava.picture.Picture;
 import agijava.view.Cel;
 import agijava.view.Loop;
 import agijava.view.View;
@@ -24,7 +24,7 @@ public class GameGuiTest {
 	private static final int MENU_BAR_HEIGHT = 8;
 	private GameGui gui;
 	private SwingGraphicsFrame graphics;
-	private IPicture pic;
+	private Picture pic;
 	private PrioCalculator prioCalculator;
 	private View view;
 	private Loop loop;
@@ -39,7 +39,7 @@ public class GameGuiTest {
 		prioCalculator = mock(PrioCalculator.class);
 		graphics = mock(SwingGraphicsFrame.class);
 		prioBuffer = mock(PrioBuffer.class);
-		pic = mock(IPicture.class);
+		pic = mock(Picture.class);
 		GameState gameState = mock(GameState.class);
 		when(graphics.getHeight()).thenReturn(1);
 		when(graphics.getWidth()).thenReturn(1);

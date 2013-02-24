@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import agijava.io.RawByteArray;
-import agijava.logic.IEvaluatedTestStatement;
+import agijava.logic.EvaluatedTestStatement;
 import agijava.main.GameState;
 
 @SuppressWarnings("unused")
@@ -36,12 +36,12 @@ public class IfCommandTest {
 	private GameState gameState;
 	private TestStatementEvaluator evaluator;
 	private List<Integer> input;
-	private IEvaluatedTestStatement evaluatedTestStatement;
+	private EvaluatedTestStatement evaluatedTestStatement;
 
 
 	public void anIfCommand() throws Exception {
 		evaluator = mock(TestStatementEvaluator.class);
-		evaluatedTestStatement = mock(IEvaluatedTestStatement.class);
+		evaluatedTestStatement = mock(EvaluatedTestStatement.class);
 		when(evaluator.createStatementsFromBytes((RawByteArray) anyObject(),(GameState) anyObject())).thenReturn(evaluatedTestStatement);
 		
 		anEmptyArgumentList();

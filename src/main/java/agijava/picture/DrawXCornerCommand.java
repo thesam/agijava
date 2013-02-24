@@ -3,7 +3,7 @@ package agijava.picture;
 
 
 
-public class DrawXCornerCommand implements IPictureCommand {
+public class DrawXCornerCommand implements PictureCommand {
 
 	private int startX = -1;
 	private int startY = -1;
@@ -12,7 +12,7 @@ public class DrawXCornerCommand implements IPictureCommand {
 	private boolean writeX = true;
 	
 	@Override
-	public void run(IPicture picture, int currentByte) {
+	public void run(Picture picture, int currentByte) {
 		System.exit(1);
 		if (startX == -1) {
 			startX = currentByte;

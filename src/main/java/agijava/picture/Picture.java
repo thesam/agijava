@@ -3,7 +3,7 @@ package agijava.picture;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Picture implements IPicture {
+public class Picture {
 
 	public static final int PRIORITY_BLOCK = 0;
 	public static final int PRIORITY_CONDITIONAL_BLOCK = 1;
@@ -114,17 +114,14 @@ public class Picture implements IPicture {
 		}
 	}
 
-	@Override
 	public int getWidth() {
 		return PICTURE_X;
 	}
 
-	@Override
 	public int getHeight() {
 		return PICTURE_Y;
 	}
 
-	@Override
 	public int getPrioForDrawingAt(int x, int y) {
 //		if (x < 0 || y < 0 || x >= getWidth() || y >= getHeight()) {
 //			return 0;
@@ -140,7 +137,6 @@ public class Picture implements IPicture {
 		return prio;
 	}
 
-	@Override
 	public int getPrioColorAt(int x, int y) {
 //		if (x < 0 || y < 0 || x >= getWidth() || y >= getHeight()) {
 //			return 0;
@@ -149,7 +145,6 @@ public class Picture implements IPicture {
 		return prio;
 	}
 
-	@Override
 	public int getPictureColorAt(int x, int y) {
 		return pictureData[x][y];
 	}

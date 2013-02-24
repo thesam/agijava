@@ -3,10 +3,10 @@ package agijava.picture;
 
 
 
-public class DrawYCornerCommand implements IPictureCommand {
+public class DrawYCornerCommand implements PictureCommand {
 
 	@Override
-	public void run(IPicture picture, int currentByte) {
+	public void run(Picture picture, int currentByte) {
 		System.exit(1);
 	}
 	

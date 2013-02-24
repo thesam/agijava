@@ -40,7 +40,7 @@ public class TestStatementEvaluator {
 	private static final int BYTE_SAID = 0x0E;
 	private static final int BYTE_OR = 0xFC;
 
-	public IEvaluatedTestStatement createStatementsFromBytes(
+	public EvaluatedTestStatement createStatementsFromBytes(
 			RawByteArray testStatementBytes, GameState gameState) {
 		GroupedStatement allStatements = new GroupedStatement();
 		GroupedStatement currentGroupOfStatements = new GroupedStatement();
@@ -65,7 +65,7 @@ public class TestStatementEvaluator {
 					shouldBeNegated = true;
 					nextByte = testStatementBytes.getNextAndStep();
 				}
-				IEvaluatedTestStatement maybeAStatement = createNextStatement(
+				EvaluatedTestStatement maybeAStatement = createNextStatement(
 						testStatementBytes, gameState, nextByte,
 						shouldBeNegated);
 				if (atStartOrEndOfElseBlock) {
@@ -90,10 +90,10 @@ public class TestStatementEvaluator {
 		}
 	}
 
-	private IEvaluatedTestStatement createNextStatement(
+	private EvaluatedTestStatement createNextStatement(
 			RawByteArray testStatementBytes, GameState gameState,
 			int statementType, boolean shouldBeNegated) {
-		IEvaluatedTestStatement maybeAStatement = null;
+		EvaluatedTestStatement maybeAStatement = null;
 		if (statementType == BYTE_GREATERN) {
 			maybeAStatement = createGreaternStatement(testStatementBytes,
 					gameState);
@@ -157,7 +157,7 @@ public class TestStatementEvaluator {
 	}
 
 	//TODO: Move to new class to be able to test that it uses all bytes
-	private IEvaluatedTestStatement createSaidStatement(
+	private EvaluatedTestStatement createSaidStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
 		// this must always be done, since we are parsing the statement it is our responsibility
 		List<Integer> wordNumbersFromStatement = getWordNumbersFromStatement(testStatementBytes);
@@ -218,9 +218,9 @@ public class TestStatementEvaluator {
 		return gameState.getFlag(GameEngine.FLAG_TEXT_ACCEPTED);
 	}
 
-	private IEvaluatedTestStatement createRightPosnStatement(
+	private EvaluatedTestStatement createRightPosnStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int objNo = testStatementBytes.getNextAndStep();
 		int coord1 = testStatementBytes.getNextAndStep();
 		int coord2 = testStatementBytes.getNextAndStep();
@@ -231,9 +231,9 @@ public class TestStatementEvaluator {
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createCenterPosnStatement(
+	private EvaluatedTestStatement createCenterPosnStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int objNo = testStatementBytes.getNextAndStep();
 		int coord1 = testStatementBytes.getNextAndStep();
 		int coord2 = testStatementBytes.getNextAndStep();
@@ -244,9 +244,9 @@ public class TestStatementEvaluator {
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createObjInBoxStatement(
+	private EvaluatedTestStatement createObjInBoxStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int objNo = testStatementBytes.getNextAndStep();
 		int coord1 = testStatementBytes.getNextAndStep();
 		int coord2 = testStatementBytes.getNextAndStep();
@@ -257,9 +257,9 @@ public class TestStatementEvaluator {
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createPosnStatement(
+	private EvaluatedTestStatement createPosnStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int objNo = testStatementBytes.getNextAndStep();
 		int coord1 = testStatementBytes.getNextAndStep();
 		int coord2 = testStatementBytes.getNextAndStep();
@@ -270,9 +270,9 @@ public class TestStatementEvaluator {
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createCompareStringsStatement(
+	private EvaluatedTestStatement createCompareStringsStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int stringNo1 = testStatementBytes.getNextAndStep();
 		int stringNo2 = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(compareStrings(stringNo1, stringNo2,
@@ -280,55 +280,55 @@ public class TestStatementEvaluator {
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createHaveKeyStatement(GameState gameState) {
+	private EvaluatedTestStatement createHaveKeyStatement(GameState gameState) {
 		return createStatement(gameState.haveKey());
 	}
 
-	private IEvaluatedTestStatement createControllerStatement(
+	private EvaluatedTestStatement createControllerStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int controllerNo = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(gameState.controller(controllerNo));
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createObjInRoomStatement(
+	private EvaluatedTestStatement createObjInRoomStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int itemNo = testStatementBytes.getNextAndStep();
 		int varNo = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(objInRoom(itemNo, varNo, gameState));
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createHasStatement(
+	private EvaluatedTestStatement createHasStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int itemNo = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(gameState.has(itemNo));
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createIssetvStatement(
+	private EvaluatedTestStatement createIssetvStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int flagNo = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(gameState.getFlag(gameState
 				.getVar(flagNo)));
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createIssetStatement(
+	private EvaluatedTestStatement createIssetStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int flagNo = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(gameState.getFlag(flagNo));
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createLessvStatement(
+	private EvaluatedTestStatement createLessvStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int var1 = testStatementBytes.getNextAndStep();
 		int var2 = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(gameState.getVar(var1) < gameState
@@ -336,27 +336,27 @@ public class TestStatementEvaluator {
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createLessnStatement(
+	private EvaluatedTestStatement createLessnStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int var = testStatementBytes.getNextAndStep();
 		int num = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(gameState.getVar(var) < num);
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createEqualnStatement(
+	private EvaluatedTestStatement createEqualnStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int var = testStatementBytes.getNextAndStep();
 		int num = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(gameState.getVar(var) == num);
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createEqualvStatement(
+	private EvaluatedTestStatement createEqualvStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int var1 = testStatementBytes.getNextAndStep();
 		int var2 = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(gameState.getVar(var1) == gameState
@@ -364,9 +364,9 @@ public class TestStatementEvaluator {
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createGreatervStatement(
+	private EvaluatedTestStatement createGreatervStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int var1 = testStatementBytes.getNextAndStep();
 		int var2 = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(gameState.getVar(var1) > gameState
@@ -374,17 +374,17 @@ public class TestStatementEvaluator {
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createGreaternStatement(
+	private EvaluatedTestStatement createGreaternStatement(
 			RawByteArray testStatementBytes, GameState gameState) {
-		IEvaluatedTestStatement maybeAStatement;
+		EvaluatedTestStatement maybeAStatement;
 		int var = testStatementBytes.getNextAndStep();
 		int num = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(gameState.getVar(var) > num);
 		return maybeAStatement;
 	}
 
-	private IEvaluatedTestStatement createStatement(boolean b) {
-		IEvaluatedTestStatement stat = new EvaluatedTestStatement(b);
+	private EvaluatedTestStatement createStatement(boolean b) {
+		EvaluatedTestStatement stat = new SingleStatement(b);
 		return stat;
 	}
 

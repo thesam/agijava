@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import agijava.gui.GameGui;
-import agijava.picture.IPicture;
+import agijava.picture.Picture;
 import agijava.view.Cel;
 import agijava.view.Loop;
 import agijava.view.View;
@@ -20,7 +20,7 @@ public class GuiDrawer {
 	}
 
 	public void drawCurrentPictureToGui() {
-		IPicture currentPicture = gameState.getCurrentPicture();
+		Picture currentPicture = gameState.getCurrentPicture();
 		if (currentPicture != null) {
 			gui.drawPicture(currentPicture);
 		}

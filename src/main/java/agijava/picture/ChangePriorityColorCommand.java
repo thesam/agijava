@@ -3,10 +3,10 @@ package agijava.picture;
 
 
 
-public class ChangePriorityColorCommand implements IPictureCommand {
+public class ChangePriorityColorCommand implements PictureCommand {
 
 	@Override
-	public void run(IPicture picture, int currentByte) {
+	public void run(Picture picture, int currentByte) {
 		picture.setPriorityColor(currentByte);
 		picture.setPriorityDrawingEnabled(true);
 	}

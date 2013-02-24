@@ -3,13 +3,13 @@ package agijava.picture;
 
 
 
-public class RelativeLineCommand implements IPictureCommand {
+public class RelativeLineCommand implements PictureCommand {
 
 	private int startX = -1;
 	private int startY = -1;
 	
 	@Override
-	public void run(IPicture picture, int currentByte) {
+	public void run(Picture picture, int currentByte) {
 		if (startX == -1) {
 			startX = currentByte;
 			return;

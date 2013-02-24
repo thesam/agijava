@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import agijava.logic.Logic;
 import agijava.main.LogicCommand;
-import agijava.picture.IPicture;
+import agijava.picture.Picture;
 import agijava.view.View;
 import static org.mockito.Mockito.*;
 
@@ -304,10 +304,10 @@ public class GameStateTest {
 	@Test
 	public void canMovePictureInBufferToCurrentPicture() throws Exception {
 		aGameState();
-		IPicture fakePicture = mock(IPicture.class);
+		Picture fakePicture = mock(Picture.class);
 		when(pictureRepository.getPicture(100)).thenReturn(fakePicture);
 		gameState.setPictureInBuffer(100);
-		IPicture currentPicture = gameState.getCurrentPicture();
+		Picture currentPicture = gameState.getCurrentPicture();
 		assertNull(currentPicture);
 		gameState.showPictureFromBuffer();
 		assertEquals(fakePicture,gameState.getCurrentPicture());

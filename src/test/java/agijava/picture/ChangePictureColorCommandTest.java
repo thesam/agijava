@@ -8,7 +8,7 @@ import org.junit.Test;
 public class ChangePictureColorCommandTest {
 	private static final int NEW_COLOR = 100;
 	private ChangePictureColorCommand cmd;
-	private IPicture pic;
+	private Picture pic;
 
 	@Test
 	public void canChangePictureColor() throws Exception {
@@ -41,7 +41,7 @@ public class ChangePictureColorCommandTest {
 	}
 
 	private void aPicture() {
-		pic = mock(IPicture.class);
+		pic = mock(Picture.class);
 	}
 
 	private void aChangePictureColorCommand() {

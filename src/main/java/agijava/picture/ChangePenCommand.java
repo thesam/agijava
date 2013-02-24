@@ -3,10 +3,10 @@ package agijava.picture;
 
 
 
-public class ChangePenCommand implements IPictureCommand {
+public class ChangePenCommand implements PictureCommand {
 
 	@Override
-	public void run(IPicture picture, int currentByte) {
+	public void run(Picture picture, int currentByte) {
 	}
 	
 	@Override

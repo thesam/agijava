@@ -3,7 +3,6 @@ package agijava.main;
 import java.util.List;
 
 import agijava.main.AnimatedObject.LoopDirection;
-import agijava.picture.IPicture;
 import agijava.picture.Picture;
 import agijava.view.Cel;
 import agijava.view.Loop;
@@ -167,7 +166,7 @@ public class ObjectUpdater {
 		gameState.setFlag(movingObject.getMoveFinishedFlagNo());
 	}
 
-	private void handleEgoMovement(AnimatedObject movingObject, Position newPos, IPicture currentPicture) {
+	private void handleEgoMovement(AnimatedObject movingObject, Position newPos, Picture currentPicture) {
 		if (isOutsidePicture(newPos, currentPicture)) {
 			movingObject.setMoving(false);
 		} else {
@@ -183,7 +182,7 @@ public class ObjectUpdater {
 	}
 	
 	private void checkIfObjectIsOnTriggerLine(AnimatedObject movingObject,
-			Position newPos, IPicture currentPicture) {
+			Position newPos, Picture currentPicture) {
 		if (viewIsOnTriggerLineInPicture(movingObject, newPos,
 				currentPicture)) {
 			gameState
@@ -199,21 +198,21 @@ public class ObjectUpdater {
 	}
 
 	private boolean viewIsOnTriggerLineInPicture(AnimatedObject movingObject,
-			Position newPos, IPicture currentPicture) {
+			Position newPos, Picture currentPicture) {
 		return isViewBottomLineOnPriority(currentPicture,
 				movingObject, newPos,
 				Picture.PRIORITY_TRIGGER);
 	}
 
 	private boolean viewIsOnBlockingLineInPicture(AnimatedObject movingObject,
-			Position newPos, IPicture currentPicture) {
+			Position newPos, Picture currentPicture) {
 		//TODO: Blue lines are conditional, check the conditions..
 		return isViewBottomLineOnPriority(currentPicture,
 				movingObject, newPos,
 				Picture.PRIORITY_BLOCK) || isViewBottomLineOnPriority(currentPicture, movingObject, newPos, Picture.PRIORITY_CONDITIONAL_BLOCK) && !movingObject.getIgnoreBlocks();
 	}
 	
-	private boolean isViewBottomLineOnPriority(IPicture currentPicture,
+	private boolean isViewBottomLineOnPriority(Picture currentPicture,
 			AnimatedObject movingObject, Position bottomLeft,
 			int priority) {
 		boolean isTouching = false;
@@ -230,7 +229,7 @@ public class ObjectUpdater {
 		return isTouching;
 	}
 
-	private boolean isOutsidePicture(Position newPos, IPicture currentPicture) {
+	private boolean isOutsidePicture(Position newPos, Picture currentPicture) {
 		return newPos.getX() >= currentPicture.getWidth()
 				|| newPos.getY() >= currentPicture.getHeight() || newPos.getX() < 0 || newPos.getY() < 0;
 	}

@@ -21,7 +21,7 @@ public class AbsoluteLineCommandTest {
 	@Test
 	public void drawsALineInPictureOnTheFourthRun() throws Exception {
 		anAbsoluteLineCommand();
-		IPicture pic = mock(IPicture.class);
+		Picture pic = mock(Picture.class);
 		int x0 = 0;
 		int y0 = 0;
 		int x1 = 1;

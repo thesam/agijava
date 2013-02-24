@@ -3,33 +3,33 @@ package agijava.logic;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupedStatement implements IEvaluatedTestStatement {
+public class GroupedStatement implements EvaluatedTestStatement {
 
 	public enum GroupType {OR, AND};
 	
 	private GroupType groupType;
-	private List<IEvaluatedTestStatement> statements;
+	private List<EvaluatedTestStatement> statements;
 	
-	public GroupedStatement(List<IEvaluatedTestStatement> statements,GroupType groupType) {
+	public GroupedStatement(List<EvaluatedTestStatement> statements,GroupType groupType) {
 		this.groupType = groupType;
 		this.statements = statements;
 	}
 
 	public GroupedStatement() {
-		this(new ArrayList<IEvaluatedTestStatement>(),GroupType.AND);
+		this(new ArrayList<EvaluatedTestStatement>(),GroupType.AND);
 	}
 
 	@Override
 	public boolean getValue() {
 		if (groupType == GroupType.AND) { 
-			for (IEvaluatedTestStatement statement : statements) {
+			for (EvaluatedTestStatement statement : statements) {
 				if (statement.getValue() == false) {
 					return false;
 				}
 			}
 			return true;
 		} else {
-			for (IEvaluatedTestStatement statement : statements) {
+			for (EvaluatedTestStatement statement : statements) {
 				if (statement.getValue() == true) {
 					return true;
 				}
@@ -38,7 +38,7 @@ public class GroupedStatement implements IEvaluatedTestStatement {
 		}
 	}
 
-	public void add(IEvaluatedTestStatement statement) {
+	public void add(EvaluatedTestStatement statement) {
 		statements.add(statement);
 	}
 
@@ -51,7 +51,7 @@ public class GroupedStatement implements IEvaluatedTestStatement {
 		
 	}
 
-	public boolean contains(IEvaluatedTestStatement statement) {
+	public boolean contains(EvaluatedTestStatement statement) {
 		return statements.contains(statement);
 	}
 

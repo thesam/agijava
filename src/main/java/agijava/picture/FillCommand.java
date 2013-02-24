@@ -3,14 +3,14 @@ package agijava.picture;
 
 
 
-public class FillCommand implements IPictureCommand {
+public class FillCommand implements PictureCommand {
 
 	private int nextX;
 	private int nextY;
 	private boolean writeX = true;
 	
 	@Override
-	public void run(IPicture picture, int currentByte) {
+	public void run(Picture picture, int currentByte) {
 
 		if (writeX == true) {
 			nextX = currentByte;

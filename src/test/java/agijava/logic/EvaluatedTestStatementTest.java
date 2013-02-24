@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class EvaluatedTestStatementTest {
-	private EvaluatedTestStatement evaluatedTestStatement;
+	private SingleStatement evaluatedTestStatement;
 
 	@Test
 	public void canRememberATrueBoolean() throws Exception {
@@ -14,12 +14,12 @@ public class EvaluatedTestStatementTest {
 	}
 
 	private void aTrueStatement() {
-		evaluatedTestStatement = new EvaluatedTestStatement(true);
+		evaluatedTestStatement = new SingleStatement(true);
 	}
 
 	@Test
 	public void canRememberAFalseBoolean() throws Exception {
-		evaluatedTestStatement = new EvaluatedTestStatement(false);
+		evaluatedTestStatement = new SingleStatement(false);
 		assertEquals(false, evaluatedTestStatement.getValue());
 	}
 	

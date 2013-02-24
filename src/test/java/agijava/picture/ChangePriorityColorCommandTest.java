@@ -26,7 +26,7 @@ public class ChangePriorityColorCommandTest {
 	
 	@Test
 	public void changesPriorityColorInPicture() throws Exception {
-		IPicture pic = mock(IPicture.class);
+		Picture pic = mock(Picture.class);
 		
 		cmd.run(pic, 0x55);
 		
@@ -35,7 +35,7 @@ public class ChangePriorityColorCommandTest {
 	
 	@Test
 	public void enablesPriorityDrawing() throws Exception {
-		IPicture pic = mock(IPicture.class);
+		Picture pic = mock(Picture.class);
 		
 		cmd.run(pic, 0x55);
 		

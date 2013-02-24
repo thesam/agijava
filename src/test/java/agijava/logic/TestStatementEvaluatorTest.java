@@ -52,14 +52,14 @@ public class TestStatementEvaluatorTest {
 
 	private TestStatementEvaluator testStatementEvaluator;
 	private GameState gameState;
-	private IEvaluatedTestStatement statement;
+	private EvaluatedTestStatement statement;
 	private RawByteArray rawByteArray;
 	private List<Integer> inputList = new ArrayList<Integer>();
 
 	@Test
 	public void evaluatesEmptyRawByteArrayAsTrue() throws Exception {
 		anEvaluator();
-		IEvaluatedTestStatement createStatementsFromBytes = testStatementEvaluator
+		EvaluatedTestStatement createStatementsFromBytes = testStatementEvaluator
 				.createStatementsFromBytes(rawByteArray, gameState);
 
 		assertTrue(createStatementsFromBytes.getValue());

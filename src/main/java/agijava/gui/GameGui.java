@@ -4,7 +4,7 @@ import agijava.main.AnimatedObject;
 import agijava.main.GameEngine;
 import agijava.main.GameState;
 import agijava.main.Text;
-import agijava.picture.IPicture;
+import agijava.picture.Picture;
 import agijava.view.Cel;
 
 public class GameGui {
@@ -28,7 +28,7 @@ public class GameGui {
 		this.prioBuffer = prioBuffer;
 	}
 
-	public void drawPicture(IPicture pic) {
+	public void drawPicture(Picture pic) {
 		for (int x = 0; x < pic.getWidth(); x++) {
 			for (int y = 0; y < pic.getHeight(); y++) {
 				drawToGfxArea(x, y, pic.getPictureColorAt(x, y),

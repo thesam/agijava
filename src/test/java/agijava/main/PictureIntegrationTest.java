@@ -14,7 +14,7 @@ import agijava.gui.SwingGraphicsDeviceFactory;
 import agijava.gui.SwingGraphicsFrame;
 import agijava.io.ResourceDir;
 import agijava.io.ResourceReference;
-import agijava.picture.IPicture;
+import agijava.picture.Picture;
 
 @SuppressWarnings("unused")
 public class PictureIntegrationTest {
@@ -34,7 +34,7 @@ public class PictureIntegrationTest {
 //		IGraphicsDevice graphics = GraphicsDeviceFactory.createSwingGraphicsDevice();
 //		GameGui gui = new GameGui(graphics, new PrioCalculator(),
 //				new PrioBuffer(320, 200));
-//		IPicture picture = pictureRepository.getPicture(5);
+//		Picture picture = pictureRepository.getPicture(5);
 //		gui.drawPicture(picture);
 //		gui.printText(new Text(0, 0, "0-0"));
 //		gui.printText(new Text(1, 0, "1-0"));

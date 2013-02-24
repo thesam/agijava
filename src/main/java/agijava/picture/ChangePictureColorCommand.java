@@ -3,10 +3,10 @@ package agijava.picture;
 
 
 
-public class ChangePictureColorCommand implements IPictureCommand {
+public class ChangePictureColorCommand implements PictureCommand {
 
 	@Override
-	public void run(IPicture picture, int currentByte) {
+	public void run(Picture picture, int currentByte) {
 		picture.setPictureColor(currentByte);
 		picture.setPictureDrawingEnabled(true);
 	}

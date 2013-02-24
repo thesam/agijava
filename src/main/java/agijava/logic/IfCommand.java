@@ -46,7 +46,7 @@ public class IfCommand implements LogicCommand {
 
 	private boolean evaluateTestStatement(RawByteArray testStatementBytes,
 			GameState gameState) {
-		IEvaluatedTestStatement andedStatements = evaluator
+		EvaluatedTestStatement andedStatements = evaluator
 				.createStatementsFromBytes(testStatementBytes, gameState);
 		return andedStatements.getValue();
 	}

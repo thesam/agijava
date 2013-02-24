@@ -21,7 +21,7 @@ public class FillCommandTest {
 	
 	@Test
 	public void fillsPictureWhenTwoCoordinatesHaveBeenPassed() throws Exception {
-		IPicture picture = mock(IPicture.class);
+		Picture picture = mock(Picture.class);
 		
 		cmd.run(picture, 1);
 		cmd.run(picture, 2);

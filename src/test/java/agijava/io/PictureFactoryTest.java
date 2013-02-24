@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.picture.IPicture;
-import agijava.picture.IPictureCommand;
+import agijava.picture.Picture;
+import agijava.picture.PictureCommand;
 import agijava.picture.PictureCommandFactory;
 
 public class PictureFactoryTest {
@@ -34,21 +34,21 @@ public class PictureFactoryTest {
 	
 	@Test
 	public void canGetPictureWithNoCommands() throws Exception {
-		IPicture picture = pictureFactory.getPicture();
+		Picture picture = pictureFactory.getPicture();
 		
 		assertNotNull(picture);
 	}
 	
 	@Test
 	public void canGetPictureWithOneCommandWithNoArguments() throws Exception {
-		IPictureCommand cmd = mock(IPictureCommand.class);
+		PictureCommand cmd = mock(PictureCommand.class);
 		when(cmd.needsArguments()).thenReturn(false);
 		
 		rawByteArray.add(0x55);
 		when(cmdFactory.isCommandNumber(0x55)).thenReturn(true);
 		when(cmdFactory.getPictureCommand(0x55)).thenReturn(cmd);
 		
-		IPicture picture = pictureFactory.getPicture();
+		Picture picture = pictureFactory.getPicture();
 		
 		assertNotNull(picture);
 		verify(cmd).run(picture, 0x55);
@@ -56,7 +56,7 @@ public class PictureFactoryTest {
 	
 	@Test
 	public void canGetPictureWithOneCommandWithOneArgumentByte() throws Exception {
-		IPictureCommand cmd = mock(IPictureCommand.class);
+		PictureCommand cmd = mock(PictureCommand.class);
 		when(cmd.needsArguments()).thenReturn(true).thenReturn(false);
 		
 		rawByteArray.add(0x55);
@@ -64,7 +64,7 @@ public class PictureFactoryTest {
 		when(cmdFactory.getPictureCommand(0x55)).thenReturn(cmd);
 		rawByteArray.add(0x66);
 		
-		IPicture picture = pictureFactory.getPicture();
+		Picture picture = pictureFactory.getPicture();
 		assertNotNull(picture);
 		verify(cmd).run(picture, 0x66);
 		
@@ -75,7 +75,7 @@ public class PictureFactoryTest {
 		rawByteArray.add(0xff);
 		rawByteArray.add(0x55);
 		
-		IPicture picture = pictureFactory.getPicture();
+		Picture picture = pictureFactory.getPicture();
 		
 		assertNotNull(picture);
 		verifyZeroInteractions(cmdFactory);;

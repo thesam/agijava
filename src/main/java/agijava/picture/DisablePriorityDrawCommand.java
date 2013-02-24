@@ -3,10 +3,10 @@ package agijava.picture;
 
 
 
-public class DisablePriorityDrawCommand implements IPictureCommand {
+public class DisablePriorityDrawCommand implements PictureCommand {
 
 	@Override
-	public void run(IPicture picture, int currentByte) {
+	public void run(Picture picture, int currentByte) {
 		picture.setPriorityDrawingEnabled(false);
 	}
 

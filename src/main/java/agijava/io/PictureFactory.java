@@ -2,9 +2,8 @@ package agijava.io;
 
 import java.io.IOException;
 
-import agijava.picture.IPicture;
-import agijava.picture.IPictureCommand;
 import agijava.picture.Picture;
+import agijava.picture.PictureCommand;
 import agijava.picture.PictureCommandFactory;
 
 public class PictureFactory {
@@ -19,9 +18,9 @@ public class PictureFactory {
 				this.pictureCommandFactory = pictureCommandFactory;
 	}
 	
-	public IPicture getPicture() {
+	public Picture getPicture() {
 		Picture picture = new Picture();
-		IPictureCommand currentCommand = null;
+		PictureCommand currentCommand = null;
 		for (int i = 0; i < res.getRawData().size(); i++) {
 			int currentByte = (0xff & res.getRawData().get(i));
 			if (currentByte == 0xff) {

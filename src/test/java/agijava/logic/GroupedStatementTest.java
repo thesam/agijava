@@ -9,7 +9,7 @@ import agijava.logic.GroupedStatement.GroupType;
 
 public class GroupedStatementTest {
 	private GroupedStatement groupedStatement;
-	private IEvaluatedTestStatement statement;
+	private EvaluatedTestStatement statement;
 
 	@Test
 	public void canbeCreated() throws Exception {
@@ -103,7 +103,7 @@ public class GroupedStatementTest {
 		aGroupedStatement();
 		aTrueStatementIsAdded();
 		assertTrue(groupedStatement.contains(statement));
-		assertFalse(groupedStatement.contains(mock(IEvaluatedTestStatement.class)));
+		assertFalse(groupedStatement.contains(mock(EvaluatedTestStatement.class)));
 	}
 
 	private void aFalseStatementIsAdded() {
@@ -114,8 +114,8 @@ public class GroupedStatementTest {
 		groupedStatement.add(createStatement(true));
 	}
 
-	private IEvaluatedTestStatement createStatement(boolean value) {
-		statement = mock(IEvaluatedTestStatement.class);
+	private EvaluatedTestStatement createStatement(boolean value) {
+		statement = mock(EvaluatedTestStatement.class);
 		when(statement.getValue()).thenReturn(value);
 		return statement;
 	}

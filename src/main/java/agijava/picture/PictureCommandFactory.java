@@ -16,7 +16,7 @@ public class PictureCommandFactory {
 	private static final int DISABLE_PICTURE_DRAW = 0xf1;
 	private static final int CHANGE_PICTURE_COLOR_AND_ENABLE_PICTURE_DRAW = 0xf0;
 
-	public IPictureCommand getPictureCommand(int currentByte) {
+	public PictureCommand getPictureCommand(int currentByte) {
 		switch ((int) currentByte) {
 		case CHANGE_PICTURE_COLOR_AND_ENABLE_PICTURE_DRAW:
 			return new ChangePictureColorCommand();

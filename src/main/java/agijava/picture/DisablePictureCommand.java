@@ -3,10 +3,10 @@ package agijava.picture;
 
 
 
-public class DisablePictureCommand implements IPictureCommand {
+public class DisablePictureCommand implements PictureCommand {
 
 	@Override
-	public void run(IPicture picture, int currentByte) {
+	public void run(Picture picture, int currentByte) {
 		picture.setPictureDrawingEnabled(false);
 	}
 
