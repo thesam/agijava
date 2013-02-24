@@ -7,7 +7,6 @@ import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import agijava.gui.IGuiView;
 import agijava.gui.impl.GameGui;
 import agijava.gui.impl.SwingGraphicsDeviceFactory;
 import agijava.gui.impl.PrioBuffer;

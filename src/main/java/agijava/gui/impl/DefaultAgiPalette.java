@@ -2,9 +2,7 @@ package agijava.gui.impl;
 
 import java.awt.Color;
 
-import agijava.gui.IGraphicsPalette;
-
-public class DefaultAgiPalette implements IGraphicsPalette {
+public class DefaultAgiPalette {
 	private final int colors[] = {
 		new Color(rescale6BitColor(0x00), rescale6BitColor(0x00),
 				rescale6BitColor(0x00)).getRGB(),

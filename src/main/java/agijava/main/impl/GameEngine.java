@@ -2,7 +2,7 @@ package agijava.main.impl;
 
 import java.io.IOException;
 
-import agijava.gui.IGuiController;
+import agijava.gui.impl.GameGui;
 import agijava.main.IGameState;
 import agijava.main.IMovementCalculator;
 import agijava.main.IRunningGame;
@@ -33,10 +33,10 @@ public class GameEngine {
 	private long lastGuiUpdate = System.currentTimeMillis();
 	@SuppressWarnings("unused")
 	private long now;
-	private final IGuiController gui;
+	private final GameGui gui;
 
 	public GameEngine(IGameState gameState, IRunningGame runningGame,
-			IMovementCalculator calculator, IGuiController gui) {
+			IMovementCalculator calculator, GameGui gui) {
 		this.gameState = gameState;
 		this.runningGame = runningGame;
 		this.gui = gui;

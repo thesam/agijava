@@ -2,7 +2,7 @@ package agijava.gui.impl;
 
 import java.util.Arrays;
 
-public class PrioBuffer implements IPrioBuffer {
+public class PrioBuffer {
 
 	private int[][] buffer;
 	private int gfxHeight;
@@ -14,7 +14,6 @@ public class PrioBuffer implements IPrioBuffer {
 		reset();
 	}
 
-	@Override
 	public void reset() {
 		this.buffer = new int[gfxWidth][gfxHeight];
 		for (int i = 0; i < gfxWidth; i++) {
@@ -22,12 +21,10 @@ public class PrioBuffer implements IPrioBuffer {
 		}
 	}
 
-	@Override
 	public void drawPixel(int x, int y, int prio) {
 		this.buffer[x][y] = prio;
 	}
 
-	@Override
 	public int getPixel(int x, int y) {
 		return buffer[x][y];
 	}

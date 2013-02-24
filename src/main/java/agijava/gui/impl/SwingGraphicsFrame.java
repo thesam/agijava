@@ -11,12 +11,12 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import agijava.gui.IGuiController;
-import agijava.gui.IGuiView;
-import agijava.gui.IGraphicsPalette;
 import agijava.main.impl.Directions;
 
-public class SwingGraphicsFrame implements IGuiView, KeyListener {
+public class SwingGraphicsFrame implements KeyListener {
+	
+	public static int WHITE = 15;
+	public static int BLACK = 0;
 
 	private final BufferedImage bufferGfxImage;
 	private final Font consoleFont;
@@ -33,14 +33,14 @@ public class SwingGraphicsFrame implements IGuiView, KeyListener {
 
 	// GameFramePanel panel;
 	
-	private IGraphicsPalette palette = new DefaultAgiPalette();
+	private DefaultAgiPalette palette = new DefaultAgiPalette();
 	private JFrame frame;
 
 	private final int width;
 
 	private final int height;
 	private final int scale;
-	private IGuiController gui;
+	private GameGui gui;
 
 	public SwingGraphicsFrame(int width, int height, int scale, Font font, BufferedImage img, JFrame frame, int x0, int y0) {
 		this.width = width;
@@ -53,14 +53,12 @@ public class SwingGraphicsFrame implements IGuiView, KeyListener {
 		this.y0 = y0;
 	}
 
-	@Override
 	public void drawPixel(int x, int y, int colorIndex) {
 		if (x >= 0 && y >= 0 && x < getWidth() && y < getHeight()) {
 			bufferGfxImage.setRGB(x, y, palette.getColorRgb(colorIndex));
 		}
 	}
 
-	@Override
 	public void updateToScreen() {
 		BufferStrategy bf = getFrame().getBufferStrategy();
 		Graphics g = null;
@@ -75,17 +73,14 @@ public class SwingGraphicsFrame implements IGuiView, KeyListener {
 		Toolkit.getDefaultToolkit().sync();
 	}
 
-	@Override
 	public void clearScreen() {
 		textRows = new String[TEXT_ROWS];
 	}
 
-	@Override
 	public int getWidth() {
 		return width;
 	}
 
-	@Override
 	public int getHeight() {
 		return height;
 	}
@@ -105,12 +100,10 @@ public class SwingGraphicsFrame implements IGuiView, KeyListener {
 		
 	}
 
-	@Override
 	public int getTextHeight() {
 		return (int) (getHeight() * 1.0) / TEXT_ROWS;
 	}
 
-	@Override
 	public int getTextWidth() {
 		return getTextHeight();
 	}
@@ -198,8 +191,7 @@ public class SwingGraphicsFrame implements IGuiView, KeyListener {
 		return foo.replaceAll("[^A-Za-z, ]", "");
 	}
 
-	@Override
-	public void setController(IGuiController gui) {
+	public void setController(GameGui gui) {
 		this.gui = gui;
 	}
 

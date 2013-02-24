@@ -8,9 +8,10 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
-import agijava.gui.IGuiView;
 import agijava.gui.impl.GameGui;
-import agijava.gui.impl.IPrioBuffer;
+import agijava.gui.impl.PrioBuffer;
+import agijava.gui.impl.PrioCalculator;
+import agijava.gui.impl.SwingGraphicsFrame;
 import agijava.main.IGameState;
 import agijava.main.impl.Text;
 import agijava.picture.IPicture;
@@ -22,22 +23,22 @@ public class GameGuiTest {
 
 	private static final int MENU_BAR_HEIGHT = 8;
 	private GameGui gui;
-	private IGuiView graphics;
+	private SwingGraphicsFrame graphics;
 	private IPicture pic;
-	private IPrioCalculator prioCalculator;
+	private PrioCalculator prioCalculator;
 	private IView view;
 	private ILoop loop;
 	private ICel cel;
 	private int x0;
 	private int y0;
 	private int prio;
-	private IPrioBuffer prioBuffer;
+	private PrioBuffer prioBuffer;
 
 	@Before
 	public void setup() throws Exception {
-		prioCalculator = mock(IPrioCalculator.class);
-		graphics = mock(IGuiView.class);
-		prioBuffer = mock(IPrioBuffer.class);
+		prioCalculator = mock(PrioCalculator.class);
+		graphics = mock(SwingGraphicsFrame.class);
+		prioBuffer = mock(PrioBuffer.class);
 		pic = mock(IPicture.class);
 		IGameState gameState = mock(IGameState.class);
 		when(graphics.getHeight()).thenReturn(1);
@@ -76,7 +77,7 @@ public class GameGuiTest {
 	}
 
 	private void aPicWithOneWhitePixel() {
-		aPicWithOnePixel(IGuiView.WHITE);
+		aPicWithOnePixel(SwingGraphicsFrame.WHITE);
 	}
 
 	@Test
@@ -85,7 +86,7 @@ public class GameGuiTest {
 		gui.setCurrentInputLine("hej");
 		gui.drawCurrentInputLine();
 		verify(graphics).printText(0, 23, ">" + "hej" + "_",
-				IGuiView.WHITE);
+				SwingGraphicsFrame.WHITE);
 	}
 
 	@Test
@@ -165,7 +166,7 @@ public class GameGuiTest {
 	public void canPrintTextDirectlyToGraphicsDevice() throws Exception {
 		Text text = new Text(0, 0, "HEJ");
 		gui.printText(text);
-		verify(graphics).printText(0, 0, "HEJ", IGuiView.WHITE);
+		verify(graphics).printText(0, 0, "HEJ", SwingGraphicsFrame.WHITE);
 	}
 
 	@Test
@@ -220,7 +221,7 @@ public class GameGuiTest {
 		gui.drawStatusBar();
 		for (int x = 0; x < graphics.getWidth(); x++) {
 			for (int y = 0; y < 8; y++) {
-				verify(graphics).drawPixel(x, y, IGuiView.WHITE);
+				verify(graphics).drawPixel(x, y, SwingGraphicsFrame.WHITE);
 			}
 		}
 	}
@@ -230,7 +231,7 @@ public class GameGuiTest {
 	}
 
 	private void firstPixelInPicAreaIsDrawnWhite() {
-		firstPixelInPicAreaIsDrawn(IGuiView.WHITE);
+		firstPixelInPicAreaIsDrawn(SwingGraphicsFrame.WHITE);
 	}
 
 	private int getTopYForPictureArea() {
@@ -242,7 +243,7 @@ public class GameGuiTest {
 	}
 
 	private void firstPixelInPictureAreaOfGraphicsDeviceIsDrawnBlack() {
-		firstPixelInPicAreaIsDrawn(IGuiView.BLACK);
+		firstPixelInPicAreaIsDrawn(SwingGraphicsFrame.BLACK);
 	}
 
 	private void aOnePixelWhiteCel() {
@@ -253,7 +254,7 @@ public class GameGuiTest {
 		cel = mock(ICel.class);
 		ICel cels[] = { cel };
 		when(loop.getCels()).thenReturn(Arrays.asList(cels));
-		when(cel.getPixel(0, 0)).thenReturn(IGuiView.WHITE);
+		when(cel.getPixel(0, 0)).thenReturn(SwingGraphicsFrame.WHITE);
 		x0 = 0;
 		y0 = 1; // coordinates are at the bottom
 		when(cel.getHeight()).thenReturn(1);
@@ -261,7 +262,7 @@ public class GameGuiTest {
 	}
 
 	private void aPicWithOneBlackPixel() {
-		aPicWithOnePixel(IGuiView.BLACK);
+		aPicWithOnePixel(SwingGraphicsFrame.BLACK);
 	}
 
 	private void aPicWithOnePixel(int colorIndex) {

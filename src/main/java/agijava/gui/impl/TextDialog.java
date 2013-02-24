@@ -1,6 +1,6 @@
 package agijava.gui.impl;
 
-public class TextDialog implements ITextDialog {
+public class TextDialog {
 
 	private String message;
 	private final int outerMargin;

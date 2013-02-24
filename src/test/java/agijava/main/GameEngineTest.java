@@ -5,7 +5,7 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import agijava.gui.IGuiController;
+import agijava.gui.impl.GameGui;
 import agijava.main.IGameState;
 import agijava.main.IRunningGame;
 import agijava.main.impl.GameEngine;
@@ -14,7 +14,7 @@ public class GameEngineTest {
 	private GameEngine gameEngine;
 	private IGameState gameState;
 	private IRunningGame runningGame;
-	private IGuiController controller;
+	private GameGui controller;
 
 	@Test
 	public void canBeCreated() throws Exception {
@@ -57,7 +57,7 @@ public class GameEngineTest {
 	private void aGameEngine() {
 		gameState = mock(IGameState.class);
 		runningGame = mock(IRunningGame.class);
-		controller = mock(IGuiController.class);
+		controller = mock(GameGui.class);
 		gameEngine = new GameEngine(gameState, runningGame, null, controller);
 	}
 

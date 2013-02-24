@@ -2,7 +2,7 @@ package agijava.main;
 
 import org.junit.Test;
 
-import agijava.gui.IGuiController;
+import agijava.gui.impl.GameGui;
 import agijava.main.IGameState;
 import agijava.main.IGuiDrawer;
 import agijava.main.impl.GuiDrawer;
@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
 public class GuiDrawerTest {
 	private IGuiDrawer drawer;
 	private IGameState gameState;
-	private IGuiController gui;
+	private GameGui gui;
 
 	@Test
 	public void drawsCurrentPictureFromGameStateToGuiBuffer() throws Exception {
@@ -59,7 +59,7 @@ public class GuiDrawerTest {
 
 	private void aGuiDrawer() {
 		gameState = mock(IGameState.class);
-		gui = mock(IGuiController.class);
+		gui = mock(GameGui.class);
 		this.drawer = new GuiDrawer(gameState, gui);
 	}
 }

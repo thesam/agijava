@@ -1,8 +1,6 @@
 package agijava.gui.impl;
 
-import agijava.gui.IPrioCalculator;
-
-public class PrioCalculator implements IPrioCalculator {
+public class PrioCalculator {
 		
 	public int getPrioBasedOnPosition(int y) {
 		// Priority Band Y range

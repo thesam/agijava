@@ -6,17 +6,13 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import agijava.gui.IGuiView;
-import agijava.gui.IGraphicsDeviceFactory;
-
-public class SwingGraphicsDeviceFactory implements IGraphicsDeviceFactory {
+public class SwingGraphicsDeviceFactory {
 
 	private static final int GFX_SCREEN_X = 320;
 	private static final int GFX_SCREEN_Y = 200;
 	private static final int SCALE = 2;
 
-	@Override
-	public IGuiView createGraphicsDevice() {
+	public SwingGraphicsFrame createGraphicsDevice() {
 		Font font = ConsoleFontFactory.createFont();
 		BufferedImage bufferImage = BufferedImageFactory.createBufferGfxImage(
 				GFX_SCREEN_X, GFX_SCREEN_Y);

@@ -1,8 +1,5 @@
 package agijava.gui.impl;
 
-import agijava.gui.IGuiController;
-import agijava.gui.IGuiView;
-import agijava.gui.IPrioCalculator;
 import agijava.main.IGameState;
 import agijava.main.impl.AnimatedObject;
 import agijava.main.impl.GameEngine;
@@ -10,21 +7,21 @@ import agijava.main.impl.Text;
 import agijava.picture.IPicture;
 import agijava.view.ICel;
 
-public class GameGui implements IGuiController {
+public class GameGui {
 
 	private final static int MENU_BAR_HEIGHT = 8;
-	private IGuiView graphics;
+	private SwingGraphicsFrame graphics;
 	private String currentInputLine = "";
-	private IPrioCalculator prioCalculator;
-	private IPrioBuffer prioBuffer;
+	private PrioCalculator prioCalculator;
+	private PrioBuffer prioBuffer;
 	private boolean keyPressWaiting;
 	private boolean inputIsWaiting;
 	private String input;
 	private boolean waitingForDeblockingKeyPress;
 	private final IGameState gameState;
 
-	public GameGui(IPrioCalculator prioCalculator, IGameState gameState,
-			IGuiView graphics, IPrioBuffer prioBuffer) {
+	public GameGui(PrioCalculator prioCalculator, IGameState gameState,
+			SwingGraphicsFrame graphics, PrioBuffer prioBuffer) {
 		this.prioCalculator = prioCalculator;
 		this.gameState = gameState;
 		this.graphics = graphics;
@@ -55,16 +52,16 @@ public class GameGui implements IGuiController {
 
 	public void drawCurrentInputLine() {
 		graphics.printText(0, 23, ">" + currentInputLine + "_",
-				IGuiView.WHITE);
+				SwingGraphicsFrame.WHITE);
 	}
 
 	public void drawStatusBar() {
 		for (int x = 0; x < graphics.getWidth(); x++) {
 			for (int y = 0; y < MENU_BAR_HEIGHT; y++) {
-				graphics.drawPixel(x, y, IGuiView.WHITE);
+				graphics.drawPixel(x, y, SwingGraphicsFrame.WHITE);
 			}
 			graphics.printText(0, 0, "Score: x of 250 - Sound: x",
-					IGuiView.BLACK);
+					SwingGraphicsFrame.BLACK);
 		}
 
 	}
@@ -84,7 +81,7 @@ public class GameGui implements IGuiController {
 		String message = text.getMessage();
 		String[] rows = message.split("\\n");
 		for (String string : rows) {
-			graphics.printText(col, row, string, IGuiView.WHITE);
+			graphics.printText(col, row, string, SwingGraphicsFrame.WHITE);
 			row++;
 			col = 0;
 		}
@@ -130,11 +127,11 @@ public class GameGui implements IGuiController {
 				.createFromString(currentMessage);
 		for (int y = y0; y < y0 + dialog.getHeight(); y++) {
 			for (int x = x0; x < x0 + dialog.getWidth(); x++) {
-				drawDirectlyToGraphicsDevice(x, y, IGuiView.WHITE);
+				drawDirectlyToGraphicsDevice(x, y, SwingGraphicsFrame.WHITE);
 			}
 		}
 		graphics.printText(defaultCol, defaultRow, dialog.getMessage(),
-				IGuiView.BLACK);
+				SwingGraphicsFrame.BLACK);
 	}
 
 	private void drawIfPrioIsRight(int x, int y, int prio, int yBottom,
@@ -208,12 +205,10 @@ public class GameGui implements IGuiController {
 		return waitingForDeblockingKeyPress;
 	}
 
-	@Override
 	public void setInput(String textInput) {
 		this.input = textInput;
 	}
 
-	@Override
 	public void handleKeyboardInput() {
 		if (isKeyPressWaiting()) {
 			gameState.setHaveKey(true);
@@ -228,7 +223,6 @@ public class GameGui implements IGuiController {
 		}
 	}
 
-	@Override
 	public void enterKeyPressed() {
 		setKeyPressWaiting(true);
 		if (acceptsInput()) {
@@ -242,7 +236,6 @@ public class GameGui implements IGuiController {
 		}
 	}
 
-	@Override
 	public void backspaceKeyPressed() {
 		setKeyPressWaiting(true);
 		if (acceptsInput()) {
@@ -254,7 +247,6 @@ public class GameGui implements IGuiController {
 		return gameState.playerControl() || isWaitingForDeblockingKeyPress();
 	}
 
-	@Override
 	public void changeDirection(int direction) {
 		setKeyPressWaiting(true);
 		if (acceptsInput()) {
