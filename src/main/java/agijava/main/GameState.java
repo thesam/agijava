@@ -78,16 +78,24 @@ public class GameState {
 		return isGameExited;
 	}
 
-	public void jumpForward(int blockSize) {
-		currentLogic.increaseOffset(blockSize);
-	}
-
 	public int getVar(int var) {
 		return vars[var];
 	}
 
+	public void setVar(int varNo, int newValue) {
+		vars[varNo] = newValue;
+	}
+
 	public boolean getFlag(int flagNo) {
 		return flags[flagNo];
+	}
+
+	public void setFlag(int flagNo) {
+		flags[flagNo] = true;
+	}
+	
+	public void reset(int flagNo) {
+		flags[flagNo] = false;
 	}
 
 	public boolean has(int itemNo) {
@@ -103,12 +111,12 @@ public class GameState {
 		return haveKey;
 	}
 
-	public int getLogicOffset() {
-		return currentLogic.getCurrentOffset();
+	public void jumpForward(int blockSize) {
+		currentLogic.increaseOffset(blockSize);
 	}
 
-	public void setVar(int varNo, int newValue) {
-		vars[varNo] = newValue;
+	public int getLogicOffset() {
+		return currentLogic.getCurrentOffset();
 	}
 
 	public void callNewLogic(Integer logicNo) {
@@ -120,29 +128,41 @@ public class GameState {
 		if (scanStart > 0) {
 			currentLogic.setOffset(scanStart);
 		}
-
 	}
 
-	private int getScanStart(Integer logicNo) {
-		if (scanStarts.containsKey(logicNo)) {
-			return scanStarts.get(logicNo);
+	public void returnToCallingLogic() {
+		if (logicStack.isEmpty()) {
+			currentLogic = null;
 		} else {
-			return 0;
+			currentLogic = logicStack.pop();
 		}
-
-	}
-
-	public void setFlag(int flagNo) {
-		flags[flagNo] = true;
 	}
 
 	public void clearLogicStack() {
 		logicStack.clear();
 	}
-
-	public void reset(int flagNo) {
-		flags[flagNo] = false;
+	
+	public Logic getCurrentLogic() {
+		return currentLogic;
 	}
+
+	public void setCurrentLogic(Logic object) {
+		currentLogic = object;
+	}
+	
+	public boolean executeNextCommand() {
+		if (currentLogic == null) {
+			return false;
+		} else {
+			LogicCommand nextCommand = currentLogic.getNextCommand();
+			nextCommand.execute(this);
+			return true;
+		}
+	}
+
+
+
+
 
 	public void addAnimatedObject(int objNo) {
 		AnimatedObject obj = null;
@@ -169,6 +189,14 @@ public class GameState {
 	public AnimatedObject getAnimatedObject(int objNo) {
 		return animatedObjects.get(objNo);
 	}
+	
+	public Collection<AnimatedObject> getAnimatedObjects() {
+		return animatedObjects.values();
+	}
+	
+	public void clearAnimatedObjects() {
+		animatedObjects.clear();
+	}
 
 	public void setHorizon(int newHorizon) {
 		this.horizon = newHorizon;
@@ -177,8 +205,27 @@ public class GameState {
 	public void showPictureFromBuffer() {
 		currentPicture = bufferPicture;
 		displayedBackgroundViews = bufferBackgroundViews;
-
 	}
+	
+	public List<AnimatedObject> getBackgroundViews() {
+		return displayedBackgroundViews;
+	}
+	
+	public void addBackgroundViewToBuffer(int viewNo, int loopNo, int celNo,
+			int x, int y, int priority, int margin) {
+		AnimatedObject animatedObject = new AnimatedObject(viewRepository);
+		animatedObject.setView(viewNo);
+		animatedObject.setCurrentViewLoop(loopNo);
+		animatedObject.setCurrentViewCel(celNo);
+		animatedObject.setPosition(new Position(x,y));
+		animatedObject.setPriority(priority);
+		bufferBackgroundViews.add(animatedObject);
+	}
+
+	public void clearBackgroundViews() {
+		bufferBackgroundViews.clear();
+	}
+
 
 	public void setPictureInBuffer(int picNo) {
 		bufferPicture = pictureRepository.getPicture(picNo);
@@ -188,13 +235,7 @@ public class GameState {
 		return currentPicture;
 	}
 
-	public Collection<AnimatedObject> getAnimatedObjects() {
-		return animatedObjects.values();
-	}
 
-	public Logic getCurrentLogic() {
-		return currentLogic;
-	}
 
 	public void addText(int row, int col, String message) {
 		displayedTexts.add(new Text(row, col, message));
@@ -204,11 +245,28 @@ public class GameState {
 	public List<Text> getDisplayedTexts() {
 		return displayedTexts;
 	}
+	
+	public void clearDisplayedTexts() {
+		displayedTexts.clear();
+	}
 
 	public void setString(int stringNo, String message) {
 		this.strings[stringNo] = message;
 	}
+	
+	public String getString(int i) {
+		return strings[i];
+	}
 
+	private int getScanStart(Integer logicNo) {
+		if (scanStarts.containsKey(logicNo)) {
+			return scanStarts.get(logicNo);
+		} else {
+			return 0;
+		}
+
+	}
+	
 	public void setScanStart(int entryNumber, int offset) {
 		scanStarts.put(entryNumber, offset);
 	}
@@ -238,33 +296,6 @@ public class GameState {
 		return this.newRoomNumber;
 	}
 
-	public void setCurrentLogic(Logic object) {
-		currentLogic = object;
-	}
-
-	public void addBackgroundViewToBuffer(int viewNo, int loopNo, int celNo,
-			int x, int y, int priority, int margin) {
-		AnimatedObject animatedObject = new AnimatedObject(viewRepository);
-		animatedObject.setView(viewNo);
-		animatedObject.setCurrentViewLoop(loopNo);
-		animatedObject.setCurrentViewCel(celNo);
-		animatedObject.setPosition(new Position(x,y));
-		animatedObject.setPriority(priority);
-		bufferBackgroundViews.add(animatedObject);
-	}
-
-	public List<AnimatedObject> getBackgroundViews() {
-		return displayedBackgroundViews;
-	}
-
-	public void clearBackgroundViews() {
-		bufferBackgroundViews.clear();
-	}
-
-	public void clearDisplayedTexts() {
-		displayedTexts.clear();
-	}
-
 	public void setCursorChar(char charAt) {
 		this.cursorChar = charAt;
 	}
@@ -283,10 +314,6 @@ public class GameState {
 
 	public void setPlayerControl(boolean b) {
 		playerControl = b;
-	}
-
-	public void clearAnimatedObjects() {
-		animatedObjects.clear();
 	}
 
 	public List<Integer> getLatestSaidWords() {
@@ -351,30 +378,8 @@ public class GameState {
 		return cursorChar;
 	}
 
-	public String getString(int i) {
-		return strings[i];
-	}
-
 	public void setAcceptInput(boolean b) {
 		this.acceptInput = b;
-	}
-
-	public boolean executeNextCommand() {
-		if (currentLogic == null) {
-			return false;
-		} else {
-			LogicCommand nextCommand = currentLogic.getNextCommand();
-			nextCommand.execute(this);
-			return true;
-		}
-	}
-
-	public void returnToCallingLogic() {
-		if (logicStack.isEmpty()) {
-			currentLogic = null;
-		} else {
-			currentLogic = logicStack.pop();
-		}
 	}
 
 }
