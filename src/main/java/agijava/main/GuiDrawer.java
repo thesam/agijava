@@ -56,7 +56,7 @@ public class GuiDrawer {
 	}
 
 	public void drawCurrentInputLine() {
-		if (gameState.playerControl()) {
+		if (gameState.playerControl) {
 			gui.drawCurrentInputLine();
 		}		
 	}

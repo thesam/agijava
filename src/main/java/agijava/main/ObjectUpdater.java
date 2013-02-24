@@ -72,7 +72,7 @@ public class ObjectUpdater {
 					&& celIndex > 0) {
 				animatedObject.setCurrentViewCel(celIndex - 1);
 			} else {
-				gameState.setFlag(animatedObject.getSingleLoopFinishFlag());
+				gameState.flags[animatedObject.getSingleLoopFinishFlag()] = true;
 				animatedObject.setInSingleLoop(false);
 			}
 		}
@@ -163,7 +163,7 @@ public class ObjectUpdater {
 	private void stopMovingObject(AnimatedObject movingObject) {
 		movingObject.setMoving(false);
 		movingObject.setMovingToDestination(false);
-		gameState.setFlag(movingObject.getMoveFinishedFlagNo());
+		gameState.flags[movingObject.getMoveFinishedFlagNo()] = true;
 	}
 
 	private void handleEgoMovement(AnimatedObject movingObject, Position newPos, Picture currentPicture) {
@@ -186,10 +186,10 @@ public class ObjectUpdater {
 		if (viewIsOnTriggerLineInPicture(movingObject, newPos,
 				currentPicture)) {
 			gameState
-					.setFlag(GREENLINE_TRIGGER);
+					.flags[GREENLINE_TRIGGER] = true;
 		} else {
 			gameState
-					.reset(GREENLINE_TRIGGER);
+					.flags[GREENLINE_TRIGGER] = false;
 		}
 	}
 

@@ -32,7 +32,7 @@ public class GameEngineTest {
 		aGameEngine();
 		anExitedGameState();
 		gameEngine.run();
-		verify(gameState).setFlag(5);
+		assertTrue(gameState.flags[5]);
 	}
 
 	@Test
@@ -54,6 +54,7 @@ public class GameEngineTest {
 	
 	private void aGameEngine() {
 		gameState = mock(GameState.class);
+		gameState.flags = new boolean[255];
 		runningGame = mock(RunningGame.class);
 		controller = mock(GameGui.class);
 		gameEngine = new GameEngine(gameState, runningGame, null, controller);

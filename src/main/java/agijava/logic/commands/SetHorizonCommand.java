@@ -7,7 +7,7 @@ public class SetHorizonCommand extends AbstractLogicCommand {
 	@Override
 	public void execute(GameState gameState) {
 		int newHorizon = args.get(0);
-		gameState.setHorizon(newHorizon);
+		gameState.horizon = newHorizon;
 	}
 
 	@Override

@@ -93,14 +93,6 @@ public class GameStateTest {
 	}
 
 	@Test
-	public void canSetFlagState() throws Exception {
-		aGameState();
-		int flagNo = 5;
-		gameState.setFlag(flagNo);
-		assertTrue(gameState.getFlag(flagNo));
-	}
-
-	@Test
 	public void canCheckIfPlayerHasItem() throws Exception {
 		aGameState();
 		int itemNo = 100;
@@ -180,24 +172,6 @@ public class GameStateTest {
 	}
 
 	@Test
-	public void canStorePlayerControlState() throws Exception {
-		aGameState();
-		gameState.setPlayerControl(true);
-		assertTrue(gameState.playerControl());
-		gameState.setPlayerControl(false);
-		assertFalse(gameState.playerControl());
-	}
-
-	@Test
-	public void canResetFlag() throws Exception {
-		aGameState();
-		gameState.setFlag(100);
-		assertTrue(gameState.getFlag(100));
-		gameState.reset(100);
-		assertFalse(gameState.getFlag(100));
-	}
-
-	@Test
 	public void canFetchCurrentOffsetFromLogic() throws Exception {
 		aGameState();
 		aLogic();
@@ -273,14 +247,6 @@ public class GameStateTest {
 		aGameState();
 		List<Integer> latestSaidWords = gameState.getLatestSaidWords();
 		assertTrue(latestSaidWords.isEmpty());
-	}
-	
-	@Test
-	public void canStoreHorizon() throws Exception {
-		aGameState();
-		gameState.setHorizon(5);
-		assertEquals(5,gameState.getHorizon());
-		
 	}
 	
 	@Test

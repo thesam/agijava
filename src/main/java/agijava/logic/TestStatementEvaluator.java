@@ -168,7 +168,7 @@ public class TestStatementEvaluator {
 
 		List<Integer> wordNumbersFromInput = getLatestInputWordNumbers(gameState);
 		if (wordNumbersFromInput.equals(wordNumbersFromStatement)) {
-			gameState.setFlag(GameEngine.FLAG_TEXT_ACCEPTED);
+			gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED] = true;
 			gameState.setLatestInput("");
 			return createStatement(true);
 		} else {
@@ -215,7 +215,7 @@ public class TestStatementEvaluator {
 	}
 
 	private boolean gameStateHasAlreadyAcceptedInput(GameState gameState) {
-		return gameState.getFlag(GameEngine.FLAG_TEXT_ACCEPTED);
+		return gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED];
 	}
 
 	private EvaluatedTestStatement createRightPosnStatement(
@@ -313,8 +313,8 @@ public class TestStatementEvaluator {
 			RawByteArray testStatementBytes, GameState gameState) {
 		EvaluatedTestStatement maybeAStatement;
 		int flagNo = testStatementBytes.getNextAndStep();
-		maybeAStatement = createStatement(gameState.getFlag(gameState
-				.getVar(flagNo)));
+		maybeAStatement = createStatement(gameState.flags[gameState
+				.getVar(flagNo)]);
 		return maybeAStatement;
 	}
 
@@ -322,7 +322,7 @@ public class TestStatementEvaluator {
 			RawByteArray testStatementBytes, GameState gameState) {
 		EvaluatedTestStatement maybeAStatement;
 		int flagNo = testStatementBytes.getNextAndStep();
-		maybeAStatement = createStatement(gameState.getFlag(flagNo));
+		maybeAStatement = createStatement(gameState.flags[flagNo]);
 		return maybeAStatement;
 	}
 

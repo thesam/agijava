@@ -41,10 +41,9 @@ public class GuiDrawerTest {
 	@Test
 	public void drawsCurrentInputLineWithGuiIfPlayerControl() throws Exception {
 		aGuiDrawer();
-		when(gameState.playerControl()).thenReturn(true);
+		gameState.playerControl = true;
 		drawer.drawCurrentInputLine();
 
-		verify(gameState).playerControl();
 		verify(gui).drawCurrentInputLine();
 	}
 

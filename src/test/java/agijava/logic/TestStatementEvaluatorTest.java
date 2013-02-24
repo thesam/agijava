@@ -166,11 +166,10 @@ public class TestStatementEvaluatorTest {
 		anEvaluator();
 		inputList.add(BYTE_ISSET);
 		inputList.add(10);
-		when(gameState.getFlag(10)).thenReturn(true);
+		gameState.flags[10] = true;
 
 		statementIsEvaluated();
 
-		verify(gameState).getFlag(10);
 		statementIsTrue();
 	}
 
@@ -180,12 +179,11 @@ public class TestStatementEvaluatorTest {
 		inputList.add(BYTE_ISSETV);
 		inputList.add(5);
 		when(gameState.getVar(5)).thenReturn(10);
-		when(gameState.getFlag(10)).thenReturn(true);
+		gameState.flags[10] = true;
 
 		statementIsEvaluated();
 
 		verify(gameState).getVar(5);
-		verify(gameState).getFlag(10);
 		statementIsTrue();
 	}
 
@@ -208,13 +206,13 @@ public class TestStatementEvaluatorTest {
 		int itemNo = 10;
 		int roomNoVar = 20;
 		int roomNo = 5;
-		
+
 		anEvaluator();
 		inputList.add(BYTE_OBJINROOM);
 		inputList.add(itemNo);
 		inputList.add(roomNoVar);
 
-		InventoryObject inventoryObject = new InventoryObject(roomNo,null);
+		InventoryObject inventoryObject = new InventoryObject(roomNo, null);
 
 		when(gameState.getInventoryObject(itemNo)).thenReturn(inventoryObject);
 		when(gameState.getVar(roomNoVar)).thenReturn(roomNo);
@@ -328,16 +326,15 @@ public class TestStatementEvaluatorTest {
 		inputList.add(firstWordNumber & 0xff);
 		inputList.add(firstWordNumber >> 8);
 
-		when(gameState.getFlag(GameEngine.FLAG_TEXT_ACCEPTED)).thenReturn(false);
+		gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED] = false;
 		when(gameState.getLatestInput()).thenReturn("Hello Hello");
 		when(gameState.getNumberForWord("Hello")).thenReturn(1);
 
 		statementIsEvaluated();
 
-		verify(gameState).getFlag(GameEngine.FLAG_TEXT_ACCEPTED);
 		verify(gameState).getLatestInput();
 		verify(gameState, times(2)).getNumberForWord("Hello");
-		verify(gameState).setFlag(GameEngine.FLAG_TEXT_ACCEPTED);
+		assertTrue(gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED]);
 		verify(gameState).setLatestInput("");
 
 		statementIsTrue();
@@ -355,7 +352,7 @@ public class TestStatementEvaluatorTest {
 		inputList.add(firstWordNumber & 0xff);
 		inputList.add(firstWordNumber >> 8);
 
-		when(gameState.getFlag(GameEngine.FLAG_TEXT_ACCEPTED)).thenReturn(false);
+		gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED] = false;
 		when(gameState.getLatestInput()).thenReturn("Hello Hellox");
 		when(gameState.getNumberForWord("Hello")).thenReturn(1);
 		when(gameState.getNumberForWord("Hellox")).thenReturn(
@@ -363,11 +360,10 @@ public class TestStatementEvaluatorTest {
 
 		statementIsEvaluated();
 
-		verify(gameState).getFlag(GameEngine.FLAG_TEXT_ACCEPTED);
 		verify(gameState).getLatestInput();
 		verify(gameState).getNumberForWord("Hello");
 		verify(gameState).getNumberForWord("Hellox");
-		verify(gameState, never()).setFlag(GameEngine.FLAG_TEXT_ACCEPTED);
+		assertFalse(gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED]);
 		verify(gameState, never()).setLatestInput("");
 
 		statementIsFalse();
@@ -384,11 +380,9 @@ public class TestStatementEvaluatorTest {
 		inputList.add(firstWordNumber & 0xff);
 		inputList.add(firstWordNumber >> 8);
 
-		when(gameState.getFlag(GameEngine.FLAG_TEXT_ACCEPTED)).thenReturn(true);
+		gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED] = true;
 
 		statementIsEvaluated();
-
-		verify(gameState).getFlag(GameEngine.FLAG_TEXT_ACCEPTED);
 
 		statementIsFalse();
 	}
@@ -406,18 +400,17 @@ public class TestStatementEvaluatorTest {
 		inputList.add(firstWordNumber & 0xff);
 		inputList.add(firstWordNumber >> 8);
 
-		when(gameState.getFlag(GameEngine.FLAG_TEXT_ACCEPTED)).thenReturn(false);
+		gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED] = false;
 		when(gameState.getLatestInput()).thenReturn("Hello Hellox");
 		when(gameState.getNumberForWord("Hello")).thenReturn(1);
 		when(gameState.getNumberForWord("Hellox")).thenReturn(2);
 
 		statementIsEvaluated();
 
-		verify(gameState).getFlag(GameEngine.FLAG_TEXT_ACCEPTED);
 		verify(gameState).getLatestInput();
 		verify(gameState).getNumberForWord("Hello");
 		verify(gameState).getNumberForWord("Hellox");
-		verify(gameState, never()).setFlag(GameEngine.FLAG_TEXT_ACCEPTED);
+		assertFalse(gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED]);
 		verify(gameState, never()).setLatestInput("");
 
 		statementIsFalse();
@@ -427,23 +420,23 @@ public class TestStatementEvaluatorTest {
 	public void canEvaluateTwoStatementsOredTogether() throws Exception {
 		anEvaluator();
 		inputList.add(BYTE_OR);
-		
+
 		inputList.add(BYTE_ISSET);
 		inputList.add(5);
 
 		inputList.add(BYTE_ISSET);
 		inputList.add(6);
-		
+
 		inputList.add(BYTE_OR);
-		
-		when(gameState.getFlag(5)).thenReturn(true);
-		when(gameState.getFlag(6)).thenReturn(false);
-		
+
+		gameState.flags[5] = true;
+		gameState.flags[6] = false;
+
 		statementIsEvaluated();
-		
+
 		statementIsTrue();
 	}
-	
+
 	@Test
 	public void canEvaluateTwoStatementsAndedTogether() throws Exception {
 		anEvaluator();
@@ -452,12 +445,12 @@ public class TestStatementEvaluatorTest {
 
 		inputList.add(BYTE_ISSET);
 		inputList.add(6);
-		
-		when(gameState.getFlag(5)).thenReturn(true);
-		when(gameState.getFlag(6)).thenReturn(false);
-		
-		statementIsEvaluated();		
-		
+
+		gameState.flags[5] = true;
+		gameState.flags[6] = false;
+
+		statementIsEvaluated();
+
 		statementIsFalse();
 	}
 
@@ -510,6 +503,7 @@ public class TestStatementEvaluatorTest {
 
 	private void aGameState() {
 		gameState = mock(GameState.class);
+		gameState.flags = new boolean[255];
 	}
 
 	private void anEvaluator() {

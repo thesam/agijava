@@ -48,7 +48,7 @@ public class GameEngine {
 	}
 
 	private void initGameState() {
-		gameState.setFlag(FLAG_NEW_ROOM);
+		gameState.flags[FLAG_NEW_ROOM] = true;
 		gameState.callNewLogic(0);
 	}
 
@@ -87,8 +87,8 @@ public class GameEngine {
 
 	private void resetInputState() {
 		gameState.setLatestInput("");
-		gameState.reset(GameEngine.FLAG_TEXT_ENTERED);
-		gameState.reset(GameEngine.FLAG_TEXT_ACCEPTED);
+		gameState.flags[GameEngine.FLAG_TEXT_ENTERED] = false;
+		gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED] = false;
 	}
 
 	private void handleNewRoom() {
@@ -126,10 +126,10 @@ public class GameEngine {
 			// will be called. In the subsequent cycle f5 is reset to 0 (see
 			// section Interpreter work cycle and the source of the
 			// "Thunderstorm" program. This is very important!).
-			gameState.setFlag(GameEngine.FLAG_NEW_ROOM);
+			gameState.flags[GameEngine.FLAG_NEW_ROOM] = true;
 			// Clear keyboard input buffer and return to the main AGI loop.
 		} else {
-			gameState.reset(FLAG_NEW_ROOM);
+			gameState.flags[FLAG_NEW_ROOM] = false;
 		}
 	}
 

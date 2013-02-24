@@ -218,7 +218,7 @@ public class GameGui {
 		}
 		if (isInputWaiting()) {
 			gameState.setLatestInput(getLatestInput());
-			gameState.setFlag(GameEngine.FLAG_TEXT_ENTERED);
+			gameState.flags[GameEngine.FLAG_TEXT_ENTERED] = true;
 			setInputIsWaiting(false);
 		}
 	}
@@ -244,7 +244,7 @@ public class GameGui {
 	}
 
 	private boolean acceptsInput() {
-		return gameState.playerControl() || isWaitingForDeblockingKeyPress();
+		return gameState.playerControl || isWaitingForDeblockingKeyPress();
 	}
 
 	public void changeDirection(int direction) {

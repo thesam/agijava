@@ -7,7 +7,7 @@ public class ResetCommand extends AbstractLogicCommand {
 	@Override
 	public void execute(GameState gameState) {
 		int flagNo = args.get(0);
-		gameState.reset(flagNo);
+		gameState.flags[flagNo] = false;
 	}
 
 	@Override

@@ -11,6 +11,9 @@ import agijava.logic.Logic;
 import agijava.picture.Picture;
 
 public class GameState {
+	
+	public int horizon; // TODO: Default value
+	public boolean playerControl; // TODO: Default value
 
 	private LogicRepository logicRepository;
 	private PictureRepository pictureRepository;
@@ -23,11 +26,9 @@ public class GameState {
 	private boolean haveKey;
 	private boolean newRoomWaiting;
 	private boolean statusLineOn;
-	private boolean playerControl;
 	private boolean messageShown;
-	private int horizon;
 	
-	private boolean[] flags;
+	public boolean[] flags;
 	private int[] vars;
 	private String[] strings;
 
@@ -84,18 +85,6 @@ public class GameState {
 
 	public void setVar(int varNo, int newValue) {
 		vars[varNo] = newValue;
-	}
-
-	public boolean getFlag(int flagNo) {
-		return flags[flagNo];
-	}
-
-	public void setFlag(int flagNo) {
-		flags[flagNo] = true;
-	}
-	
-	public void reset(int flagNo) {
-		flags[flagNo] = false;
 	}
 
 	public boolean has(int itemNo) {
@@ -196,10 +185,6 @@ public class GameState {
 	
 	public void clearAnimatedObjects() {
 		animatedObjects.clear();
-	}
-
-	public void setHorizon(int newHorizon) {
-		this.horizon = newHorizon;
 	}
 
 	public void showPictureFromBuffer() {
@@ -308,10 +293,6 @@ public class GameState {
 		return statusLineOn;
 	}
 
-	public boolean playerControl() {
-		return playerControl;
-	}
-
 	public void setPlayerControl(boolean b) {
 		playerControl = b;
 	}
@@ -368,10 +349,6 @@ public class GameState {
 
 	public List<AnimatedObject> getBufferedBackgroundViews() {
 		return bufferBackgroundViews;
-	}
-
-	public int getHorizon() {
-		return horizon;
 	}
 
 	public char getCursorChar() {
