@@ -59,7 +59,7 @@ public class InventoryObjectsFactory {
 			HashMap<Integer, Integer> roomNumbers, int namesOffset) {
 		int currentItem = 0;
 		raw.setStopOffset(namesOffset);
-		while (raw.getNextOffsetToBeRead() < raw.getStopOffset()) {
+		while (raw.getCurrentOffset() < raw.getStopOffset()) {
 			int itemNameOffset = getItemNameSectionOffset(raw);
 			int startingRoomNumber = raw.getNextAndStep();
 			roomNumbers.put(currentItem, startingRoomNumber);
@@ -79,7 +79,7 @@ public class InventoryObjectsFactory {
 			HashMap<Integer, Integer> roomNumbers) {
 		int currentItem = 0;
 		InventoryObjects inv = new InventoryObjects();
-		while (raw.getNextOffsetToBeRead() < raw.getSize()) {
+		while (raw.getCurrentOffset() < raw.getSize()) {
 			String name = readItemName(raw, offsets, currentItem);
 			InventoryObject inventoryObject = new InventoryObject(roomNumbers.get(currentItem),name);
 			inv.add(currentItem, inventoryObject);
@@ -97,7 +97,7 @@ public class InventoryObjectsFactory {
 
 	private static String readString(RawByteArray raw, int nextOffset) {
 		String name = "";
-		while (raw.getNextOffsetToBeRead() < nextOffset) {
+		while (raw.getCurrentOffset() < nextOffset) {
 			int currentByte = raw.getNextAndStep();
 			if (currentByte == -1 || currentByte == 0) {
 				break;

@@ -43,7 +43,7 @@ public class RawByteArray {
 		return offset;
 	}
 
-	public int getNextOffsetToBeRead() {
+	public int getCurrentOffset() {
 		return currentOffset;
 	}
 
@@ -61,10 +61,6 @@ public class RawByteArray {
 		return rawdata.size();
 	}
 
-	public void stepBack() {
-		stepBack(1);
-	}
-
 	public RawByteArray getSubsetClone(int ifLength) {
 		RawByteArray subset = new RawByteArray(rawdata);
 		subset.setOffset(this.currentOffset);
@@ -80,16 +76,12 @@ public class RawByteArray {
 		currentOffset += ifLength;
 	}
 
-	public void stepBack(int i) {
-		currentOffset -= i;
-	}
-
 	public int getByteAtOffset(int i) {
 		return rawdata.get(i);
 	}
 
 	public boolean hasMoreBytes() {
-		return getNextOffsetToBeRead() < rawdata.size();
+		return getCurrentOffset() < rawdata.size();
 	}
 
 	public void setStopOffset(int messageOffset) {

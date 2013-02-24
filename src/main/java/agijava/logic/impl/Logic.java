@@ -22,7 +22,7 @@ public class Logic implements ILogic {
 		this.raw = raw;
 		this.messages = messages;
 		this.entryNumber = logicNumber;
-		startOffset = raw.getNextOffsetToBeRead();
+		startOffset = raw.getCurrentOffset();
 	}
 
 	private void initCommandMap() {
@@ -257,7 +257,7 @@ public class Logic implements ILogic {
 
 	@Override
 	public int getCurrentOffset() {
-		return raw.getNextOffsetToBeRead();
+		return raw.getCurrentOffset();
 	}
 
 	@Override
