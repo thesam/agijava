@@ -6,12 +6,12 @@ import java.util.List;
 public class RawByteArray {
 
 	private List<Integer> rawdata;
-	private int offset;
+	private int currentOffset;
 	private int stopOffset;
 
 	public RawByteArray(List<Integer> rawdata, int offset) {
 		this.rawdata = rawdata;
-		this.offset = offset;
+		this.currentOffset = offset;
 	}
 
 	public RawByteArray() {
@@ -31,8 +31,8 @@ public class RawByteArray {
 	}
 
 	public int getNextAndStep() {
-		int retVal = rawdata.get(offset);
-		offset++;
+		int retVal = rawdata.get(currentOffset);
+		currentOffset++;
 		return retVal & 0xff;
 	}
 	
@@ -44,7 +44,7 @@ public class RawByteArray {
 	}
 
 	public int getNextOffsetToBeRead() {
-		return offset;
+		return currentOffset;
 	}
 
 	public List<Integer> getBytes(int numberOfArgs) {
@@ -65,49 +65,39 @@ public class RawByteArray {
 		stepBack(1);
 	}
 
-	public void setStopOffset(int messageOffset) {
-		this.stopOffset = messageOffset;
-	}
-
-	public int getStopOffset() {
-		return stopOffset;
-	}
-
 	public RawByteArray getSubsetClone(int ifLength) {
 		RawByteArray subset = new RawByteArray(rawdata);
-		subset.setOffset(this.offset);
-		subset.setStopOffset(offset + ifLength);
+		subset.setOffset(this.currentOffset);
+		subset.setStopOffset(currentOffset + ifLength);
 		return subset;
 	}
 
 	public void setOffset(int offset2) {
-		offset = offset2;
+		currentOffset = offset2;
 	}
 
 	public void step(int ifLength) {
-		offset += ifLength;
+		currentOffset += ifLength;
 	}
 
 	public void stepBack(int i) {
-		offset -= i;
-	}
-
-	public void moveStopOffsetBack(int i) {
-		stopOffset -= i;
-
+		currentOffset -= i;
 	}
 
 	public int getByteAtOffset(int i) {
 		return rawdata.get(i);
 	}
 
-	public void moveStopOffsetForward(int elseOffset) {
-		stopOffset += elseOffset;
-
-	}
-	
 	public boolean hasMoreBytes() {
 		return getNextOffsetToBeRead() < rawdata.size();
+	}
+
+	public void setStopOffset(int messageOffset) {
+		this.stopOffset = messageOffset;
+	}
+
+	public int getStopOffset() {
+		return stopOffset;
 	}
 
 }
