@@ -49,7 +49,7 @@ public class GuiDrawer {
 	}
 
 	public void drawDisplayedTexts() {
-		List<Text> texts = gameState.getDisplayedTexts();
+		List<Text> texts = gameState.displayedTexts;
 		for (Text text : texts) {
 			gui.printText(text);
 		}
@@ -62,7 +62,7 @@ public class GuiDrawer {
 	}
 
 	public void drawStatusLine() {
-		if (gameState.isStatusLineOn()) {
+		if (gameState.statusLineOn) {
 			gui.drawStatusBar();
 		}		
 	}

@@ -211,10 +211,10 @@ public class GameGui {
 
 	public void handleKeyboardInput() {
 		if (isKeyPressWaiting()) {
-			gameState.setHaveKey(true);
+			gameState.haveKey = true;
 			setKeyPressWaiting(false);
 		} else {
-			gameState.setHaveKey(false);
+			gameState.haveKey = false;
 		}
 		if (isInputWaiting()) {
 			gameState.setLatestInput(getLatestInput());

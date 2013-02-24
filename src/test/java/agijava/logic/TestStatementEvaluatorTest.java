@@ -185,19 +185,19 @@ public class TestStatementEvaluatorTest {
 		statementIsTrue();
 	}
 
-	@Test
-	public void canEvaluateTrueHasStatement() throws Exception {
-		anEvaluator();
-		inputList.add(BYTE_HAS);
-		inputList.add(100);
-
-		when(gameState.has(100)).thenReturn(true);
-
-		statementIsEvaluated();
-
-		verify(gameState).has(100);
-		statementIsTrue();
-	}
+//	@Test
+//	public void canEvaluateTrueHasStatement() throws Exception {
+//		anEvaluator();
+//		inputList.add(BYTE_HAS);
+//		inputList.add(100);
+//
+//		when(gameState.has(100)).thenReturn(true);
+//
+//		statementIsEvaluated();
+//
+//		verify(gameState).has(100);
+//		statementIsTrue();
+//	}
 
 	@Test
 	public void canEvaluateTrueObjInRoomStatement() throws Exception {

@@ -18,13 +18,14 @@ public class LogicRepository {
 	public LogicRepository(List<ResourceReference> logicReferences) throws IOException {
 		allLogic = new HashMap<Integer,Logic>();
 		for (ResourceReference resourceReference : logicReferences) {
+			int entryNumber = resourceReference.getEntryNumber();
 			try {
 				Resource res = ResourceReaderFactory.getInstance(resourceReference).read();
 				LogicFactory logicReader = new LogicFactory(res);
 				Logic logic = logicReader.getLogic();		
-				allLogic.put(resourceReference.getEntryNumber(),logic);
+				allLogic.put(entryNumber,logic);
 			} catch (Exception e) {
-				System.err.println("Logic " + resourceReference.getEntryNumber() + " failed to load. TODO: Handle incorrect logic better!");
+				Logger.warn("Failed to load logic " + entryNumber);
 			}
 		}
 	}

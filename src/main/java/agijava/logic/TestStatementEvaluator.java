@@ -305,7 +305,7 @@ public class TestStatementEvaluator {
 			RawByteArray testStatementBytes, GameState gameState) {
 		EvaluatedTestStatement maybeAStatement;
 		int itemNo = testStatementBytes.getNextAndStep();
-		maybeAStatement = createStatement(gameState.has(itemNo));
+		maybeAStatement = createStatement(gameState.inventoryObjects.playerHas(itemNo));
 		return maybeAStatement;
 	}
 

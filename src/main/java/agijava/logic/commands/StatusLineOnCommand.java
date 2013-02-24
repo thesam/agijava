@@ -6,7 +6,7 @@ public class StatusLineOnCommand extends AbstractLogicCommand {
 
 	@Override
 	public void execute(GameState gameState) {
-		gameState.setStatusLineOn(true);
+		gameState.statusLineOn = true;
 	}
 
 	@Override

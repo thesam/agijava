@@ -92,7 +92,7 @@ public class GameEngine {
 	}
 
 	private void handleNewRoom() {
-		if (gameState.isNewRoomWaiting()) {
+		if (gameState.newRoomWaiting) {
 			gameState.setNewRoomWaiting(false);
 			// Commands stop.update and unanimate are issued to all objects;
 			AnimatedObject ego = gameState.animatedObjects.get(0);
@@ -112,7 +112,7 @@ public class GameEngine {
 			gameState.setVar(GameEngine.VAR_PREVIOUS_ROOM_NO,
 					gameState.getVar(GameEngine.VAR_ROOM_NO));
 			gameState.setVar(GameEngine.VAR_ROOM_NO,
-					gameState.getNewRoomNumber());
+					gameState.newRoomNumber);
 			// Logic(i) resource is loaded where i is the value of v0 !
 			// Set Ego coordinates according to v2:
 			// if Ego touched the bottom edge, put it on the horizon;
@@ -147,7 +147,7 @@ public class GameEngine {
 	private void waitForUserToCloseMessage() {
 		if (gameState.isMessageShowing()) {
 			waitForKeyPress();
-			gameState.clearMessage();
+			gameState.messageShown = false;
 		}
 	}
 

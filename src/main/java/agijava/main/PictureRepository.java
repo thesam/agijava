@@ -17,13 +17,14 @@ public class PictureRepository {
 	public PictureRepository(List<ResourceReference> pictureReferences) {
 		allPics = new HashMap<Integer,Picture>();
 		for (ResourceReference resourceReference : pictureReferences) {
+			int entryNumber = resourceReference.getEntryNumber();
 			try {
 				Resource res = ResourceReaderFactory.getInstance(resourceReference).read();
 				PictureFactory reader = new PictureFactory(res,new PictureCommandFactory());
 				Picture pic = reader.getPicture();		
-				allPics.put(resourceReference.getEntryNumber(),pic);
+				allPics.put(entryNumber,pic);
 			} catch (Exception e) {
-				System.err.println("TODO: Handle incorrect logic better!");
+				Logger.warn("Failed to load picture " + entryNumber);
 			}
 		}
 	}

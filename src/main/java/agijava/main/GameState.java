@@ -14,39 +14,39 @@ public class GameState {
 	public int horizon; // TODO: Default value
 	public boolean playerControl; // TODO: Default value
 
-	private final LogicRepository logicRepository;
-	private final PictureRepository pictureRepository;
 	public final ViewRepository viewRepository;
-	private final WordsTok wordsTok;
-	private final InventoryObjects inventoryObjects;
-	
 	// State
 	public boolean isGameExited;  // TODO: Default value
 	public boolean haveKey;
-	private boolean newRoomWaiting;
-	private boolean statusLineOn;
-	private boolean messageShown;
-	
 	public boolean[] flags;
+	public String currentMessage;
+	public Map<Integer, AnimatedObject> animatedObjects;
+	public final Stack<Logic> logicStack;
+	public List<AnimatedObject> displayedBackgroundViews;
+	public int newRoomNumber;
+	private final LogicRepository logicRepository;
+	private final PictureRepository pictureRepository;
+	private final WordsTok wordsTok;
+	public final InventoryObjects inventoryObjects;
+	
+	public boolean newRoomWaiting;
+	public boolean statusLineOn;
+	public boolean messageShown;
+	
 	private int[] vars;
 	private String[] strings;
 
-	public String currentMessage;
 	private char cursorChar;
 
 	private Logic currentLogic;
 	private Picture currentPicture;
 	private Picture bufferPicture;
-	public Map<Integer, AnimatedObject> animatedObjects;
-	public final Stack<Logic> logicStack;
-	private List<Text> displayedTexts;
+	public List<Text> displayedTexts;
 
 	private Map<Integer, Integer> scanStarts;
-	List<AnimatedObject> displayedBackgroundViews;
 	private List<AnimatedObject> bufferBackgroundViews;
 	private List<Integer> latestSaidWords;
 	
-	private int newRoomNumber;
 	private String latestInput = "";
 	private boolean acceptInput;
 
@@ -80,10 +80,6 @@ public class GameState {
 
 	public void setVar(int varNo, int newValue) {
 		vars[varNo] = newValue;
-	}
-
-	public boolean has(int itemNo) {
-		return inventoryObjects.playerHas(itemNo);
 	}
 
 	public boolean controller(int controllerNo) {
@@ -164,10 +160,6 @@ public class GameState {
 		displayedTexts.add(new Text(row, col, message));
 	}
 
-	public List<Text> getDisplayedTexts() {
-		return displayedTexts;
-	}
-	
 	public void clearDisplayedTexts() {
 		displayedTexts.clear();
 	}
@@ -200,28 +192,8 @@ public class GameState {
 		this.newRoomWaiting = b;
 	}
 
-	public void setNewRoomNumber(int newRoomNumber) {
-		this.newRoomNumber = newRoomNumber;
-	}
-
-	public boolean isNewRoomWaiting() {
-		return newRoomWaiting;
-	}
-
-	public int getNewRoomNumber() {
-		return this.newRoomNumber;
-	}
-
 	public void setCursorChar(char charAt) {
 		this.cursorChar = charAt;
-	}
-
-	public void setStatusLineOn(boolean b) {
-		this.statusLineOn = b;
-	}
-
-	public boolean isStatusLineOn() {
-		return statusLineOn;
 	}
 
 	public void setPlayerControl(boolean b) {
@@ -270,16 +242,8 @@ public class GameState {
 		return messageShown;
 	}
 
-	public void clearMessage() {
-		messageShown = false;
-	}
-
 	public List<AnimatedObject> getBufferedBackgroundViews() {
 		return bufferBackgroundViews;
-	}
-
-	public char getCursorChar() {
-		return cursorChar;
 	}
 
 	public void setAcceptInput(boolean b) {

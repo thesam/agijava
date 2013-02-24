@@ -86,14 +86,6 @@ public class GameStateTest {
 	}
 
 	@Test
-	public void canCheckIfPlayerHasItem() throws Exception {
-		aGameState();
-		int itemNo = 100;
-		gameState.has(itemNo);
-		verify(inventoryObjects).playerHas(itemNo);
-	}
-
-	@Test
 	public void returnsFalseWhenAskedForController() throws Exception {
 		aGameState();
 		assertFalse(gameState.controller(5));
@@ -107,14 +99,6 @@ public class GameStateTest {
 		assertEquals(message, gameState.currentMessage);
 		assertTrue(gameState.isMessageShowing());
 
-	}
-
-	@Test
-	public void canClearMessage() throws Exception {
-		aGameState();
-		showsMessage();
-		gameState.clearMessage();
-		assertFalse(gameState.isMessageShowing());
 	}
 
 	private void showsMessage() {
@@ -131,22 +115,12 @@ public class GameStateTest {
 
 		gameState.addText(row, col, text);
 
-		List<Text> displayedTexts = gameState.getDisplayedTexts();
+		List<Text> displayedTexts = gameState.displayedTexts;
 		assertEquals(1, displayedTexts.size());
 		Text text2 = displayedTexts.get(0);
 		assertEquals(text, text2.getMessage());
 		assertEquals(row, text2.getRow());
 		assertEquals(col, text2.getCol());
-	}
-
-	@Test
-	public void canStoreStatusLineState() throws Exception {
-		aGameState();
-		gameState.setStatusLineOn(true);
-		assertEquals(true, gameState.isStatusLineOn());
-		gameState.setStatusLineOn(false);
-		assertEquals(false, gameState.isStatusLineOn());
-
 	}
 
 	@Test
@@ -307,21 +281,6 @@ public class GameStateTest {
 	}
 	
 	@Test
-	public void canStoreCursorChar() throws Exception {
-		aGameState();
-		gameState.setCursorChar('A');
-		assertEquals('A',gameState.getCursorChar());
-		
-	}
-	
-	@Test
-	public void canStoreNewRoomNumber() throws Exception {
-		aGameState();
-		gameState.setNewRoomNumber(100);
-		assertEquals(100,gameState.getNewRoomNumber());
-	}
-	
-	@Test
 	public void canStoreString() throws Exception {
 		aGameState();
 		gameState.setString(100, "test");
@@ -340,21 +299,13 @@ public class GameStateTest {
 	}
 	
 	@Test
-	public void canSetNewRoomWaiting() throws Exception {
-		aGameState();
-		assertFalse(gameState.isNewRoomWaiting());
-		gameState.setNewRoomWaiting(true);
-		assertTrue(gameState.isNewRoomWaiting());
-	}
-	
-	@Test
 	public void canClearDisplayedTexts() throws Exception {
 		aGameState();
 		gameState.addText(0, 0, "foo");
 		gameState.addText(0, 0, "foo");
-		assertEquals(2,gameState.getDisplayedTexts().size());
+		assertEquals(2,gameState.displayedTexts.size());
 		gameState.clearDisplayedTexts();
-		assertEquals(0,gameState.getDisplayedTexts().size());
+		assertEquals(0,gameState.displayedTexts.size());
 	}
 	
 	@Test
