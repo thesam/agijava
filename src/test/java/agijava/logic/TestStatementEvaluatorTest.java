@@ -206,20 +206,24 @@ public class TestStatementEvaluatorTest {
 
 	@Test
 	public void canEvaluateTrueObjInRoomStatement() throws Exception {
+		int itemNo = 10;
+		int roomNoVar = 20;
+		int roomNo = 5;
+		
 		anEvaluator();
 		inputList.add(BYTE_OBJINROOM);
-		inputList.add(10);
-		inputList.add(20);
+		inputList.add(itemNo);
+		inputList.add(roomNoVar);
 
-		InventoryObject inventoryObject = new InventoryObject(null,null);
+		InventoryObject inventoryObject = new InventoryObject(roomNo,null);
 
-		when(gameState.getInventoryObject(10)).thenReturn(inventoryObject);
-		when(gameState.getVar(20)).thenReturn(5);
+		when(gameState.getInventoryObject(itemNo)).thenReturn(inventoryObject);
+		when(gameState.getVar(roomNoVar)).thenReturn(roomNo);
 
 		statementIsEvaluated();
 
-		verify(gameState).getInventoryObject(10);
-		verify(gameState).getVar(20);
+		verify(gameState).getInventoryObject(itemNo);
+		verify(gameState).getVar(roomNoVar);
 		statementIsTrue();
 	}
 

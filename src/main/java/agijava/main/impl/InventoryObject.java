@@ -5,7 +5,7 @@ public class InventoryObject {
 	private int roomNumber;
 	private final String name;
 
-	public InventoryObject(Integer roomNumber, String name) {
+	public InventoryObject(int roomNumber, String name) {
 		this.roomNumber = roomNumber;
 		this.name = name;
 	}
