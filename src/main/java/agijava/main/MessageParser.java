@@ -20,7 +20,7 @@ public class MessageParser {
 		while(matcher.find()) {
 			String stringNo = matcher.group(1);
 			int parseInt = Integer.parseInt(stringNo);
-			String string = gameState.getString(parseInt);
+			String string = gameState.strings[parseInt];
 			message = matcher.replaceFirst(string);
 		}
 		return message;

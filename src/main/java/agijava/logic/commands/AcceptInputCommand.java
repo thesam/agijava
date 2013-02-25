@@ -6,7 +6,7 @@ public class AcceptInputCommand extends AbstractLogicCommand {
 
 	@Override
 	public void execute(GameState gameState) {
-		gameState.setAcceptInput(true);
+		gameState.acceptInput = true;
 	}
 
 	@Override

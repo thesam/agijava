@@ -17,24 +17,24 @@ public class GuiDrawerTest {
 		aGuiDrawer();
 
 		Picture pic = mock(Picture.class);
-		when(gameState.getCurrentPicture()).thenReturn(pic);
+//		when(gameState.getCurrentPicture()).thenReturn(pic);
 
 		drawer.drawCurrentPictureToGui();
 
-		verify(gameState).getCurrentPicture();
+//		verify(gameState).getCurrentPicture();
 		verify(gui).drawPicture(pic);
 	}
 
 	@Test
 	public void drawsCurrentMessageToGuiIfShowing() throws Exception {
 		aGuiDrawer();
-		when(gameState.isMessageShowing()).thenReturn(true);
+//		when(gameState.isMessageShowing()).thenReturn(true);
 		String message = "foo";
 		gameState.currentMessage = message;
 
 		drawer.drawCurrentMessage();
 
-		verify(gameState).isMessageShowing();
+//		verify(gameState).isMessageShowing();
 		verify(gui).drawTextDialog(message);
 	}
 

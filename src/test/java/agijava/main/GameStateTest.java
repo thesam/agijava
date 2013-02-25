@@ -37,7 +37,7 @@ public class GameStateTest {
 	public void canExecuteNextCommandFromCurrentLogic() throws Exception {
 		aGameState();
 		aLogic();
-		gameState.setCurrentLogic(logic);
+		gameState.currentLogic = logic;
 		LogicCommand command = mock(LogicCommand.class);
 		when(logic.getNextCommand()).thenReturn(command);
 		gameState.executeNextCommand();
@@ -53,7 +53,7 @@ public class GameStateTest {
 	public void returnsFalseOnExecuteWhenCurrentLogicIsNotSet()
 			throws Exception {
 		aGameState();
-		gameState.setCurrentLogic(null);
+		gameState.currentLogic = null;
 		assertFalse(gameState.executeNextCommand());
 
 	}
@@ -62,15 +62,15 @@ public class GameStateTest {
 	public void canSetAndGetLogic() throws Exception {
 		aGameState();
 		aLogic();
-		gameState.setCurrentLogic(logic);
-		assertEquals(logic, gameState.getCurrentLogic());
+		gameState.currentLogic = logic;
+		assertEquals(logic, gameState.currentLogic);
 	}
 
 	@Test
 	public void canIncreaseLogicOffset() throws Exception {
 		aGameState();
 		aLogic();
-		gameState.setCurrentLogic(logic);
+		gameState.currentLogic = logic;
 		int offset = 100;
 		gameState.jumpForward(offset);
 		verify(logic).increaseOffset(100);
@@ -97,8 +97,7 @@ public class GameStateTest {
 		aGameState();
 		showsMessage();
 		assertEquals(message, gameState.currentMessage);
-		assertTrue(gameState.isMessageShowing());
-
+		assertTrue(gameState.messageShown);
 	}
 
 	private void showsMessage() {
@@ -107,41 +106,15 @@ public class GameStateTest {
 	}
 
 	@Test
-	public void canStoreTextsToBeDisplayed() throws Exception {
-		aGameState();
-		String text = "foo";
-		int row = 100;
-		int col = 200;
-
-		gameState.addText(row, col, text);
-
-		List<Text> displayedTexts = gameState.displayedTexts;
-		assertEquals(1, displayedTexts.size());
-		Text text2 = displayedTexts.get(0);
-		assertEquals(text, text2.getMessage());
-		assertEquals(row, text2.getRow());
-		assertEquals(col, text2.getCol());
-	}
-
-	@Test
-	public void canStoreLatestInput() throws Exception {
-		aGameState();
-		String input = "foo";
-		gameState.setLatestInput(input);
-		assertEquals(input, gameState.getLatestInput());
-
-	}
-
-	@Test
 	public void remembersLastLogicWhenNewLogicIsCalled() throws Exception {
 		aGameState();
-		gameState.setCurrentLogic(logic);
+		gameState.currentLogic = logic;
 		Logic otherLogic = mock(Logic.class);
 		when(logicRepository.getLogic(5)).thenReturn(otherLogic);
 		gameState.callNewLogic(5);
-		assertNotSame(logic, gameState.getCurrentLogic());
+		assertNotSame(logic, gameState.currentLogic);
 		gameState.returnToCallingLogic();
-		assertEquals(logic, gameState.getCurrentLogic());
+		assertEquals(logic, gameState.currentLogic);
 	}
 
 	@Test
@@ -208,10 +181,10 @@ public class GameStateTest {
 		Picture fakePicture = mock(Picture.class);
 		when(pictureRepository.getPicture(100)).thenReturn(fakePicture);
 		gameState.setPictureInBuffer(100);
-		Picture currentPicture = gameState.getCurrentPicture();
+		Picture currentPicture = gameState.currentPicture;
 		assertNull(currentPicture);
 		gameState.showPictureFromBuffer();
-		assertEquals(fakePicture,gameState.getCurrentPicture());
+		assertEquals(fakePicture,gameState.currentPicture);
 		
 	}
 	
@@ -263,11 +236,11 @@ public class GameStateTest {
 		when(logicRepository.getLogic(0)).thenReturn(firstLogic);
 		when(logicRepository.getLogic(1)).thenReturn(secondLogic);
 		gameState.callNewLogic(0);
-		assertEquals(firstLogic,gameState.getCurrentLogic());
+		assertEquals(firstLogic,gameState.currentLogic);
 		gameState.callNewLogic(1);
-		assertEquals(secondLogic,gameState.getCurrentLogic());
+		assertEquals(secondLogic,gameState.currentLogic);
 		gameState.returnToCallingLogic();
-		assertEquals(firstLogic,gameState.getCurrentLogic());
+		assertEquals(firstLogic,gameState.currentLogic);
 		
 	}
 	
@@ -281,14 +254,6 @@ public class GameStateTest {
 	}
 	
 	@Test
-	public void canStoreString() throws Exception {
-		aGameState();
-		gameState.setString(100, "test");
-		assertEquals("test",gameState.getString(100));
-		
-	}
-	
-	@Test
 	public void setsOffsetOnLogicIfScanStartSet() throws Exception {
 		aGameState();
 		aLogic();
@@ -296,26 +261,6 @@ public class GameStateTest {
 		gameState.setScanStart(100, 200);
 		gameState.callNewLogic(100);
 		verify(logic).setOffset(200);
-	}
-	
-	@Test
-	public void canClearDisplayedTexts() throws Exception {
-		aGameState();
-		gameState.addText(0, 0, "foo");
-		gameState.addText(0, 0, "foo");
-		assertEquals(2,gameState.displayedTexts.size());
-		gameState.clearDisplayedTexts();
-		assertEquals(0,gameState.displayedTexts.size());
-	}
-	
-	@Test
-	public void canClearBackgroundViews() throws Exception {
-		aGameState();
-		gameState.addBackgroundViewToBuffer(0, 0, 0, 0, 0, 0, 0);
-		gameState.showPictureFromBuffer();
-		assertEquals(1,gameState.displayedBackgroundViews.size());
-		gameState.clearBackgroundViews();
-		assertEquals(0,gameState.displayedBackgroundViews.size());
 	}
 	
 	@Test

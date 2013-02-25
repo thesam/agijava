@@ -2,6 +2,7 @@ package agijava.logic.commands;
 
 import agijava.main.GameState;
 import agijava.main.MessageParser;
+import agijava.main.Text;
 
 public class DisplayCommand extends AbstractLogicCommand {
 
@@ -11,9 +12,9 @@ public class DisplayCommand extends AbstractLogicCommand {
 		int col = args.get(1);
 		int messageNo = args.get(2);
 		
-		String message = gameState.getCurrentLogic().getMessage(messageNo);
+		String message = gameState.currentLogic.getMessage(messageNo);
 		message = parseMessage(message,gameState);
-		gameState.addText(row,col,message);
+		gameState.displayedTexts.add(new Text(row, col, message));
 
 	}
 

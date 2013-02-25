@@ -16,7 +16,7 @@ public class AcceptInputCommandTest {
 		
 		cmd.execute(state);
 		
-		verify(state).setAcceptInput(true);
+		assertTrue(state.acceptInput);
 		assertEquals(0,cmd.getArgsSizeInBytes());
 	}
 }

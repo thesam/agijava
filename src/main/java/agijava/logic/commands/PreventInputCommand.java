@@ -6,7 +6,7 @@ public class PreventInputCommand extends AbstractLogicCommand {
 
 	@Override
 	public void execute(GameState gameState) {
-		gameState.setAcceptInput(false);
+		gameState.acceptInput = false;
 	}
 
 	@Override

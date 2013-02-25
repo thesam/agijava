@@ -34,21 +34,21 @@ public class GameState {
 	public boolean messageShown;
 	
 	private int[] vars;
-	private String[] strings;
+	public String[] strings;
 
-	private char cursorChar;
+	public char cursorChar;
 
-	private Logic currentLogic;
-	private Picture currentPicture;
+	public Logic currentLogic;
+	public Picture currentPicture;
 	private Picture bufferPicture;
 	public List<Text> displayedTexts;
 
 	private Map<Integer, Integer> scanStarts;
-	private List<AnimatedObject> bufferBackgroundViews;
+	public List<AnimatedObject> bufferBackgroundViews;
 	private List<Integer> latestSaidWords;
 	
-	private String latestInput = "";
-	private boolean acceptInput;
+	public String latestInput = "";
+	public boolean acceptInput;
 
 	public GameState(LogicRepository logicRepository,
 			PictureRepository pictureRepository,
@@ -110,14 +110,6 @@ public class GameState {
 		}
 	}
 
-	public Logic getCurrentLogic() {
-		return currentLogic;
-	}
-
-	public void setCurrentLogic(Logic object) {
-		currentLogic = object;
-	}
-	
 	public boolean executeNextCommand() {
 		if (currentLogic == null) {
 			return false;
@@ -144,32 +136,8 @@ public class GameState {
 		bufferBackgroundViews.add(animatedObject);
 	}
 
-	public void clearBackgroundViews() {
-		bufferBackgroundViews.clear();
-	}
-
 	public void setPictureInBuffer(int picNo) {
 		bufferPicture = pictureRepository.getPicture(picNo);
-	}
-
-	public Picture getCurrentPicture() {
-		return currentPicture;
-	}
-
-	public void addText(int row, int col, String message) {
-		displayedTexts.add(new Text(row, col, message));
-	}
-
-	public void clearDisplayedTexts() {
-		displayedTexts.clear();
-	}
-
-	public void setString(int stringNo, String message) {
-		this.strings[stringNo] = message;
-	}
-	
-	public String getString(int i) {
-		return strings[i];
 	}
 
 	private int getScanStart(Integer logicNo) {
@@ -186,14 +154,6 @@ public class GameState {
 
 	public void resetScanStart(int entryNumber) {
 		scanStarts.remove(entryNumber);
-	}
-
-	public void setNewRoomWaiting(boolean b) {
-		this.newRoomWaiting = b;
-	}
-
-	public void setCursorChar(char charAt) {
-		this.cursorChar = charAt;
 	}
 
 	public void setPlayerControl(boolean b) {
@@ -217,14 +177,6 @@ public class GameState {
 		}
 	}
 
-	public void setLatestInput(String textInput) {
-		this.latestInput = textInput;
-	}
-
-	public String getLatestInput() {
-		return latestInput;
-	}
-
 	public int getNumberForWord(String string) {
 		return wordsTok.getNumberFor(string);
 	}
@@ -238,15 +190,8 @@ public class GameState {
 		currentMessage = message;
 	}
 
-	public boolean isMessageShowing() {
-		return messageShown;
-	}
-
 	public List<AnimatedObject> getBufferedBackgroundViews() {
 		return bufferBackgroundViews;
 	}
 
-	public void setAcceptInput(boolean b) {
-		this.acceptInput = b;
-	}
 }

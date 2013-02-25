@@ -20,7 +20,7 @@ public class GuiDrawer {
 	}
 
 	public void drawCurrentPictureToGui() {
-		Picture currentPicture = gameState.getCurrentPicture();
+		Picture currentPicture = gameState.currentPicture;
 		if (currentPicture != null) {
 			gui.drawPicture(currentPicture);
 		}
@@ -43,7 +43,7 @@ public class GuiDrawer {
 	}
 
 	public void drawCurrentMessage() {
-		if (gameState.isMessageShowing()) {
+		if (gameState.messageShown) {
 			gui.drawTextDialog(gameState.currentMessage);
 		}
 	}

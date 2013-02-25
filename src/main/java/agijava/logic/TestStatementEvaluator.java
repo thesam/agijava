@@ -169,7 +169,7 @@ public class TestStatementEvaluator {
 		List<Integer> wordNumbersFromInput = getLatestInputWordNumbers(gameState);
 		if (wordNumbersFromInput.equals(wordNumbersFromStatement)) {
 			gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED] = true;
-			gameState.setLatestInput("");
+			gameState.latestInput = "";
 			return createStatement(true);
 		} else {
 			return createStatement(false);
@@ -208,7 +208,7 @@ public class TestStatementEvaluator {
 	}
 
 	private String getLatestInputSanitizedFromGameState(GameState gameState) {
-		String latestInput = gameState.getLatestInput();
+		String latestInput = gameState.latestInput;
 		String cleanInput = latestInput.replaceAll("[^A-Za-z ]", "");
 		cleanInput = cleanInput.trim();
 		return cleanInput;
@@ -440,8 +440,8 @@ public class TestStatementEvaluator {
 
 	private boolean compareStrings(int stringNo1, int stringNo2,
 			GameState gameState) {
-		String string1 = gameState.getString(stringNo1);
-		String string2 = gameState.getString(stringNo2);
+		String string1 = gameState.strings[stringNo1];
+		String string2 = gameState.strings[stringNo2];
 		return string1.equals(string2);
 	}
 }

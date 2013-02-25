@@ -217,7 +217,7 @@ public class GameGui {
 			gameState.haveKey = false;
 		}
 		if (isInputWaiting()) {
-			gameState.setLatestInput(getLatestInput());
+			gameState.latestInput = getLatestInput();
 			gameState.flags[GameEngine.FLAG_TEXT_ENTERED] = true;
 			setInputIsWaiting(false);
 		}

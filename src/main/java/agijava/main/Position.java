@@ -29,5 +29,5 @@ public class Position {
 		Position otherPos = (Position) obj;
 		return x == otherPos.x && y == otherPos.y;
 	}
-
+	
 }

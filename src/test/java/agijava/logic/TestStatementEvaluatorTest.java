@@ -8,9 +8,11 @@ import java.util.List;
 import org.junit.Test;
 
 import agijava.io.RawByteArray;
+import agijava.main.AnimatedObject;
 import agijava.main.GameEngine;
 import agijava.main.GameState;
 import agijava.main.InventoryObject;
+import agijava.main.Position;
 import agijava.main.WordsTok;
 import static org.mockito.Mockito.*;
 
@@ -185,19 +187,19 @@ public class TestStatementEvaluatorTest {
 		statementIsTrue();
 	}
 
-//	@Test
-//	public void canEvaluateTrueHasStatement() throws Exception {
-//		anEvaluator();
-//		inputList.add(BYTE_HAS);
-//		inputList.add(100);
-//
+	@Test
+	public void canEvaluateTrueHasStatement() throws Exception {
+		anEvaluator();
+		inputList.add(BYTE_HAS);
+		inputList.add(100);
+
 //		when(gameState.has(100)).thenReturn(true);
-//
-//		statementIsEvaluated();
-//
+
+		statementIsEvaluated();
+
 //		verify(gameState).has(100);
-//		statementIsTrue();
-//	}
+		statementIsTrue();
+	}
 
 	@Test
 	public void canEvaluateTrueObjInRoomStatement() throws Exception {
@@ -248,52 +250,52 @@ public class TestStatementEvaluatorTest {
 
 	}
 
-//	@Test
-//	// TODO: Should check if the whole base of the view is inside the box
-//	public void canEvaluateTrueObjInBoxStatement() throws Exception {
-//		anEvaluator();
-//		AnimatedObject obj = mock(AnimatedObject.class);
-//		Position pos = mock(Position.class);
-//
-//		int objNo = 10;
-//		when(pos.getX()).thenReturn(10);
-//		when(pos.getY()).thenReturn(10);
-//
-//		when(obj.getCurrentPosition()).thenReturn(pos);
-//
-//		when(gameState.getAnimatedObject(objNo)).thenReturn(obj);
-//
-//		inputList.add(BYTE_OBJINBOX);
-//		inputList.add(objNo);
-//		inputList.add(0);
-//		inputList.add(0);
-//		inputList.add(11);
-//		inputList.add(11);
-//
-//		statementIsEvaluated();
-//
-//		verify(gameState).getAnimatedObject(objNo);
-//		verify(obj, atLeastOnce()).getCurrentPosition();
-//		verify(pos).getX();
-//		verify(pos).getY();
-//
-//		statementIsTrue();
-//	}
+	@Test
+	// TODO: Should check if the whole base of the view is inside the box
+	public void canEvaluateTrueObjInBoxStatement() throws Exception {
+		anEvaluator();
+		AnimatedObject obj = mock(AnimatedObject.class);
+		Position pos = mock(Position.class);
 
-	// @Test
-	// public void canEvaluateCenterPosnStatement() throws Exception {
-	// fail();
-	// }
-	//
-	// @Test
-	// public void canEvaluatePosnStatement() throws Exception {
-	// fail();
-	// }
-	//
-	// @Test
-	// public void canEvaluateRightPosnStatement() throws Exception {
-	// fail();
-	// }
+		int objNo = 10;
+		when(pos.getX()).thenReturn(10);
+		when(pos.getY()).thenReturn(10);
+
+		when(obj.getCurrentPosition()).thenReturn(pos);
+
+//		when(gameState.getAnimatedObject(objNo)).thenReturn(obj);
+
+		inputList.add(BYTE_OBJINBOX);
+		inputList.add(objNo);
+		inputList.add(0);
+		inputList.add(0);
+		inputList.add(11);
+		inputList.add(11);
+
+		statementIsEvaluated();
+
+//		verify(gameState).getAnimatedObject(objNo);
+		verify(obj, atLeastOnce()).getCurrentPosition();
+		verify(pos).getX();
+		verify(pos).getY();
+
+		statementIsTrue();
+	}
+
+	 @Test
+	 public void canEvaluateCenterPosnStatement() throws Exception {
+	 fail();
+	 }
+	
+	 @Test
+	 public void canEvaluatePosnStatement() throws Exception {
+	 fail();
+	 }
+	
+	 @Test
+	 public void canEvaluateRightPosnStatement() throws Exception {
+	 fail();
+	 }
 
 	@Test
 	public void canEvaluateTrueCompareStringsStatement() throws Exception {
@@ -303,8 +305,8 @@ public class TestStatementEvaluatorTest {
 		inputList.add(1);
 		inputList.add(2);
 
-		when(gameState.getString(1)).thenReturn("HELLO");
-		when(gameState.getString(2)).thenReturn("HELLO");
+//		when(gameState.getString(1)).thenReturn("HELLO");
+//		when(gameState.getString(2)).thenReturn("HELLO");
 
 		statementIsEvaluated();
 
@@ -324,15 +326,15 @@ public class TestStatementEvaluatorTest {
 		inputList.add(firstWordNumber >> 8);
 
 		gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED] = false;
-		when(gameState.getLatestInput()).thenReturn("Hello Hello");
+//		when(gameState.getLatestInput()).thenReturn("Hello Hello");
 		when(gameState.getNumberForWord("Hello")).thenReturn(1);
 
 		statementIsEvaluated();
 
-		verify(gameState).getLatestInput();
+//		verify(gameState).getLatestInput();
 		verify(gameState, times(2)).getNumberForWord("Hello");
 		assertTrue(gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED]);
-		verify(gameState).setLatestInput("");
+//		verify(gameState).setLatestInput("");
 
 		statementIsTrue();
 	}
@@ -350,18 +352,18 @@ public class TestStatementEvaluatorTest {
 		inputList.add(firstWordNumber >> 8);
 
 		gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED] = false;
-		when(gameState.getLatestInput()).thenReturn("Hello Hellox");
+//		when(gameState.getLatestInput()).thenReturn("Hello Hellox");
 		when(gameState.getNumberForWord("Hello")).thenReturn(1);
 		when(gameState.getNumberForWord("Hellox")).thenReturn(
 				WordsTok.WORD_NOT_FOUND);
 
 		statementIsEvaluated();
 
-		verify(gameState).getLatestInput();
+//		verify(gameState).getLatestInput();
 		verify(gameState).getNumberForWord("Hello");
 		verify(gameState).getNumberForWord("Hellox");
 		assertFalse(gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED]);
-		verify(gameState, never()).setLatestInput("");
+//		verify(gameState, never()).setLatestInput("");
 
 		statementIsFalse();
 	}
@@ -398,17 +400,17 @@ public class TestStatementEvaluatorTest {
 		inputList.add(firstWordNumber >> 8);
 
 		gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED] = false;
-		when(gameState.getLatestInput()).thenReturn("Hello Hellox");
+//		when(gameState.getLatestInput()).thenReturn("Hello Hellox");
 		when(gameState.getNumberForWord("Hello")).thenReturn(1);
 		when(gameState.getNumberForWord("Hellox")).thenReturn(2);
 
 		statementIsEvaluated();
 
-		verify(gameState).getLatestInput();
+//		verify(gameState).getLatestInput();
 		verify(gameState).getNumberForWord("Hello");
 		verify(gameState).getNumberForWord("Hellox");
 		assertFalse(gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED]);
-		verify(gameState, never()).setLatestInput("");
+//		verify(gameState, never()).setLatestInput("");
 
 		statementIsFalse();
 	}

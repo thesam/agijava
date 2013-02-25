@@ -67,7 +67,9 @@ public class SwingGraphicsFrame implements KeyListener {
 			drawGfxLayerToBuffer(g);
 			drawTextObjectsToBuffer(g);
 		} finally {
-			g.dispose();
+			if (g != null) {
+				g.dispose();
+			}
 		}
 		bf.show();
 		Toolkit.getDefaultToolkit().sync();

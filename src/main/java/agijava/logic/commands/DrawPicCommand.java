@@ -8,7 +8,7 @@ public class DrawPicCommand extends AbstractLogicCommand {
 	public void execute(GameState gameState) {
 		int varNo = args.get(0);
 		int picNo = gameState.getVar(varNo);
-		gameState.clearBackgroundViews();
+		gameState.bufferBackgroundViews.clear();
 		gameState.setPictureInBuffer(picNo);
 		
 	}

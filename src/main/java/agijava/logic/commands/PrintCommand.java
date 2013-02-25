@@ -8,7 +8,7 @@ public class PrintCommand extends AbstractLogicCommand {
 	@Override
 	public void execute(GameState gameState) {
 		int messageNo = getMessageNo(gameState);
-		String message = gameState.getCurrentLogic().getMessage(messageNo);
+		String message = gameState.currentLogic.getMessage(messageNo);
 		message = parseMessage(message,gameState);
 		gameState.showMessage(message);
 //		JOptionPane.showMessageDialog(null, message);

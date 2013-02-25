@@ -6,7 +6,7 @@ public class ResetScanStartCommand extends AbstractLogicCommand {
 
 	@Override
 	public void execute(GameState gameState) {
-		gameState.resetScanStart(gameState.getCurrentLogic().getEntryNumber());
+		gameState.resetScanStart(gameState.currentLogic.getEntryNumber());
 	}
 
 	@Override

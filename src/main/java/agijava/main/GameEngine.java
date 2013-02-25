@@ -86,14 +86,14 @@ public class GameEngine {
 //	}
 
 	private void resetInputState() {
-		gameState.setLatestInput("");
+		gameState.latestInput = "";
 		gameState.flags[GameEngine.FLAG_TEXT_ENTERED] = false;
 		gameState.flags[GameEngine.FLAG_TEXT_ACCEPTED] = false;
 	}
 
 	private void handleNewRoom() {
 		if (gameState.newRoomWaiting) {
-			gameState.setNewRoomWaiting(false);
+			gameState.newRoomWaiting = false;
 			// Commands stop.update and unanimate are issued to all objects;
 			AnimatedObject ego = gameState.animatedObjects.get(0);
 			if (ego != null) {
@@ -145,7 +145,7 @@ public class GameEngine {
 	}
 
 	private void waitForUserToCloseMessage() {
-		if (gameState.isMessageShowing()) {
+		if (gameState.messageShown) {
 			waitForKeyPress();
 			gameState.messageShown = false;
 		}

@@ -20,35 +20,35 @@ public class GameEngineTest {
 		assertNotNull(gameEngine);
 	}
 
-//	@Test
-//	public void returnsIfGameStateIsExited() throws Exception {
-//		aGameEngine();
-//		anExitedGameState();
-//		gameEngine.run();
-//	}
+	@Test
+	public void returnsIfGameStateIsExited() throws Exception {
+		aGameEngine();
+		anExitedGameState();
+		gameEngine.run();
+	}
 
-//	@Test
-//	public void setsNewRoomFlagInGameStateWhenRun() throws Exception {
-//		aGameEngine();
-//		anExitedGameState();
-//		gameEngine.run();
-//		assertTrue(gameState.flags[5]);
-//	}
+	@Test
+	public void setsNewRoomFlagInGameStateWhenRun() throws Exception {
+		aGameEngine();
+		anExitedGameState();
+		gameEngine.run();
+		assertTrue(gameState.flags[5]);
+	}
 
-//	@Test
-//	public void callsLogic0WhenRun() throws Exception {
-//		aGameEngine();
-//		anExitedGameState();
-//		gameEngine.run();
-//		verify(gameState).callNewLogic(0);
-//	}
+	@Test
+	public void callsLogic0WhenRun() throws Exception {
+		aGameEngine();
+		anExitedGameState();
+		gameEngine.run();
+		verify(gameState).callNewLogic(0);
+	}
 	
-//	@Test
-//	public void refreshesGuiOnRunningGame() throws Exception {
-//		aGameEngine();
-//		gameEngine.run();
-//		verify(runningGame).refreshGui();
-//	}
+	@Test
+	public void refreshesGuiOnRunningGame() throws Exception {
+		aGameEngine();
+		gameEngine.run();
+		verify(runningGame).refreshGui();
+	}
 	
 	private void aGameEngine() {
 		gameState = new GameState(null, null, null, null, null);

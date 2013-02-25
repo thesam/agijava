@@ -8,10 +8,10 @@ public class NewRoomCommand extends AbstractLogicCommand {
 	public void execute(GameState gameState) {
 		int newRoomNumber = args.get(0);
 		
-		gameState.setNewRoomWaiting(true);
+		gameState.newRoomWaiting = true;
 		gameState.newRoomNumber = newRoomNumber;
 		gameState.logicStack.clear();
-		gameState.setCurrentLogic(null);
+		gameState.currentLogic = null;
 //		gameState.setVar(GameEngine.ROOM_NO, newRoomNumber);
 //		gameState.setFlag(GameEngine.NEW_ROOM);
 		

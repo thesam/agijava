@@ -26,7 +26,7 @@ public class ObjectUpdater {
 			keepMovingObject(movingObject, newPos);
 		} else {
 			handleEgoMovement(movingObject, newPos,
-					gameState.getCurrentPicture());
+					gameState.currentPicture);
 		}
 	}
 
