@@ -502,7 +502,7 @@ public class TestStatementEvaluatorTest {
 
 	private void aGameState() {
 		gameState = mock(GameState.class);
-		gameState.flags = new boolean[255];
+//		gameState.flags = new boolean[255];
 	}
 
 	private void anEvaluator() {

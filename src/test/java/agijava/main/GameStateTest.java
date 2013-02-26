@@ -2,14 +2,12 @@ package agijava.main;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
 import agijava.logic.Logic;
 import agijava.main.LogicCommand;
-import agijava.picture.Picture;
 import agijava.view.View;
 import static org.mockito.Mockito.*;
 
@@ -17,7 +15,6 @@ public class GameStateTest {
 	private GameState gameState;
 	private Logic logic;
 	private InventoryObjects inventoryObjects;
-	private String message;
 	private LogicRepository logicRepository;
 	private ViewRepository viewRepository;
 	private WordsTok wordsTok;
@@ -93,31 +90,6 @@ public class GameStateTest {
 	}
 
 	@Test
-	public void canShowMessage() throws Exception {
-		aGameState();
-		showsMessage();
-		assertEquals(message, gameState.currentMessage);
-		assertTrue(gameState.messageShown);
-	}
-
-	private void showsMessage() {
-		message = "Test message";
-		gameState.showMessage(message);
-	}
-
-	@Test
-	public void remembersLastLogicWhenNewLogicIsCalled() throws Exception {
-		aGameState();
-		gameState.currentLogic = logic;
-		Logic otherLogic = mock(Logic.class);
-		when(logicRepository.getLogic(5)).thenReturn(otherLogic);
-		gameState.callNewLogic(5);
-		assertNotSame(logic, gameState.currentLogic);
-		gameState.returnToCallingLogic();
-		assertEquals(logic, gameState.currentLogic);
-	}
-
-	@Test
 	public void canAddBackgroundViewToBuffer() throws Exception {
 		aGameState();
 		View view = mock(View.class);
@@ -125,7 +97,7 @@ public class GameStateTest {
 
 		gameState.addBackgroundViewToBuffer(0, 0, 0, 0, 0, 0, 0);
 		List<AnimatedObject> backgroundViews = gameState
-				.getBufferedBackgroundViews();
+				.bufferBackgroundViews;
 		AnimatedObject animatedObject = backgroundViews.get(0);
 		assertEquals(view, animatedObject.getView());
 		assertEquals(animatedObject.getCurrentViewLoop(), 0);
@@ -149,49 +121,11 @@ public class GameStateTest {
 		verify(inventoryObjects).get(555);
 	}
 
-	@Test
-	public void canStoreLatestSaidWords() throws Exception {
-		aGameState();
-		List<Integer> words = new ArrayList<Integer>();
-		words.add(5);
-		gameState.setLastSaidWords(words);
-		assertEquals(words,gameState.getLatestSaidWords());
-	}
-	
-	@Test
-	public void returnsEmptyListIfNoSaidWordsAreSet() throws Exception {
-		aGameState();
-		List<Integer> latestSaidWords = gameState.getLatestSaidWords();
-		assertTrue(latestSaidWords.isEmpty());
-	}
-	
-	@Test
-	public void canForgetLastSaidWords() throws Exception {
-		aGameState();
-		List<Integer> words = new ArrayList<Integer>();
-		words.add(5);
-		gameState.setLastSaidWords(words);
-		gameState.clearLastSaidWords();
-		assertTrue(gameState.getLatestSaidWords().isEmpty());
-	}
-	
-	@Test
-	public void canMovePictureInBufferToCurrentPicture() throws Exception {
-		aGameState();
-		Picture fakePicture = mock(Picture.class);
-		when(pictureRepository.getPicture(100)).thenReturn(fakePicture);
-		gameState.setPictureInBuffer(100);
-		Picture currentPicture = gameState.currentPicture;
-		assertNull(currentPicture);
-		gameState.showPictureFromBuffer();
-		assertEquals(fakePicture,gameState.currentPicture);
-		
-	}
-	
 //TODO: Move to AnimateObjCommandTest
-//	@Test
-//	public void canStoreAnimatedObjects() throws Exception {
-//		aGameState();
+	@Test
+	public void canStoreAnimatedObjects() throws Exception {
+		fail();
+		aGameState();
 //		gameState.addAnimatedObject(10);
 //		AnimatedObject obj = gameState.getAnimatedObject(10);
 //		assertEquals(obj.getNumber(),10);
@@ -199,83 +133,37 @@ public class GameStateTest {
 //		gameState.addAnimatedObject(20);
 //		Collection<AnimatedObject> animatedObjects = gameState.getAnimatedObjects();
 //		assertEquals(2,animatedObjects.size());
-//	}
+	}
 	
-//	@Test
-//	public void usesExistingObjectIfAlreadyAnimated() throws Exception {
-//		aGameState();
+	@Test
+	public void usesExistingObjectIfAlreadyAnimated() throws Exception {
+		fail();
+		aGameState();
 //		gameState.addAnimatedObject(10);
 //		AnimatedObject obj = gameState.getAnimatedObject(10);
 //		gameState.addAnimatedObject(10);
 //		AnimatedObject obj2 = gameState.getAnimatedObject(10);
 //		assertEquals(obj,obj2);
-//	}
-//	
-//	@Test
-//	public void setsAnimatedObjectZeroToEgo() throws Exception {
-//		aGameState();
+	}
+	
+	@Test
+	public void setsAnimatedObjectZeroToEgo() throws Exception {
+		fail();
+		aGameState();
 //		gameState.addAnimatedObject(0);
 //		AnimatedObject obj = gameState.getAnimatedObject(0);
 //		assertTrue(obj.isEgo());
-//	}
-//	
-//	@Test
-//	public void canClearAllAnimatedObjects() throws Exception {
-//		aGameState();
+	}
+	
+	@Test
+	public void canClearAllAnimatedObjects() throws Exception {
+		fail();
+		aGameState();
 //		gameState.addAnimatedObject(10);
 //		gameState.addAnimatedObject(20);
 //		gameState.clearAnimatedObjects();
 //		Collection<AnimatedObject> animatedObjects = gameState.getAnimatedObjects();
 //		assertEquals(0,animatedObjects.size());
-//	}	
-	@Test
-	public void returnsToPreviousLogicWhenSecondLogicEnds() throws Exception {
-		aGameState();
-		Logic firstLogic = mock(Logic.class);
-		Logic secondLogic = mock(Logic.class);
-		when(logicRepository.getLogic(0)).thenReturn(firstLogic);
-		when(logicRepository.getLogic(1)).thenReturn(secondLogic);
-		gameState.callNewLogic(0);
-		assertEquals(firstLogic,gameState.currentLogic);
-		gameState.callNewLogic(1);
-		assertEquals(secondLogic,gameState.currentLogic);
-		gameState.returnToCallingLogic();
-		assertEquals(firstLogic,gameState.currentLogic);
-		
-	}
-	
-	@Test
-	public void canListCurrentlyDisplayedBackgroundViews() throws Exception {
-		aGameState();
-		gameState.addBackgroundViewToBuffer(0, 0, 0, 0, 0, 0, 0);
-		gameState.showPictureFromBuffer();
-		List<AnimatedObject> backgroundViews = gameState.displayedBackgroundViews;
-		assertEquals(1,backgroundViews.size());
-	}
-	
-	@Test
-	public void setsOffsetOnLogicIfScanStartSet() throws Exception {
-		aGameState();
-		aLogic();
-		when(logicRepository.getLogic(100)).thenReturn(logic);
-		gameState.setScanStart(100, 200);
-		gameState.callNewLogic(100);
-		verify(logic).setOffset(200);
-	}
-	
-	@Test
-	public void canRemoveScanStart() throws Exception {
-		aGameState();
-		aLogic();
-		when(logicRepository.getLogic(0)).thenReturn(logic);
-		gameState.setScanStart(0, 200);
-		gameState.callNewLogic(0);
-		verify(logic).setOffset(200);
-		
-		gameState.resetScanStart(0);
-		
-		verify(logic).setOffset(anyInt());
-		
-	}
+	}	
 	
 }

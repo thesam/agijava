@@ -52,7 +52,7 @@ public class GameEngineTest {
 	
 	private void aGameEngine() {
 		gameState = new GameState(null, null, null, null, null);
-		gameState.flags = new boolean[255];
+//		gameState.flags = new boolean[255];
 		runningGame = mock(RunningGame.class);
 		controller = mock(GameGui.class);
 		gameEngine = new GameEngine(gameState, runningGame, null, controller);

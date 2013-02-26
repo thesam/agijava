@@ -6,7 +6,7 @@ public class ProgramControlCommand extends AbstractLogicCommand {
 
 	@Override
 	public void execute(GameState gameState) {
-		gameState.setPlayerControl(false);
+		gameState.playerControl = false;
 	}
 
 	@Override

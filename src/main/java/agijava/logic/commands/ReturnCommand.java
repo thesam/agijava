@@ -6,7 +6,7 @@ public class ReturnCommand extends AbstractLogicCommand {
 
 	@Override
 	public void execute(GameState gameState) {
-		gameState.returnToCallingLogic();
+		returnToCallingLogic(gameState);
 	}
 
 	@Override
@@ -14,4 +14,12 @@ public class ReturnCommand extends AbstractLogicCommand {
 		return 0;
 	}
 
+	private void returnToCallingLogic(GameState gameState) {
+		if (gameState.logicStack.isEmpty()) {
+			gameState.currentLogic = null;
+		} else {
+			gameState.currentLogic = gameState.logicStack.pop();
+		}
+	}
+	
 }

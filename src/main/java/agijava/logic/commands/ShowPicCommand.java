@@ -8,7 +8,7 @@ public class ShowPicCommand extends AbstractLogicCommand {
 	public void execute(GameState gameState) {
 //		gameState.clearBackgroundViews();
 		gameState.displayedTexts.clear();
-		gameState.showPictureFromBuffer();
+		showPictureFromBuffer(gameState);
 
 	}
 
@@ -17,4 +17,8 @@ public class ShowPicCommand extends AbstractLogicCommand {
 		return 0;
 	}
 
+	private void showPictureFromBuffer(GameState gameState) {
+		gameState.currentPicture = gameState.bufferPicture;
+		gameState.displayedBackgroundViews = gameState.bufferBackgroundViews;
+	}
 }

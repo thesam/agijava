@@ -17,7 +17,7 @@ public class ObjectUpdaterTest {
 	public void setup() {
 		object = mock(AnimatedObject.class);
 		gameState = mock(GameState.class);
-		gameState.flags = new boolean[255];
+//		gameState.flags = new boolean[255];
 		objectUpdater = new ObjectUpdater(gameState, null);
 	}
 

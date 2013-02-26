@@ -1,6 +1,8 @@
 package agijava.logic.commands;
 
+import agijava.main.AnimatedObject;
 import agijava.main.GameState;
+import agijava.main.Position;
 
 public class AddToPicCommand extends AbstractLogicCommand {
 
@@ -20,7 +22,7 @@ public class AddToPicCommand extends AbstractLogicCommand {
 		int y = getY(gameState);
 		int priority = getPrio(gameState);
 		int margin = getMargin(gameState);
-		gameState.addBackgroundViewToBuffer(viewNo,loopNo,celNo,x,y,priority,margin);
+		addBackgroundViewToBuffer(viewNo,loopNo,celNo,x,y,priority,margin,gameState);
 
 	}
 
@@ -55,6 +57,17 @@ public class AddToPicCommand extends AbstractLogicCommand {
 	@Override
 	public int getArgsSizeInBytes() {
 		return 7;
+	}
+	
+	private void addBackgroundViewToBuffer(int viewNo, int loopNo, int celNo,
+			int x, int y, int priority, int margin, GameState gameState) {
+		AnimatedObject animatedObject = new AnimatedObject(gameState.viewRepository);
+		animatedObject.setView(viewNo);
+		animatedObject.setCurrentViewLoop(loopNo);
+		animatedObject.setCurrentViewCel(celNo);
+		animatedObject.setPosition(new Position(x,y));
+		animatedObject.setPriority(priority);
+		gameState.bufferBackgroundViews.add(animatedObject);
 	}
 
 }

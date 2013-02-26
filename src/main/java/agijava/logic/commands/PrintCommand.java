@@ -10,7 +10,7 @@ public class PrintCommand extends AbstractLogicCommand {
 		int messageNo = getMessageNo(gameState);
 		String message = gameState.currentLogic.getMessage(messageNo);
 		message = parseMessage(message,gameState);
-		gameState.showMessage(message);
+		showMessage(message,gameState);
 //		JOptionPane.showMessageDialog(null, message);
 	}
 
@@ -26,6 +26,11 @@ public class PrintCommand extends AbstractLogicCommand {
 	@Override
 	public int getArgsSizeInBytes() {
 		return 1;
+	}
+	
+	private void showMessage(String message, GameState gameState) {
+		gameState.messageShown = true;
+		gameState.currentMessage = message;
 	}
 
 }

@@ -7,7 +7,7 @@ public class SetScanStartCommand extends AbstractLogicCommand {
 	@Override
 	public void execute(GameState gameState) {
 		int offset = gameState.currentLogic.getCurrentOffset();
-		gameState.setScanStart(gameState.currentLogic.getEntryNumber(),offset);
+		gameState.scanStarts.put(gameState.currentLogic.getEntryNumber(),offset);
 	}
 
 	@Override

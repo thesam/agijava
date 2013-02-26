@@ -10,56 +10,48 @@ import agijava.logic.Logic;
 import agijava.picture.Picture;
 
 public class GameState {
-	
+
 	public int horizon; // TODO: Default value
 	public boolean playerControl; // TODO: Default value
-
 	public final ViewRepository viewRepository;
-	// State
-	public boolean isGameExited;  // TODO: Default value
+	public boolean isGameExited; // TODO: Default value
 	public boolean haveKey;
-	public boolean[] flags;
+	public final boolean[] flags;
 	public String currentMessage;
 	public Map<Integer, AnimatedObject> animatedObjects;
 	public final Stack<Logic> logicStack;
 	public List<AnimatedObject> displayedBackgroundViews;
 	public int newRoomNumber;
-	private final LogicRepository logicRepository;
-	private final PictureRepository pictureRepository;
-	private final WordsTok wordsTok;
+	public final PictureRepository pictureRepository;
 	public final InventoryObjects inventoryObjects;
-	
 	public boolean newRoomWaiting;
 	public boolean statusLineOn;
 	public boolean messageShown;
-	
-	private int[] vars;
-	public String[] strings;
-
+	public final int[] vars;
+	public final String[] strings;
 	public char cursorChar;
-
 	public Logic currentLogic;
 	public Picture currentPicture;
-	private Picture bufferPicture;
+	public Picture bufferPicture;
 	public List<Text> displayedTexts;
-
-	private Map<Integer, Integer> scanStarts;
+	public final Map<Integer, Integer> scanStarts;
 	public List<AnimatedObject> bufferBackgroundViews;
-	private List<Integer> latestSaidWords;
-	
 	public String latestInput = "";
 	public boolean acceptInput;
 
+	private final LogicRepository logicRepository;
+
+	private final WordsTok wordsTok;
+
 	public GameState(LogicRepository logicRepository,
-			PictureRepository pictureRepository,
-			ViewRepository viewRepository, WordsTok wordsTok,
-			InventoryObjects inventoryObjects) {
+			PictureRepository pictureRepository, ViewRepository viewRepository,
+			WordsTok wordsTok, InventoryObjects inventoryObjects) {
 		this.logicRepository = logicRepository;
 		this.pictureRepository = pictureRepository;
 		this.viewRepository = viewRepository;
 		this.wordsTok = wordsTok;
 		this.inventoryObjects = inventoryObjects;
-		
+
 		this.animatedObjects = new HashMap<Integer, AnimatedObject>();
 		this.displayedTexts = new ArrayList<Text>();
 		this.scanStarts = new HashMap<Integer, Integer>();
@@ -69,7 +61,7 @@ public class GameState {
 		this.flags = new boolean[256];
 		this.vars = new int[256];
 		this.strings = new String[256];
-		
+
 		this.acceptInput = true;
 
 	}
@@ -102,14 +94,6 @@ public class GameState {
 		}
 	}
 
-	public void returnToCallingLogic() {
-		if (logicStack.isEmpty()) {
-			currentLogic = null;
-		} else {
-			currentLogic = logicStack.pop();
-		}
-	}
-
 	public boolean executeNextCommand() {
 		if (currentLogic == null) {
 			return false;
@@ -119,25 +103,16 @@ public class GameState {
 			return true;
 		}
 	}
-	
-	public void showPictureFromBuffer() {
-		currentPicture = bufferPicture;
-		displayedBackgroundViews = bufferBackgroundViews;
-	}
-	
+
 	public void addBackgroundViewToBuffer(int viewNo, int loopNo, int celNo,
 			int x, int y, int priority, int margin) {
 		AnimatedObject animatedObject = new AnimatedObject(viewRepository);
 		animatedObject.setView(viewNo);
 		animatedObject.setCurrentViewLoop(loopNo);
 		animatedObject.setCurrentViewCel(celNo);
-		animatedObject.setPosition(new Position(x,y));
+		animatedObject.setPosition(new Position(x, y));
 		animatedObject.setPriority(priority);
 		bufferBackgroundViews.add(animatedObject);
-	}
-
-	public void setPictureInBuffer(int picNo) {
-		bufferPicture = pictureRepository.getPicture(picNo);
 	}
 
 	private int getScanStart(Integer logicNo) {
@@ -147,35 +122,6 @@ public class GameState {
 			return 0;
 		}
 	}
-	
-	public void setScanStart(int entryNumber, int offset) {
-		scanStarts.put(entryNumber, offset);
-	}
-
-	public void resetScanStart(int entryNumber) {
-		scanStarts.remove(entryNumber);
-	}
-
-	public void setPlayerControl(boolean b) {
-		playerControl = b;
-	}
-
-	public List<Integer> getLatestSaidWords() {
-		if (latestSaidWords != null) {
-			return latestSaidWords;
-		}
-		return new ArrayList<Integer>();
-	}
-
-	public void setLastSaidWords(List<Integer> saidWords) {
-		this.latestSaidWords = saidWords;
-	}
-
-	public void clearLastSaidWords() {
-		if (latestSaidWords != null) {
-			latestSaidWords.clear();
-		}
-	}
 
 	public int getNumberForWord(String string) {
 		return wordsTok.getNumberFor(string);
@@ -183,15 +129,6 @@ public class GameState {
 
 	public InventoryObject getInventoryObject(int inventoryObjectNo) {
 		return inventoryObjects.get(inventoryObjectNo);
-	}
-
-	public void showMessage(String message) {
-		messageShown = true;
-		currentMessage = message;
-	}
-
-	public List<AnimatedObject> getBufferedBackgroundViews() {
-		return bufferBackgroundViews;
 	}
 
 }
