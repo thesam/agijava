@@ -39,9 +39,9 @@ public class GameState {
 	public String latestInput = "";
 	public boolean acceptInput;
 
-	private final LogicRepository logicRepository;
+	public final LogicRepository logicRepository;
 
-	private final WordsTok wordsTok;
+	public final WordsTok wordsTok;
 
 	public GameState(LogicRepository logicRepository,
 			PictureRepository pictureRepository, ViewRepository viewRepository,
@@ -77,58 +77,6 @@ public class GameState {
 	public boolean controller(int controllerNo) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	public void jumpForward(int blockSize) {
-		currentLogic.increaseOffset(blockSize);
-	}
-
-	public void callNewLogic(Integer logicNo) {
-		if (currentLogic != null) {
-			logicStack.push(currentLogic);
-		}
-		currentLogic = logicRepository.getLogic(logicNo);
-		int scanStart = getScanStart(logicNo);
-		if (scanStart > 0) {
-			currentLogic.setOffset(scanStart);
-		}
-	}
-
-	public boolean executeNextCommand() {
-		if (currentLogic == null) {
-			return false;
-		} else {
-			LogicCommand nextCommand = currentLogic.getNextCommand();
-			nextCommand.execute(this);
-			return true;
-		}
-	}
-
-	public void addBackgroundViewToBuffer(int viewNo, int loopNo, int celNo,
-			int x, int y, int priority, int margin) {
-		AnimatedObject animatedObject = new AnimatedObject(viewRepository);
-		animatedObject.setView(viewNo);
-		animatedObject.setCurrentViewLoop(loopNo);
-		animatedObject.setCurrentViewCel(celNo);
-		animatedObject.setPosition(new Position(x, y));
-		animatedObject.setPriority(priority);
-		bufferBackgroundViews.add(animatedObject);
-	}
-
-	private int getScanStart(Integer logicNo) {
-		if (scanStarts.containsKey(logicNo)) {
-			return scanStarts.get(logicNo);
-		} else {
-			return 0;
-		}
-	}
-
-	public int getNumberForWord(String string) {
-		return wordsTok.getNumberFor(string);
-	}
-
-	public InventoryObject getInventoryObject(int inventoryObjectNo) {
-		return inventoryObjects.get(inventoryObjectNo);
 	}
 
 }

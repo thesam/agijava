@@ -36,14 +36,6 @@ public class GameEngineTest {
 	}
 
 	@Test
-	public void callsLogic0WhenRun() throws Exception {
-		aGameEngine();
-		anExitedGameState();
-		gameEngine.run();
-		verify(gameState).callNewLogic(0);
-	}
-	
-	@Test
 	public void refreshesGuiOnRunningGame() throws Exception {
 		aGameEngine();
 		gameEngine.run();

@@ -27,7 +27,7 @@ public class GotoCommand extends AbstractLogicCommand {
 		if (isNegative(number)) {
 			number = getAsNegative(number);
 		}
-		gameState.jumpForward(number);
+		gameState.currentLogic.increaseOffset(number);
 	}
 
 }

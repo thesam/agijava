@@ -1,8 +1,9 @@
 package agijava.main;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
 import agijava.gui.GameGui;
+import agijava.logic.commands.CallCommand;
 
 public class GameEngine {
 
@@ -49,11 +50,19 @@ public class GameEngine {
 
 	private void initGameState() {
 		gameState.flags[FLAG_NEW_ROOM] = true;
-		gameState.callNewLogic(0);
+		reloadFirstLogic();
+	}
+
+	private void callNewLogic(GameState gameState2, int i) {
+		CallCommand callCommand = new CallCommand();
+		ArrayList<Integer> roomNumber = new ArrayList<Integer>();
+		roomNumber.add(0);
+		callCommand.setArgs(roomNumber);
+		callCommand.execute(gameState2);
 	}
 
 	private void tick() {
-		boolean couldExecuteCommand = gameState.executeNextCommand();
+		boolean couldExecuteCommand = executeNextCommand(gameState);
 		if (!couldExecuteCommand) {
 			resetInputState();
 			gui.handleKeyboardInput();
@@ -61,29 +70,39 @@ public class GameEngine {
 			reloadFirstLogic();
 			updateEgoDirection();
 			runningGame.updateAnimatedObjects();
-//			if (enoughTimeHasPassedSinceLastGuiUpdate()) {
-//				lastGuiUpdate = now;
-				runningGame.refreshGui();
-//			}
-//			try {
-//				Thread.sleep(1);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+			// if (enoughTimeHasPassedSinceLastGuiUpdate()) {
+			// lastGuiUpdate = now;
+			runningGame.refreshGui();
+			// }
+			// try {
+			// Thread.sleep(1);
+			// } catch (InterruptedException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
 			waitForUserToCloseMessage();
 		}
 	}
 
-//	private boolean enoughTimeHasPassedSinceLastGuiUpdate() {
-//		now = System.currentTimeMillis();
-//		long delta = now - lastGuiUpdate;
-//		if (delta > 40) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
+	public boolean executeNextCommand(GameState gameState) {
+		if (gameState.currentLogic == null) {
+			return false;
+		} else {
+			LogicCommand nextCommand = gameState.currentLogic.getNextCommand();
+			nextCommand.execute(gameState);
+			return true;
+		}
+	}
+
+	// private boolean enoughTimeHasPassedSinceLastGuiUpdate() {
+	// now = System.currentTimeMillis();
+	// long delta = now - lastGuiUpdate;
+	// if (delta > 40) {
+	// return true;
+	// } else {
+	// return false;
+	// }
+	// }
 
 	private void resetInputState() {
 		gameState.latestInput = "";
@@ -111,8 +130,7 @@ public class GameEngine {
 			// that was associated with Ego (the player character).
 			gameState.setVar(GameEngine.VAR_PREVIOUS_ROOM_NO,
 					gameState.getVar(GameEngine.VAR_ROOM_NO));
-			gameState.setVar(GameEngine.VAR_ROOM_NO,
-					gameState.newRoomNumber);
+			gameState.setVar(GameEngine.VAR_ROOM_NO, gameState.newRoomNumber);
 			// Logic(i) resource is loaded where i is the value of v0 !
 			// Set Ego coordinates according to v2:
 			// if Ego touched the bottom edge, put it on the horizon;
@@ -141,7 +159,7 @@ public class GameEngine {
 	}
 
 	private void reloadFirstLogic() {
-		gameState.callNewLogic(0);
+		callNewLogic(gameState,0);
 	}
 
 	private void waitForUserToCloseMessage() {

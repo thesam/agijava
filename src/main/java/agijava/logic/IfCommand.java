@@ -41,7 +41,7 @@ public class IfCommand implements LogicCommand {
 	}
 
 	private void skipContentOfIfBlock(GameState gameState, int blockSize) {
-		gameState.jumpForward(blockSize);
+		gameState.currentLogic.increaseOffset(blockSize);
 	}
 
 	private boolean evaluateTestStatement(RawByteArray testStatementBytes,

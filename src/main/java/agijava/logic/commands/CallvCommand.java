@@ -2,13 +2,13 @@ package agijava.logic.commands;
 
 import agijava.main.GameState;
 
-public class CallvCommand extends AbstractLogicCommand {
+public class CallvCommand extends CallCommand {
 
 	@Override
-	public void execute(GameState gameState) {
+	protected int getRoomNumber(GameState gameState) {
 		int varNo = args.get(0);
 		int roomNo = gameState.getVar(varNo);
-		gameState.callNewLogic(roomNo);
+		return roomNo;
 	}
 
 	@Override

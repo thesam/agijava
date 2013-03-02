@@ -188,7 +188,7 @@ public class TestStatementEvaluator {
 		String[] words = cleanInput.split(" ");
 		List<Integer> wordNumbersFromInput = new ArrayList<Integer>();
 		for (int word = 0; word < words.length; word++) {
-			int wordNo = gameState.getNumberForWord(words[word]);
+			int wordNo = gameState.wordsTok.getNumberFor(words[word]);
 			wordNumbersFromInput.add(wordNo);
 		}
 		return wordNumbersFromInput;
@@ -393,7 +393,7 @@ public class TestStatementEvaluator {
 	}
 
 	private boolean objInRoom(int itemNo, int varNo, GameState gameState) {
-		InventoryObject inventoryObject = gameState.getInventoryObject(itemNo);
+		InventoryObject inventoryObject = gameState.inventoryObjects.get(itemNo);
 		int roomNo = gameState.getVar(varNo);
 		return (inventoryObject.getRoomNumber() == roomNo);
 

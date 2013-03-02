@@ -84,7 +84,8 @@ public class IfCommandTest {
 		aTrueTestStatement();
 		threeArguments();
 		ifCommand.execute(gameState);
-		verify(gameState,never()).jumpForward(anyInt());
+//		verify(gameState,never()).jumpForward(anyInt());
+		fail();
 	}
 
 	@Test
@@ -93,7 +94,8 @@ public class IfCommandTest {
 		aFalseTestStatement();
 		threeArguments();
 		ifCommand.execute(gameState);
-		verify(gameState).jumpForward(anyInt());
+//		verify(gameState).jumpForward(anyInt());
+		fail();
 		
 	}
 	
