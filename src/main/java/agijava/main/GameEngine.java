@@ -117,7 +117,7 @@ public class GameEngine {
 			AnimatedObject ego = gameState.animatedObjects.get(0);
 			if (ego != null) {
 				int egoView = ego.getView().getNumber();
-				gameState.setVar(GameEngine.VAR_EGO_VIEW_NO, egoView);
+				gameState.vars[GameEngine.VAR_EGO_VIEW_NO] = egoView;
 			}
 			gameState.animatedObjects.clear();
 			// All resources except Logic(0) are discarded;
@@ -128,9 +128,8 @@ public class GameEngine {
 			// vn when the command is new.room.v); v4 is assigned 0; v5 is
 			// assigned 0; v16 is assigned the ID number of the VIEW resource
 			// that was associated with Ego (the player character).
-			gameState.setVar(GameEngine.VAR_PREVIOUS_ROOM_NO,
-					gameState.getVar(GameEngine.VAR_ROOM_NO));
-			gameState.setVar(GameEngine.VAR_ROOM_NO, gameState.newRoomNumber);
+			gameState.vars[GameEngine.VAR_PREVIOUS_ROOM_NO] = gameState.vars[GameEngine.VAR_ROOM_NO];
+			gameState.vars[GameEngine.VAR_ROOM_NO] = gameState.newRoomNumber;
 			// Logic(i) resource is loaded where i is the value of v0 !
 			// Set Ego coordinates according to v2:
 			// if Ego touched the bottom edge, put it on the horizon;

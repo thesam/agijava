@@ -10,7 +10,7 @@ public class CurrentLoopCommand extends AbstractLogicCommand {
 		int objNo = args.get(0);
 		int varNo = args.get(1);
 		AnimatedObject animatedObject = gameState.animatedObjects.get(objNo);
-		gameState.setVar(varNo, animatedObject.getCurrentViewLoop());
+		gameState.vars[varNo] = animatedObject.getCurrentViewLoop();
 	}
 
 	@Override

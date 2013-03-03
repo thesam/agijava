@@ -8,7 +8,7 @@ public class AssignnCommand extends AbstractLogicCommand {
 	public void execute(GameState gameState) {
 		int varNo = args.get(0);
 		int newValue = args.get(1);
-		gameState.setVar(varNo,newValue);
+		gameState.vars[varNo] = newValue;
 	}
 
 	@Override

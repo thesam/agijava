@@ -261,7 +261,7 @@ public class GameGui {
 						ego.setMoving(true);
 					}
 					gameState
-							.setVar(GameEngine.VAR_EGO_DIRECTION, direction);
+							.vars[GameEngine.VAR_EGO_DIRECTION] = direction;
 				}
 			}
 		}

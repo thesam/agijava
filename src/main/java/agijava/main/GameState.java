@@ -70,10 +70,6 @@ public class GameState {
 		return vars[var];
 	}
 
-	public void setVar(int varNo, int newValue) {
-		vars[varNo] = newValue;
-	}
-
 	public boolean controller(int controllerNo) {
 		// TODO Auto-generated method stub
 		return false;

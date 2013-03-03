@@ -11,7 +11,7 @@ public class SubnCommand extends AbstractLogicCommand {
 		int value = args.get(1);
 		int oldValue = gameState.getVar(varNo);
 		int newValue = oldValue - value;
-		gameState.setVar(varNo, newValue);
+		gameState.vars[varNo] = newValue;
 
 	}
 

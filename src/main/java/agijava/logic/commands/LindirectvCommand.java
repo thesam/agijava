@@ -10,7 +10,7 @@ public class LindirectvCommand extends AbstractLogicCommand {
 		int sourceVarNo = args.get(1);
 		int destinationVarNo = gameState.getVar(varNo);
 		int value = gameState.getVar(sourceVarNo);
-		gameState.setVar(destinationVarNo,value);
+		gameState.vars[destinationVarNo] = value;
 		
 	}
 

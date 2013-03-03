@@ -20,7 +20,7 @@ public class RandomCommand extends AbstractLogicCommand {
 		}
 		int value = random.nextInt(max-min);
 		value += min;
-		gameState.setVar(varNo, value);
+		gameState.vars[varNo] = value;
 
 	}
 

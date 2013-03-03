@@ -9,7 +9,7 @@ public class DecrementCommand extends AbstractLogicCommand {
 		int varNo = args.get(0);
 		int value = gameState.getVar(varNo);
 		value--;
-		gameState.setVar(varNo, value);
+		gameState.vars[varNo] = value;
 	}
 
 	@Override

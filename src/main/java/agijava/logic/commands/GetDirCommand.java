@@ -10,7 +10,7 @@ public class GetDirCommand extends AbstractLogicCommand {
 		int objNo = args.get(0);
 		int varNo = args.get(1);
 		AnimatedObject animatedObject = gameState.animatedObjects.get(objNo);
-		gameState.setVar(varNo, animatedObject.getDirection());
+		gameState.vars[varNo] = animatedObject.getDirection();
 	}
 
 	@Override

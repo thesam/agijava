@@ -39,15 +39,6 @@ public class GameStateTest {
 	}
 
 	@Test
-	public void canStoreVariableValue() throws Exception {
-		aGameState();
-		int varNo = 5;
-		int varValue = 6;
-		gameState.setVar(varNo, varValue);
-		assertEquals(varValue, gameState.getVar(varNo));
-	}
-
-	@Test
 	public void returnsFalseWhenAskedForController() throws Exception {
 		aGameState();
 //		assertFalse(gameState.controller(5));

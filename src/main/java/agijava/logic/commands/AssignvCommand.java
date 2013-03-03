@@ -8,7 +8,7 @@ public class AssignvCommand extends AbstractLogicCommand {
 	public void execute(GameState gameState) {
 		int targetVar = args.get(0);
 		int sourceVar = args.get(1);
-		gameState.setVar(targetVar, gameState.getVar(sourceVar));
+		gameState.vars[targetVar] = gameState.vars[sourceVar];
 		
 	}
 

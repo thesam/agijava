@@ -13,8 +13,8 @@ public class GetPosnCommand extends AbstractLogicCommand {
 		AnimatedObject animatedObject = gameState.animatedObjects.get(objNo);
 		int x = animatedObject.getCurrentPosition().getX();
 		int y = animatedObject.getCurrentPosition().getY();
-		gameState.setVar(xVarNo, x);
-		gameState.setVar(yVarNo, y);
+		gameState.vars[xVarNo] = x;
+		gameState.vars[yVarNo] = y;
 	}
 
 	@Override

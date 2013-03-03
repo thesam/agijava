@@ -10,7 +10,7 @@ public class CurrentViewCommand extends AbstractLogicCommand {
 		int objNo = args.get(0);
 		int varNo = args.get(1);
 		AnimatedObject animatedObject = gameState.animatedObjects.get(objNo);
-		gameState.setVar(varNo, animatedObject.getView().getNumber());
+		gameState.vars[varNo] = animatedObject.getView().getNumber();
 	}
 
 	@Override
