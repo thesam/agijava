@@ -9,7 +9,7 @@ public class LoadPicCommand extends AbstractLogicCommand {
 	public void execute(GameState gameState) {
 		//TODO: Always load all pictures?
 		int varNo = args.get(0);
-		int picNo = gameState.getVar(varNo);
+		int picNo = gameState.vars[varNo];
 	}
 
 	@Override

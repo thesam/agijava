@@ -7,6 +7,6 @@ public class PrintvCommand extends PrintCommand {
 	@Override
 	protected int getMessageNo(GameState gameState) {
 		int varNo = args.get(0);
-		return gameState.getVar(varNo);
+		return gameState.vars[varNo];
 	}
 }

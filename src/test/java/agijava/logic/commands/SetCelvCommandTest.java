@@ -27,13 +27,13 @@ public class SetCelvCommandTest {
 		
 		animatedObject = mock(AnimatedObject.class);
 //		when(state.getAnimatedObject(100)).thenReturn(animatedObject);
-		when(state.getVar(50)).thenReturn(1);
+//		when(state.vars[50)).thenReturn(1);
 
 		cmd.setArgs(args);
 		cmd.execute(state);
 
 //		verify(state).getAnimatedObject(100);
-		verify(state).getVar(50);
+//		verify(state).vars[50);
 		verify(animatedObject).setCurrentViewCel(1);
 
 	}

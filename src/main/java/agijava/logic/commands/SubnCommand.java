@@ -9,7 +9,7 @@ public class SubnCommand extends AbstractLogicCommand {
 		// TODO Auto-generated method stub
 		int varNo = args.get(0);
 		int value = args.get(1);
-		int oldValue = gameState.getVar(varNo);
+		int oldValue = gameState.vars[varNo];
 		int newValue = oldValue - value;
 		gameState.vars[varNo] = newValue;
 

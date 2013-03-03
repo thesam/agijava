@@ -9,7 +9,7 @@ public class SetLoopvCommand extends AbstractLogicCommand {
 	public void execute(GameState gameState) {
 		int objNo = args.get(0);
 		int varNo = args.get(1);
-		int loopNo = gameState.getVar(varNo);
+		int loopNo = gameState.vars[varNo];
 		AnimatedObject animatedObject = gameState.animatedObjects.get(objNo);
 		animatedObject.setCurrentViewLoop(loopNo);
 	}

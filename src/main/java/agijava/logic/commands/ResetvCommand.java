@@ -7,7 +7,7 @@ public class ResetvCommand extends AbstractLogicCommand {
 	@Override
 	public void execute(GameState gameState) {
 		int varNo = args.get(0);
-		int flagNo = gameState.getVar(varNo);
+		int flagNo = gameState.vars[varNo];
 		gameState.flags[flagNo] = false;
 	}
 

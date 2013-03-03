@@ -7,7 +7,7 @@ public class CallvCommand extends CallCommand {
 	@Override
 	protected int getRoomNumber(GameState gameState) {
 		int varNo = args.get(0);
-		int roomNo = gameState.getVar(varNo);
+		int roomNo = gameState.vars[varNo];
 		return roomNo;
 	}
 

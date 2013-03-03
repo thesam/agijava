@@ -8,8 +8,8 @@ public class RindirectCommand extends AbstractLogicCommand {
 	public void execute(GameState gameState) {
 		int destinationVarNo = args.get(0);
 		int pointerVarNo = args.get(1);
-		int sourceVarNo = gameState.getVar(pointerVarNo);
-		int newValue = gameState.getVar(sourceVarNo);
+		int sourceVarNo = gameState.vars[pointerVarNo];
+		int newValue = gameState.vars[sourceVarNo];
 		gameState.vars[destinationVarNo] = newValue;
 		
 	}

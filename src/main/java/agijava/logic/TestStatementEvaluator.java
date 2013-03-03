@@ -314,7 +314,7 @@ public class TestStatementEvaluator {
 		EvaluatedTestStatement maybeAStatement;
 		int flagNo = testStatementBytes.getNextAndStep();
 		maybeAStatement = createStatement(gameState.flags[gameState
-				.getVar(flagNo)]);
+				.vars[flagNo]]);
 		return maybeAStatement;
 	}
 
@@ -331,8 +331,8 @@ public class TestStatementEvaluator {
 		EvaluatedTestStatement maybeAStatement;
 		int var1 = testStatementBytes.getNextAndStep();
 		int var2 = testStatementBytes.getNextAndStep();
-		maybeAStatement = createStatement(gameState.getVar(var1) < gameState
-				.getVar(var2));
+		maybeAStatement = createStatement(gameState.vars[var1] < gameState
+				.vars[var2]);
 		return maybeAStatement;
 	}
 
@@ -341,7 +341,7 @@ public class TestStatementEvaluator {
 		EvaluatedTestStatement maybeAStatement;
 		int var = testStatementBytes.getNextAndStep();
 		int num = testStatementBytes.getNextAndStep();
-		maybeAStatement = createStatement(gameState.getVar(var) < num);
+		maybeAStatement = createStatement(gameState.vars[var] < num);
 		return maybeAStatement;
 	}
 
@@ -350,7 +350,7 @@ public class TestStatementEvaluator {
 		EvaluatedTestStatement maybeAStatement;
 		int var = testStatementBytes.getNextAndStep();
 		int num = testStatementBytes.getNextAndStep();
-		maybeAStatement = createStatement(gameState.getVar(var) == num);
+		maybeAStatement = createStatement(gameState.vars[var] == num);
 		return maybeAStatement;
 	}
 
@@ -359,8 +359,8 @@ public class TestStatementEvaluator {
 		EvaluatedTestStatement maybeAStatement;
 		int var1 = testStatementBytes.getNextAndStep();
 		int var2 = testStatementBytes.getNextAndStep();
-		maybeAStatement = createStatement(gameState.getVar(var1) == gameState
-				.getVar(var2));
+		maybeAStatement = createStatement(gameState.vars[var1] == gameState
+				.vars[var2]);
 		return maybeAStatement;
 	}
 
@@ -369,8 +369,8 @@ public class TestStatementEvaluator {
 		EvaluatedTestStatement maybeAStatement;
 		int var1 = testStatementBytes.getNextAndStep();
 		int var2 = testStatementBytes.getNextAndStep();
-		maybeAStatement = createStatement(gameState.getVar(var1) > gameState
-				.getVar(var2));
+		maybeAStatement = createStatement(gameState.vars[var1] > gameState
+				.vars[var2]);
 		return maybeAStatement;
 	}
 
@@ -379,7 +379,7 @@ public class TestStatementEvaluator {
 		EvaluatedTestStatement maybeAStatement;
 		int var = testStatementBytes.getNextAndStep();
 		int num = testStatementBytes.getNextAndStep();
-		maybeAStatement = createStatement(gameState.getVar(var) > num);
+		maybeAStatement = createStatement(gameState.vars[var] > num);
 		return maybeAStatement;
 	}
 
@@ -394,7 +394,7 @@ public class TestStatementEvaluator {
 
 	private boolean objInRoom(int itemNo, int varNo, GameState gameState) {
 		InventoryObject inventoryObject = gameState.inventoryObjects.get(itemNo);
-		int roomNo = gameState.getVar(varNo);
+		int roomNo = gameState.vars[varNo];
 		return (inventoryObject.getRoomNumber() == roomNo);
 
 	}

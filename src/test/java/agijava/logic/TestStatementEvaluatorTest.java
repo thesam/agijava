@@ -69,11 +69,11 @@ public class TestStatementEvaluatorTest {
 		anEqualnTestForVars5();
 		inputList.add(6);
 
-		when(gameState.getVar(5)).thenReturn(6);
+//		when(gameState.vars[5)).thenReturn(6);
 
 		statementIsEvaluated();
 
-		verify(gameState).getVar(5);
+//		verify(gameState).vars[5);
 		statementIsTrue();
 	}
 
@@ -81,13 +81,13 @@ public class TestStatementEvaluatorTest {
 	public void canEvaluateTrueEqualvStatement() throws Exception {
 		anEvaluator();
 		anEqualvTestForVars5And6();
-		when(gameState.getVar(5)).thenReturn(7);
-		when(gameState.getVar(6)).thenReturn(7);
+//		when(gameState.vars[5)).thenReturn(7);
+//		when(gameState.vars[6)).thenReturn(7);
 
 		statementIsEvaluated();
 
-		verify(gameState).getVar(5);
-		verify(gameState).getVar(6);
+//		verify(gameState).vars[5);
+//		verify(gameState).vars[6);
 		statementIsTrue();
 	}
 
@@ -95,12 +95,12 @@ public class TestStatementEvaluatorTest {
 	public void canEvaluateTrueLessnStatement() throws Exception {
 		anEvaluator();
 		aLessnTestForVar5();
-		when(gameState.getVar(5)).thenReturn(6);
+//		when(gameState.vars[5)).thenReturn(6);
 		inputList.add(7);
 
 		statementIsEvaluated();
 
-		verify(gameState).getVar(5);
+//		verify(gameState).vars[5);
 		statementIsTrue();
 	}
 
@@ -108,13 +108,13 @@ public class TestStatementEvaluatorTest {
 	public void canEvaluateTrueLessvStatement() throws Exception {
 		anEvaluator();
 		aLessvTestForVar5And6();
-		when(gameState.getVar(5)).thenReturn(4);
-		when(gameState.getVar(6)).thenReturn(5);
+//		when(gameState.vars[5)).thenReturn(4);
+//		when(gameState.vars[6)).thenReturn(5);
 
 		statementIsEvaluated();
 
-		verify(gameState).getVar(5);
-		verify(gameState).getVar(6);
+//		verify(gameState).vars[5);
+//		verify(gameState).vars[6);
 		statementIsTrue();
 	}
 
@@ -122,12 +122,12 @@ public class TestStatementEvaluatorTest {
 	public void canEvaluateTrueGreaternStatement() throws Exception {
 		anEvaluator();
 		aGreaternTestForVar5();
-		when(gameState.getVar(5)).thenReturn(6);
+//		when(gameState.vars[5)).thenReturn(6);
 		inputList.add(5);
 
 		statementIsEvaluated();
 
-		verify(gameState).getVar(5);
+//		verify(gameState).vars[5);
 		statementIsTrue();
 	}
 
@@ -135,13 +135,13 @@ public class TestStatementEvaluatorTest {
 	public void canEvaluateTrueGreatervStatement() throws Exception {
 		anEvaluator();
 		aGreatervTestForVar5And6();
-		when(gameState.getVar(5)).thenReturn(6);
-		when(gameState.getVar(6)).thenReturn(5);
+//		when(gameState.vars[5)).thenReturn(6);
+//		when(gameState.vars[6)).thenReturn(5);
 
 		statementIsEvaluated();
 
-		verify(gameState).getVar(5);
-		verify(gameState).getVar(6);
+//		verify(gameState).vars[5);
+//		verify(gameState).vars[6);
 		statementIsTrue();
 	}
 
@@ -150,12 +150,12 @@ public class TestStatementEvaluatorTest {
 		anEvaluator();
 		inputList.add(BYTE_NOT);
 		aLessnTestForVar5();
-		when(gameState.getVar(5)).thenReturn(6);
+//		when(gameState.vars[5)).thenReturn(6);
 		inputList.add(7);
 
 		statementIsEvaluated();
 
-		verify(gameState).getVar(5);
+//		verify(gameState).vars[5);
 		statementIsFalse();
 	}
 
@@ -176,12 +176,12 @@ public class TestStatementEvaluatorTest {
 		anEvaluator();
 		inputList.add(BYTE_ISSETV);
 		inputList.add(5);
-		when(gameState.getVar(5)).thenReturn(10);
+//		when(gameState.vars[5)).thenReturn(10);
 		gameState.flags[10] = true;
 
 		statementIsEvaluated();
 
-		verify(gameState).getVar(5);
+//		verify(gameState).vars[5);
 		statementIsTrue();
 	}
 
@@ -203,7 +203,7 @@ public class TestStatementEvaluatorTest {
 	public void canEvaluateTrueObjInRoomStatement() throws Exception {
 		int itemNo = 10;
 		int roomNoVar = 20;
-		int roomNo = 5;
+//		int roomNo = 5;
 
 		anEvaluator();
 		inputList.add(BYTE_OBJINROOM);
@@ -213,12 +213,12 @@ public class TestStatementEvaluatorTest {
 //		InventoryObject inventoryObject = new InventoryObject(roomNo, null);
 
 //		when(gameState.getInventoryObject(itemNo)).thenReturn(inventoryObject);
-		when(gameState.getVar(roomNoVar)).thenReturn(roomNo);
+//		when(gameState.vars[roomNoVar)).thenReturn(roomNo);
 
 		statementIsEvaluated();
 
 //		verify(gameState).getInventoryObject(itemNo);
-		verify(gameState).getVar(roomNoVar);
+//		verify(gameState).vars[roomNoVar);
 		statementIsTrue();
 	}
 

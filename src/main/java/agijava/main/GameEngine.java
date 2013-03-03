@@ -153,7 +153,7 @@ public class GameEngine {
 	private void updateEgoDirection() {
 		AnimatedObject ego = gameState.animatedObjects.get(0);
 		if (ego != null) {
-			ego.setDirection(gameState.getVar(VAR_EGO_DIRECTION));
+			ego.setDirection(gameState.vars[VAR_EGO_DIRECTION]);
 		}
 	}
 

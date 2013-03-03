@@ -7,7 +7,7 @@ public class SetCelvCommand extends SetCelCommand {
 	@Override
 	protected int getCelNo(GameState gameState) {
 		int varNo = args.get(1);
-		int celNo = gameState.getVar(varNo);
+		int celNo = gameState.vars[varNo];
 		return celNo;
 	}
 

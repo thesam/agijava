@@ -66,10 +66,6 @@ public class GameState {
 
 	}
 
-	public int getVar(int var) {
-		return vars[var];
-	}
-
 	public boolean controller(int controllerNo) {
 		// TODO Auto-generated method stub
 		return false;

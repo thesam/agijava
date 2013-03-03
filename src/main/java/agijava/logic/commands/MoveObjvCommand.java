@@ -7,12 +7,12 @@ public class MoveObjvCommand extends MoveObjCommand {
 	@Override
 	protected int getX(GameState gameState) {
 		int varx = args.get(1);
-		return gameState.getVar(varx);
+		return gameState.vars[varx];
 	}
-	
+
 	@Override
-		protected int getY(GameState gameState) {
-			int vary = args.get(2);
-			return gameState.getVar(vary);
-		}
+	protected int getY(GameState gameState) {
+		int vary = args.get(2);
+		return gameState.vars[vary];
+	}
 }

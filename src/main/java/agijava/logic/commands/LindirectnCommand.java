@@ -8,7 +8,7 @@ public class LindirectnCommand extends AbstractLogicCommand {
 	public void execute(GameState gameState) {
 		int varNo = args.get(0);
 		int value = args.get(1);
-		int destinationVarNo = gameState.getVar(varNo);
+		int destinationVarNo = gameState.vars[varNo];
 		gameState.vars[destinationVarNo] = value;
 		
 	}

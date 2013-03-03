@@ -8,7 +8,7 @@ public class AddnCommand extends AbstractLogicCommand {
 	public void execute(GameState gameState) {
 		int varNo = args.get(0);
 		int valueToAdd = args.get(1);
-		int oldValue = gameState.getVar(varNo);
+		int oldValue = gameState.vars[varNo];
 		gameState.vars[varNo] = oldValue + valueToAdd;
 	}
 
