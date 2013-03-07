@@ -26,20 +26,18 @@ public class SetCelvCommandTest {
 		args.add(50);
 		
 		animatedObject = mock(AnimatedObject.class);
-//		when(state.getAnimatedObject(100)).thenReturn(animatedObject);
-//		when(state.vars[50)).thenReturn(1);
+		state.animatedObjects.put(100, animatedObject);
+		state.vars[50] = 1;
 
 		cmd.setArgs(args);
 		cmd.execute(state);
 
-//		verify(state).getAnimatedObject(100);
-//		verify(state).vars[50);
 		verify(animatedObject).setCurrentViewCel(1);
 
 	}
 
 	private void aGameState() {
-		state = mock(GameState.class);
+		state = new GameState(null, null, null, null, null);
 	}
 
 	private void aSetCelvCommand() {

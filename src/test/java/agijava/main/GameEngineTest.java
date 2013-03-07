@@ -6,6 +6,7 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 import agijava.gui.GameGui;
+import agijava.logic.Logic;
 import agijava.main.GameState;
 
 public class GameEngineTest {
@@ -31,20 +32,24 @@ public class GameEngineTest {
 	public void setsNewRoomFlagInGameStateWhenRun() throws Exception {
 		aGameEngine();
 		anExitedGameState();
-		gameEngine.run();
+		gameEngine.initGameState();
 		assertTrue(gameState.flags[5]);
 	}
 
 	@Test
 	public void refreshesGuiOnRunningGame() throws Exception {
 		aGameEngine();
-		gameEngine.run();
+		gameEngine.tick();
 		verify(runningGame).refreshGui();
 	}
 	
 	private void aGameEngine() {
-		gameState = new GameState(null, null, null, null, null);
-//		gameState.flags = new boolean[255];
+		LogicRepository logicRepository = mock(LogicRepository.class);
+		Logic logic = mock(Logic.class);
+		
+		when(logicRepository.getLogic(0)).thenReturn(logic);
+		when(logic.getNextCommand()).thenReturn(mock(LogicCommand.class));
+		gameState = new GameState(logicRepository, null, null, null, null);
 		runningGame = mock(RunningGame.class);
 		controller = mock(GameGui.class);
 		gameEngine = new GameEngine(gameState, runningGame, null, controller);

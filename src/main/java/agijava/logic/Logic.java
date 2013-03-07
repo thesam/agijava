@@ -209,7 +209,7 @@ public class Logic {
 		commandMap.put(0xB5, new ReleaseKeyCommand());
 		commandMap.put(0xB6, new AdjEgoMoveToXYCommand());
 		commandMap.put(0xFE, new GotoCommand());
-		commandMap.put(0xFF, new IfCommand());
+		commandMap.put(0xFF, new IfCommand(new TestStatementEvaluator()));
 	}
 
 	public LogicCommand getNextCommand() {

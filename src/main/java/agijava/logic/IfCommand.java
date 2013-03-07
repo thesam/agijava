@@ -10,18 +10,13 @@ import agijava.main.LogicCommand;
 public class IfCommand implements LogicCommand {
 
 	private static final int BYTE_IF = 0xFF;
-	private List<Integer> args;
-	private boolean testStatementPassed;
-	private int remainingSizeBytesNeeded;
+	private List<Integer> args = new ArrayList<Integer>();
+	private boolean testStatementBytesHaveBeenRead;
+	private int remainingSizeBytesNeeded = 2;
 	private TestStatementEvaluator evaluator;
-
-	public IfCommand() {
-		this(new TestStatementEvaluator());
-	}
 
 	public IfCommand(TestStatementEvaluator evaluator) {
 		this.evaluator = evaluator;
-		args = new ArrayList<Integer>();
 	}
 
 	@Override
@@ -59,7 +54,7 @@ public class IfCommand implements LogicCommand {
 	@Override
 	public void setArgs(List<Integer> args) {
 		this.args.addAll(args);
-		if (testStatementPassed) {
+		if (testStatementBytesHaveBeenRead) {
 			remainingSizeBytesNeeded--;
 		}
 
@@ -73,13 +68,13 @@ public class IfCommand implements LogicCommand {
 
 		if (args.size() > 0) {
 			Integer lastByte = args.get(args.size() - 1);
-			if (testStatementPassed) {
+			if (testStatementBytesHaveBeenRead) {
 				if (remainingSizeBytesNeeded == 0) {
 					return true;
 				}
 			} else {
 				if (lastByte == BYTE_IF) {
-					testStatementPassed = true;
+					testStatementBytesHaveBeenRead = true;
 				}
 			}
 		}
@@ -88,10 +83,8 @@ public class IfCommand implements LogicCommand {
 
 	@Override
 	public void reset() {
-		if (args != null) {
-			args.clear();
-		}
-		testStatementPassed = false;
+		args.clear();
+		testStatementBytesHaveBeenRead = false;
 		remainingSizeBytesNeeded = 2;
 	}
 

@@ -48,7 +48,7 @@ public class GameEngine {
 		// System.out.println(logic.replaceAll(";", ";\n"));
 	}
 
-	private void initGameState() {
+	public void initGameState() {
 		gameState.flags[FLAG_NEW_ROOM] = true;
 		reloadFirstLogic();
 	}
@@ -61,7 +61,7 @@ public class GameEngine {
 		callCommand.execute(gameState2);
 	}
 
-	private void tick() {
+	public void tick() {
 		boolean couldExecuteCommand = executeNextCommand(gameState);
 		if (!couldExecuteCommand) {
 			resetInputState();
