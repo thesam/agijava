@@ -13,10 +13,8 @@ public class ConsoleFontFactory {
 		Font font = null;
 		try {
 			font = Font.createFont(Font.TRUETYPE_FONT, is);
-		} catch (FontFormatException e) {
-			font = new Font(Font.MONOSPACED,Font.BOLD,1);
-		} catch (IOException e) {
-			font = new Font(Font.MONOSPACED,Font.BOLD,1);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 		return font;
 	}
