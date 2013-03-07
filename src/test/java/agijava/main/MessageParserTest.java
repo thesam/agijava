@@ -16,7 +16,7 @@ public class MessageParserTest {
 			throws Exception {
 		aMessageParser();
 		
-//		when(gameState.getString(0)).thenReturn("hello");
+		gameState.strings[0] = "hello";
 		
 		assertEquals("hello",messageParser.parse("%s0"));
 
@@ -32,13 +32,13 @@ public class MessageParserTest {
 	@Test
 	public void canReplaceStringReferenceButKeepRestOfString() throws Exception {
 		aMessageParser();
-//		when(gameState.getString(0)).thenReturn("hello");
+		gameState.strings[0] = "hello";
 		assertEquals("foohellofoo",messageParser.parse("foo%s0foo"));
 		
 	}
 
 	private void aMessageParser() {
-		gameState = mock(GameState.class);
+		gameState = new GameState(null, null, null, null, null);
 		messageParser = new MessageParser(gameState);
 	}
 

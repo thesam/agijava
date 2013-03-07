@@ -1,57 +1,64 @@
 package agijava.logic.commands;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import agijava.main.AnimatedObject;
+import agijava.main.GameState;
 
 public class AnimateObjCommandTest {
-	// TODO: Move to AnimateObjCommandTest
+
+	private AnimateObjCommand cmd;
+	private ArrayList<Integer> args;
+	private GameState gameState;
+
+	@Before
+	public void setup() {
+		args = new ArrayList<Integer>();
+		cmd = new AnimateObjCommand();
+		gameState = new GameState();
+	}
+
 	@Test
 	public void canStoreAnimatedObjects() throws Exception {
-		fail();
-//		aGameState();
-		// gameState.addAnimatedObject(10);
-		// AnimatedObject obj = gameState.getAnimatedObject(10);
-		// assertEquals(obj.getNumber(),10);
-		// assertTrue(obj.shouldBeUpdated());
-		// gameState.addAnimatedObject(20);
-		// Collection<AnimatedObject> animatedObjects =
-		// gameState.getAnimatedObjects();
-		// assertEquals(2,animatedObjects.size());
+		argsForObject(0);
+
+		assertEquals(0, gameState.animatedObjects.size());
+		commandIsExecuted();
+		assertEquals(1, gameState.animatedObjects.size());
+	}
+
+	private void commandIsExecuted() {
+		cmd.execute(gameState);
+	}
+
+	private void argsForObject(int i) {
+		args.add(i);
+		cmd.setArgs(args);
 	}
 
 	@Test
 	public void usesExistingObjectIfAlreadyAnimated() throws Exception {
-		fail();
-//		aGameState();
-		// gameState.addAnimatedObject(10);
-		// AnimatedObject obj = gameState.getAnimatedObject(10);
-		// gameState.addAnimatedObject(10);
-		// AnimatedObject obj2 = gameState.getAnimatedObject(10);
-		// assertEquals(obj,obj2);
+		argsForObject(0);
+		commandIsExecuted();
+		AnimatedObject obj1 = gameState.animatedObjects.get(0);
+		
+		argsForObject(0);
+		commandIsExecuted();
+		AnimatedObject obj2 = gameState.animatedObjects.get(0);
+
+		assertEquals(obj1, obj2);
 	}
 
 	@Test
 	public void setsAnimatedObjectZeroToEgo() throws Exception {
-		fail();
-//		aGameState();
-		// gameState.addAnimatedObject(0);
-//		AnimatedObject obj = gameState.getAnimatedObject(0);
-//		assertTrue(obj.isEgo());
+		argsForObject(0);
+		commandIsExecuted();
+		assertTrue(gameState.animatedObjects.get(0).isEgo());
 	}
 
-	@Test
-	public void canClearAllAnimatedObjects() throws Exception {
-		fail();
-//		aGameState();
-		// gameState.addAnimatedObject(10);
-		// gameState.addAnimatedObject(20);
-		// gameState.clearAnimatedObjects();
-		// Collection<AnimatedObject> animatedObjects =
-		// gameState.getAnimatedObjects();
-		// assertEquals(0,animatedObjects.size());
-	}
 }

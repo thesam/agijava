@@ -61,6 +61,14 @@ public class GameState {
 		this.inventoryObjects = inventoryObjects;
 	}
 
+	public GameState() {
+		this.logicRepository = null;
+		this.pictureRepository = null;
+		this.viewRepository = null;
+		this.wordsTok = null;
+		this.inventoryObjects = null;
+	}
+
 	public boolean controller(int controllerNo) {
 		// TODO Auto-generated method stub
 		return false;
