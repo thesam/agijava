@@ -6,7 +6,9 @@ import java.util.Map;
 
 import agijava.io.RawByteArray;
 import agijava.logic.commands.*;
+import agijava.main.Logger;
 import agijava.main.LogicCommand;
+
 
 public class Logic {
 
@@ -215,7 +217,8 @@ public class Logic {
 	public LogicCommand getNextCommand() {
 		int nextByte = raw.getNextAndStep();
 		LogicCommand command = getCommand(nextByte);
-		feedArgumentsToCommand(command);
+//        Logger.info(command.getClass().toString());
+        feedArgumentsToCommand(command);
 		return command;
 	}
 
