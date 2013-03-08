@@ -73,9 +73,13 @@ public class GuiDrawer {
 		View view = animatedObject.getView();
 		Loop loops = view.getLoops().get(loop);
 		List<Cel> cels = loops.getCels();
+        try {
 		Cel celToDraw = cels.get(cel);
 		gui.drawCel(celToDraw, animatedObject.getCurrentPosition().getX(), animatedObject.getCurrentPosition().getY(),
 				animatedObject.getPrio());
+        } catch (IndexOutOfBoundsException e) {
+            Logger.warn(e.getLocalizedMessage());
+        }
 	}
 
 	public void updateToScreen() {
