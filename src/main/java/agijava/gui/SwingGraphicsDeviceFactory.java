@@ -13,8 +13,8 @@ public class SwingGraphicsDeviceFactory {
 	private static final int SCALE = 2;
 
 	public SwingGraphicsFrame createGraphicsDevice() {
-		Font font = ConsoleFontFactory.createFont();
-		BufferedImage bufferImage = BufferedImageFactory.createBufferGfxImage(
+		Font font = new ConsoleFontFactory().createFont();
+		BufferedImage bufferImage = new BufferedImageFactory().createBufferGfxImage(
 				GFX_SCREEN_X, GFX_SCREEN_Y);
 		JFrame frame = setupJFrame();
 		Insets insets = frame.getInsets();

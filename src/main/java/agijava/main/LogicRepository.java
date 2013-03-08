@@ -20,7 +20,7 @@ public class LogicRepository {
 		for (ResourceReference resourceReference : logicReferences) {
 			int entryNumber = resourceReference.getEntryNumber();
 			try {
-				Resource res = ResourceReaderFactory.getInstance(resourceReference).read();
+				Resource res = new ResourceReaderFactory().getInstance(resourceReference).read();
 				LogicFactory logicReader = new LogicFactory(res);
 				Logic logic = logicReader.getLogic();		
 				allLogic.put(entryNumber,logic);

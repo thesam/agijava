@@ -9,7 +9,7 @@ public class Main {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		GameEngine engine = GameEngineFactory.createInstance("resource/sq2/"); 
+		GameEngine engine = new GameEngineFactory().createInstance("resource/sq2/");
 		engine.run();
 	}
 

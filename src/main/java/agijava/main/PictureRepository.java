@@ -19,7 +19,7 @@ public class PictureRepository {
 		for (ResourceReference resourceReference : pictureReferences) {
 			int entryNumber = resourceReference.getEntryNumber();
 			try {
-				Resource res = ResourceReaderFactory.getInstance(resourceReference).read();
+				Resource res = new ResourceReaderFactory().getInstance(resourceReference).read();
 				PictureFactory reader = new PictureFactory(res,new PictureCommandFactory());
 				Picture pic = reader.getPicture();		
 				allPics.put(entryNumber,pic);

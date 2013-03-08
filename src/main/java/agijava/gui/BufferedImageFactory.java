@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class BufferedImageFactory {
 
-	public static BufferedImage createBufferGfxImage(int xSize, int ySize) {
+	public BufferedImage createBufferGfxImage(int xSize, int ySize) {
 		GraphicsEnvironment env = GraphicsEnvironment
 				.getLocalGraphicsEnvironment();
 		GraphicsDevice device = env.getDefaultScreenDevice();

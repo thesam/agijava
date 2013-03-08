@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public class ConsoleFontFactory {
 
-	public static Font createFont() {
+	public Font createFont() {
 		String fName = "/fonts/pcsenior/pcsenior.ttf";
 		InputStream is = ConsoleFontFactory.class.getResourceAsStream(fName);
 		Font font = null;

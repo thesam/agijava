@@ -18,7 +18,7 @@ public class ViewRepository {
 		allViews = new HashMap<Integer,View>();
 		for (ResourceReference resourceReference : viewReferences) {
 			try {
-				ResourceReader resReader = ResourceReaderFactory.getInstance(resourceReference);
+				ResourceReader resReader = new ResourceReaderFactory().getInstance(resourceReference);
 				ViewFactory reader = new ViewFactory(resReader.read());
 				View view = reader.getView();		
 				allViews.put(resourceReference.getEntryNumber(),view);

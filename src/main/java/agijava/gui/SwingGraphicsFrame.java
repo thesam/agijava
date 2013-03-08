@@ -15,8 +15,8 @@ import agijava.main.Directions;
 
 public class SwingGraphicsFrame implements KeyListener {
 	
-	public static int WHITE = 15;
-	public static int BLACK = 0;
+	public static final int WHITE = 15;
+	public static final int BLACK = 0;
 
 	private final BufferedImage bufferGfxImage;
 	private final Font consoleFont;

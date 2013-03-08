@@ -9,7 +9,7 @@ public class WordsTokFactory {
 
 	private static final int LETTERS_OF_THE_ALPHABET = 26;
 
-	public static WordsTok createInstance(String path) throws IOException {
+	public WordsTok createInstance(String path) throws IOException {
 		// path = "C:\\Users\\Samuel\\agitemp\\words.tok";
 		WordsTok wordsTok = new WordsTok();
 		FileInputStream inputStream = new FileInputStream(path);

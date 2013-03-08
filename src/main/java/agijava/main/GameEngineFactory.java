@@ -10,12 +10,12 @@ import agijava.gui.SwingGraphicsFrame;
 
 public class GameEngineFactory {
 
-	public static GameEngine createInstance(String gameDir) throws IOException {
+	public GameEngine createInstance(String gameDir) throws IOException {
 			
 			SwingGraphicsDeviceFactory graphicsDeviceFactory = new SwingGraphicsDeviceFactory();
 			SwingGraphicsFrame guiView = graphicsDeviceFactory.createGraphicsDevice();
 			
-			GameState gameState = GameStateFactory.createInstance(gameDir);
+			GameState gameState = new GameStateFactory().createInstance(gameDir);
 			GameGui gui = new GameGui(new PrioCalculator(), gameState,guiView,new PrioBuffer(guiView.getHeight(),guiView.getWidth()));
 			guiView.setController(gui);
 			
