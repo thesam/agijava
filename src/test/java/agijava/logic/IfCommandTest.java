@@ -16,7 +16,6 @@ import agijava.main.GameState;
 public class IfCommandTest {
 	private static final int BYTE_IF = 0xFF;
 	private IfCommand ifCommand;
-	private ArrayList<Integer> args;
 	private GameState gameState;
 	private TestStatementEvaluator evaluator;
 	private List<Integer> input;

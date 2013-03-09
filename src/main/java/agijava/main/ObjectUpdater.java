@@ -230,8 +230,8 @@ public class ObjectUpdater {
 	}
 
 	private boolean isOutsidePicture(Position newPos, Picture currentPicture) {
-		return newPos.getX() >= currentPicture.getWidth()
-				|| newPos.getY() >= currentPicture.getHeight() || newPos.getX() < 0 || newPos.getY() < 0;
+		return newPos.getX() >= currentPicture.width
+				|| newPos.getY() >= currentPicture.height || newPos.getX() < 0 || newPos.getY() < 0;
 	}
 
 }

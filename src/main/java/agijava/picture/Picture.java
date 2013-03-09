@@ -24,6 +24,8 @@ public class Picture {
 
 	private boolean pictureDrawingEnabled;
 	private boolean priorityDrawingEnabled;
+	public final int width = PICTURE_X;
+	public final int height = PICTURE_Y;
 
 	public Picture() {
 		pictureData = new int[PICTURE_X][PICTURE_Y];
@@ -112,14 +114,6 @@ public class Picture {
 		} else {
 			return;
 		}
-	}
-
-	public int getWidth() {
-		return PICTURE_X;
-	}
-
-	public int getHeight() {
-		return PICTURE_Y;
 	}
 
 	public int getPrioForDrawingAt(int x, int y) {

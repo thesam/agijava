@@ -25,12 +25,12 @@ public class PictureTest {
 
 	@Test
 	public void is160PixelsWide() throws Exception {
-		assertEquals(WIDTH, picture.getWidth());
+		assertEquals(WIDTH, picture.width);
 	}
 
 	@Test
 	public void is168PixelsHigh() throws Exception {
-		assertEquals(HEIGHT, picture.getHeight());
+		assertEquals(HEIGHT, picture.height);
 	}
 
 	@Test

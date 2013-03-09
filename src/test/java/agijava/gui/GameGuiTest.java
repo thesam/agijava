@@ -77,7 +77,7 @@ public class GameGuiTest {
 	}
 
 	private void aPicWithOneWhitePixel() {
-		aPicWithOnePixel(SwingGraphicsFrame.WHITE);
+		aPicWithOnePixelColored(SwingGraphicsFrame.WHITE);
 	}
 
 	@Test
@@ -262,13 +262,11 @@ public class GameGuiTest {
 	}
 
 	private void aPicWithOneBlackPixel() {
-		aPicWithOnePixel(SwingGraphicsFrame.BLACK);
+		aPicWithOnePixelColored(SwingGraphicsFrame.BLACK);
 	}
 
-	private void aPicWithOnePixel(int colorIndex) {
+	private void aPicWithOnePixelColored(int colorIndex) {
 		when(pic.getPictureColorAt(0, 0)).thenReturn(colorIndex);
-		when(pic.getHeight()).thenReturn(1);
-		when(pic.getWidth()).thenReturn(1);
 	}
 
 	private void prioCalculatorIsNotUsed() {
