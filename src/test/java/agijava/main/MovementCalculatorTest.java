@@ -56,6 +56,14 @@ public class MovementCalculatorTest {
 		
 	}
 	
+	@Test
+	public void canMoveNorth() throws Exception {
+		aMovementCalculator();
+		Position currentPosition = new Position(0, 0);
+		Position newPosition = movementCalculator.calculateNewPosition(currentPosition, Directions.NORTH);
+		assertEquals(newPosition.getY(), -1);
+	}
+	
 	private void aMovementCalculator() {
 		movementCalculator = new MovementCalculator();
 	}
