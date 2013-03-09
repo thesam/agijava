@@ -140,6 +140,10 @@ public class SwingGraphicsFrame implements KeyListener {
 		case KeyEvent.VK_BACK_SPACE:
 			gui.backspaceKeyPressed();
 			break;
+        case KeyEvent.VK_PAUSE:
+            gui.pauseGame();
+            break;
+
 		default:
 		}
 	}

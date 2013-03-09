@@ -25,7 +25,7 @@ public class GameEngineFactory {
 			RunningGame runningGame = new RunningGame(guiDrawer,updater,gameState);
 //			IInputListener listener = new InputListener(gui,gameState);
 //			gui.addKeyListener(listener);
-			return new GameEngine(gameState,runningGame,calculator,gui);
+			return new GameEngine(runningGame,gui);
 			
 	}
 }

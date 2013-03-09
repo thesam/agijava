@@ -32,7 +32,7 @@ public class GameEngineTest {
 	public void setsNewRoomFlagInGameStateWhenRun() throws Exception {
 		aGameEngine();
 		anExitedGameState();
-		gameEngine.initGameState();
+		//gameEngine.initGameState();
 		assertTrue(gameState.flags[5]);
 	}
 
@@ -52,7 +52,7 @@ public class GameEngineTest {
 		gameState = new GameState(logicRepository, null, null, null, null);
 		runningGame = mock(RunningGame.class);
 		controller = mock(GameGui.class);
-		gameEngine = new GameEngine(gameState, runningGame, null, controller);
+		gameEngine = new GameEngine(runningGame, controller);
 	}
 
 	private void anExitedGameState() {

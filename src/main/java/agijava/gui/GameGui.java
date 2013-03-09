@@ -7,6 +7,8 @@ import agijava.main.Text;
 import agijava.picture.Picture;
 import agijava.view.Cel;
 
+import javax.swing.*;
+
 public class GameGui {
 
 	private final static int MENU_BAR_HEIGHT = 8;
@@ -267,4 +269,7 @@ public class GameGui {
 		}
 	}
 
+    public void pauseGame() {
+        JOptionPane.showMessageDialog(null,"Hello");
+    }
 }
